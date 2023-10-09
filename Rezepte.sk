@@ -1,0 +1,408 @@
+#Daten werden von hinten nach vorne gelesen: slot 2 ist der letzte und slot 6 der letzte
+
+options:
+	Prefix: &8&l【&e&lRezepte&8&l】&8&l▶&7
+	
+# NAHRUNG
+	Medizin: green dye named "&fMedizin"
+
+# WAFFEN
+	Uriziel: iron sword named "&fUriziel"
+	Nachtbringer: diamond sword named "&fNachtbringer"
+	Speedy:	wooden sword named "&fSpeedy"
+	Katana:	gold sword named "&fKatana"
+	
+# BOGEN
+	Telebogen : bow named "&fTelebogen"
+	
+# MISC
+	C4 : tnt named "&fC4"
+	Zepter: blaze rod named "&fZepter"
+	Teleangel: fishing rod named "&fTeleangel"
+	Pferderüstung: diamond horse armor
+	Maschinengewehr: diamond horse armor named "&fMaschinengewehr"
+	Luckyblock: sponge named "&fLuckyblock"
+	Thorshammer: stone hoe named "&fThorshammer"
+	Nzxty: golden apple named "&fNzxty"
+	Besen: blaze rod named "&fBesen"
+	Enterhaken: fishing rod named "&fEnterhaken"
+	
+#DRUGS
+	Koks : sugar named "&fKoks"
+	Weed : wheat named "&fWeed"
+	Ecstasy : potato named "&fEcstasy"
+	Heroin : arrow named "&fHeroin"
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+on load:
+	register new shaped recipe for {@Koks} using sugar, sugar, sugar, sugar, sugar, sugar, sugar, sugar, sugar
+	register new shaped recipe for {@Weed} using air, sugar canes, air, air, paper, air, air, feather, air
+	register new shaped recipe for {@Ecstasy} using air, air, air, air, air, air, air, potato, air
+	register new shaped recipe for {@Heroin} using air, air, air, air, arrow, air, air, iron ingot, air
+
+	register new shaped recipe for {@Enterhaken} using air, redstone, air, air, ender pearl, air, air, fishing rod, air
+	register new shaped recipe for {@Besen} using stick, air, air, air, blaze rod, air, air, air, feather
+	register new shaped recipe for {@Katana} using gold ingot, air, air, air, gold ingot, air, air, air, gold sword
+	register new shaped recipe for {@Speedy} using redstone, air, air, air, sugar, air, air, air, wooden sword
+	register new shaped recipe for {@Uriziel} using dragon egg, air, air, air, beacon, air, air, air, iron sword
+	register new shaped recipe for {@Nachtbringer} using gunpowder, air, air, air, ender pearl, air, air, air, diamond sword
+	register new shaped recipe for {@Pferderüstung} using air, air, air, diamond, leather, diamond, diamond, diamond, diamond
+	register new shaped recipe for sponge using gold block, gold block, gold block, gold block, gold block, gold block, gold block, gold block, gold block
+	register new shaped recipe for bedrock using obsidian, obsidian, obsidian, obsidian, obsidian, obsidian, obsidian, obsidian, obsidian
+
+	register new shapeless recipe for {@Nzxty} using obsidian, nether star, obsidian, obsidian, apple, obsidian, obsidian, obsidian, obsidian	
+	register new shapeless recipe for {@Thorshammer} using beacon, air, air, air, nether star, air, air, air, stick
+	register new shapeless recipe for {@Telebogen} using air, ender pearl, air, air, arrow, air, air, bow, air	
+	register new shapeless recipe for {@Teleangel} using air, air, air, air, ender pearl, air, air, fishing rod, air
+	register new shapeless recipe for {@Zepter} using air, emerald, air, air, diamond, air, air, stick, air	
+	register new shapeless recipe for {@C4} using air, air, air, air, tnt, air, air, stick, air	
+	register new shapeless recipe for {@Medizin} using air, air, air, air, green dye, air, air, green dye, air
+	register new shapeless recipe for {@Maschinengewehr} using air, air, air, air, snowball, air, air, diamond horse armor, air
+	
+	register new shapeless recipe for string using white wool block, air, air, air, air, air, air, air, air
+	register new shapeless recipe for spider eye using gunpowder, redstone, air, air, air, air, air, air, air
+	
+	stop
+
+
+		
+#C4			
+on place of tnt:
+	if name of player's held item contains "&fC4":
+		set {tnt.%player%.location} to event-location
+		give tripwire hook named "&fZünder" to player
+		remove 1 tnt from player's inventory
+		wait 1000 ticks
+		delete {tnt.%player%.location}
+		remove 1 tnt from player's inventory
+	
+on click with tripwire hook:
+	if name of player's held item contains "&fZünder":
+		block at {tnt.%player%.location} is tnt
+		wait 1 tick
+		spawn tnt at {tnt.%player%.location}
+		set block at {tnt.%player%.location} to air
+		delete {tnt.%player%.location}
+		remove all tripwire hook named "&fZünder" from player
+
+	
+on place of tripwire hook:
+	if name of player's held item contains "&fZünder":
+		cancel event
+		
+#TELEBOGEN		
+on projectile hit:
+	if name of shooter's held item contains "&fTelebogen":
+		push shooter (direction from shooter to location of projectile) 
+		clear projectile 
+
+		
+		
+#MEDIZIN
+on right click with green dye:
+	if name of player's held item contains "&fMedizin":
+		remove green dye from player
+		heal player by 5 hearts
+				
+#BESEN
+on right click with blaze rod:
+	if name of player's held item contains "&fBesen":
+		remove 1 blaze rod named "&fBesen" from player's inventory
+		set player's flight mode to true
+		wait 1 minute
+		set player's flight mode to false
+		stop
+
+#ENTERHAKEN
+on player fishing:
+	if name of player's held item contains "&fEnterhaken":
+		if caught entity is not set:
+			if fishing state is in ground:
+				push the player upward at speed 0.5
+				push player (direction from player to hook) at speed (distance between hook and player / 3)
+				if (y coordinate of hook-1) > (y coordinate of player):
+					push player upward at speed ((0.07000000000000001) * (difference between y coordinate of hook and y coordinate of player))
+					play "entity_endermen_teleport" to player
+					repair tool	
+
+		
+#ZEPTER
+on damage:
+	if victim is a player:
+		if name of attacker's held item contains "&fZepter":
+			spawn 1 zombie at the victim
+			wait 5 seconds
+			stop      
+   
+#TELEANGEL		
+on projectile hit:
+	if name of shooter's held item contains "&fTeleangel":
+		set {_arrow} to projectile
+		teleport shooter to {_arrow}
+		clear projectile
+		
+#MASCHINENGEWHR		
+on rightclick:
+	if name of player's held item contains "&fMaschinengewehr":
+		shoot snowball from the player at speed 4
+		
+#URIZIEL		
+on damage:
+	if victim is a player:
+		if name of attacker's held item contains "&fUriziel":
+			apply speed 1 to the attacker for 5 seconds
+			apply slowness 1 to victim for 4 seconds
+			apply weakness 1 to victim for 4 seconds
+			damage victim by 3 hearts
+			ignite the victim
+			stop
+			
+#KATANA		
+on damage:
+	if victim is a player:
+		if name of attacker's held item contains "&fKatana":
+			damage victim by 1.5 hearts
+			stop
+			
+#NACHTBRINGER		
+on damage:
+	if victim is a player:
+		if name of attacker's held item contains "&fNachtbringer":
+			apply blindness 1 to the victim for 3 seconds
+			stop
+			
+#SPEEDY	
+on damage:
+	if victim is a player:
+		if name of attacker's held item contains "&fSpeedy":
+			apply speed 2 to the attacker for 1 second
+			stop
+			
+#THORSHAMMER
+on damage:
+	if victim is a player:
+		if name of attacker's held item contains "&fThorshammer":
+			strike fake fake lightning at victim
+			damage victim by 1.0 hearts
+			stop
+			
+#NZXTY
+on eating of golden apple:
+	if name of player's held item contains "&fNzxty":
+		apply resistance 5 to the player for 10 seconds
+		stop
+		
+#KOKS
+on right click with sugar:
+	if name of player's held item contains "&fKoks":
+		play "entity_player_attack_knockback" to player
+		remove sugar named "&fKoks" from player
+		apply blindness to the player
+		apply slowness to the player
+		
+#WEED
+on right click with wheat:
+	if name of player's held item contains "&fWeed":
+		play "entity_player_burp" to player
+		remove wheat named "&fWeed" from player
+		apply blindness to the player
+
+		
+		
+#ECSTASY
+on right click with potato:
+	if name of player's held item contains "&fEcstasy":
+		play "entity_player_burp" to player
+		remove potato named "&fEcstasy" from player
+		apply blindness to the player
+		apply slowness to the player
+		
+#HEROIN
+on right click with arrow:
+	if name of player's held item contains "&fHeroin":
+		play "entity_player_hurt" to player
+		remove arrow named "&fHeroin" from player
+		apply blindness to the player
+		apply slowness to the player
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+	
+on sign change:
+	if name of player is "MHF_TikTok" or "Nzxter" or "OWNERNAME":
+		if line 1 of block is "Medizin":
+			set line 1 of block to "Medizin"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Uriziel":
+			set line 1 of block to "Uriziel"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Nachtbringer":
+			set line 1 of block to "Nachtbringer"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Speedy":
+			set line 1 of block to "Speedy"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+
+		if line 1 of block is "Telebogen":
+			set line 1 of block to "Telebogen"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "C4":
+			set line 1 of block to "C4"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Zepter":
+			set line 1 of block to "Zepter"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Teleangel":
+			set line 1 of block to "Teleangel"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Maschinengewehr":
+			set line 1 of block to "Maschinengewehr"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Luckyblock":
+			set line 1 of block to "Luckyblock"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Thorshammer":
+			set line 1 of block to "Thorshammer"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Nzxty":
+			set line 1 of block to "Nzxty"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Katana":
+			set line 1 of block to "Katana"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player	
+			
+		if line 1 of block is "Besen":
+			set line 1 of block to "Besen"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player
+			
+		if line 1 of block is "Enterhaken":
+			set line 1 of block to "Enterhaken"
+			set line 4 of block to "&8(&e&lRechtsklick&8)"
+			play "block_note_pling" to player
+
+on right click on sign:
+	if line 1 of block is "Medizin":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Damit heilst du 5 Herzen"
+		
+	if line 1 of block is "Uriziel":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Feuer Speed Schnell Gift 2.5 Damage"
+			
+	if line 1 of block is "Nachtbringer":
+		line 4 of block is "&8(&e&lRechtsklick&8)"			
+		play "entity_player_levelup" to player
+		send "{@Prefix} Erblingung"
+			
+	if line 1 of block is "Speedy":
+		line 4 of block is "&8(&e&lRechtsklick&8)"		
+		play "entity_player_levelup" to player
+		send "{@Prefix} Schnelligkeit"
+			
+	if line 1 of block is "Telebogen":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Sagt der Name schon"
+			
+	if line 1 of block is "C4":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Tnt mit Fernzünder"
+			
+	if line 1 of block is "Zepter":
+		line 4 of block is "&8(&e&lRechtsklick&8)"		
+		play "entity_player_levelup" to player
+		send "{@Prefix} Spawnt bei Schaden Zombies"
+			
+	if line 1 of block is "Teleangel":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Sagt der Name schon"
+		
+	if line 1 of block is "Maschinengewehr":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Schießt Schneebälle"
+			
+	if line 1 of block is "Luckyblock":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Verschiedenste Items"
+			
+	if line 1 of block is "Thorshammer":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Schleudert bei Schaden Blitze"
+		
+	if line 1 of block is "Nzxty":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} 5 Sek God"
+	
+	if line 1 of block is "Katana":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} 1.5 Herzen Direkt Schaden"
+		
+	if line 1 of block is "Besen":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Eine Minute fliegen"
+		
+	if line 1 of block is "Enterhaken":
+		line 4 of block is "&8(&e&lRechtsklick&8)"	
+		play "entity_player_levelup" to player
+		send "{@Prefix} Zieh dich zum Hook"

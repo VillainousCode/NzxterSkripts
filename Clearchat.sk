@@ -1,0 +1,57 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /gcc [<text>]:
+	usage: /gclearchat,
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			loop 50 times:
+				broadcast "%nl%"
+			loop 50 times:
+				broadcast " "
+			loop 100 times:
+				broadcast "፾" 
+			broadcast "{@Prefix} Der Spieler %colored player's prefix% &f%player% &7hat den &cChat geleert"
+			broadcast ""
+		if arg-1 is set:
+			loop 50 times:
+				broadcast "%nl%" to player's world
+			loop 50 times:
+				broadcast " " to player's world
+			loop 100 times:
+				broadcast "፾" to player's world	
+			broadcast " {@Prefix} Der Spieler %colored player's prefix% &f%player% &7hat den &cChat geleert"
+			broadcast " {@Prefix} &4&lGRUND &8» %colored arg%"
+			broadcast ""
+			
+command /cc [<text>]:
+	usage: /clearchat,
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			loop 50 times:
+				broadcast "%nl%" to player's world
+			loop 50 times:
+				broadcast " " to player's world
+			loop 100 times:
+				broadcast "፾" to player's world
+			broadcast "{@Prefix} Der Spieler %colored player's prefix% &f%player% &7hat den &cChat geleert" to player's world
+			broadcast "" to player's world
+		if arg-1 is set:
+			loop 50 times:
+				broadcast "%nl%" to player's world
+			loop 50 times:
+				broadcast " " to player's world
+			loop 100 times:
+				broadcast "፾" to player's world
+			broadcast " {@Prefix} Der Spieler %colored player's prefix% &f%player% &7hat den &cChat geleert" to player's world
+			broadcast " {@Prefix} &4&lGRUND &8» %colored arg%" to player's world
+			broadcast "" to player's world
+			
+command /vergessen:
+	trigger:
+		loop 200 times:
+			send " "
+		send "{@Prefix} Du hast alles &cvergessen"
+		stop

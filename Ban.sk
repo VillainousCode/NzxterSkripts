@@ -1,0 +1,102 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+command /mute [<offline player>] [<text>]:
+	permission: server.builder
+	trigger:
+		if arg-1 or arg-2 is not set:
+			make player execute command "advancedban:mute"	
+		else if arg-1 is set:
+			if arg-2 is set:			
+				make player execute command "advancedban:mute %arg-1% %arg-2%"	
+				set {mute::%arg-1%} to true
+				
+command /unmute [<offline player>]:
+	permission: server.builder
+	trigger:
+		if arg-1 is not set:
+			make player execute command "advancedban:unmute"	
+		else if arg-1 is set:
+			if arg-1 is set:			
+				make player execute command "advancedban:unmute %arg-1%"	
+				set {mute::%arg-1%} to false
+	
+command /tempban [<offline player>] [<text>]:
+	permission: server.supporter
+	trigger:
+		if arg-1 or arg-2 is not set:
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lTEMPBAN &8)&6&m--&e&m--&7&m--&8&m--"
+			send ""
+			send "{@Prefix} &e/tempban &f<Spieler> <Zahl>"
+			send ""
+			send "&91. &7Scamming &8&l» &c12 &7Tage"
+			send "&92. &7Rechteabuse &8&l» &c3 &7Tage"
+			send "&93. &7Bugusing &8&l» &c4 &7Tage"
+			send "&94. &7Spam &8&l» &c1 &7Tage"
+			send "&95. &7Trolling &8&l» &c4 &7Tage"
+			send "&96. &7Spawntrap &8&l» &c7 &7Tage"
+			send "&97. &7Supportausnutzung &8&l» &c7 &7Tage"
+			send ""			
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lTEMPBAN &8)&6&m--&e&m--&7&m--&8&m--"
+			stop	
+			
+		else if arg-2 is "1":
+			make player execute command "advancedban:tempban %arg-1% 12d Scamming"
+				
+		else if arg-2 is "2":
+			make player execute command "advancedban:tempban %arg-1% 3d Rechteabuse"
+				
+		else if arg-2 is "3":
+			make player execute command "advancedban:tempban %arg-1% 4d Bugusing"
+				
+		else if arg-2 is "4":
+			make player execute command "advancedban:tempban %arg-1% 1d Spam"
+				
+		else if arg-2 is "5":
+			make player execute command "advancedban:tempban %arg-1% 4d Trolling"
+				
+		else if arg-2 is "6":
+			make player execute command "advancedban:tempban %arg-1% 7d Spawntrap"
+			
+		else if arg-2 is "7":
+			make player execute command "advancedban:tempban %arg-1% 7d Supportausnutzung"
+
+command /ban [<offline player>] [<text>]:
+	permission: server.mod
+	trigger:
+		if arg-1 or arg-2 is not set:
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lBAN &8)&6&m--&e&m--&7&m--&8&m--"
+			send ""
+			send "{@Prefix} &e/ban &f<Spieler> <Zahl>"
+			send ""
+			send "&91. &7Bannumgehung &8&l» &cPermanent"
+			send "&92. &7Hacking/Crashing &8&l» &cPermanent"
+			send "&93. &7Beleidigung &8&l» &cPermanent" 
+			send "&94. &7Multiaccount &8&l» &cPermanent"
+			send "&95. &7Nicht Sozialfähig &8&l» &cPermanent"
+			send "&96. &7Werbung &8&l» &cPermanent"
+			send "&97. &7Altaccount &8&l» &cPermanent"
+			send ""			
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lBAN &8)&6&m--&e&m--&7&m--&8&m--"
+			stop	
+			
+		else if arg-2 is "1":
+			make player execute command "advancedban:ban %arg-1% Bannumgehung"
+				
+		else if arg-2 is "2":
+			make player execute command "advancedban:ban %arg-1% Hacking/Crashing"
+					
+		else if arg-2 is "3":
+			make player execute command "advancedban:ban %arg-1% Beleidigung"
+		
+		else if arg-2 is "4":
+			make player execute command "advancedban:ban %arg-1% Multiaccount"
+					
+		else if arg-2 is "5":
+			make player execute command "advancedban:ban %arg-1% Nicht Sozialfähig"
+				
+		else if arg-2 is "6":
+			make player execute command "advancedban:ban %arg-1% Werbung"
+			
+		else if arg-2 is "7":
+			make player execute command "advancedban:ban %arg-1% Altaccount"

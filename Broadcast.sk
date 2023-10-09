@@ -1,0 +1,30 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /gbc [<text>]:
+	aliases: /gbroadcast, /galert, /grundruf, /grundrufe, /gdurchsage, /gdurchsagen,
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/gbc &f<Text>"
+			stop
+			
+		if arg-1 is set:
+			broadcast ""			
+			broadcast "{@Prefix} %colored arg%"
+			broadcast ""
+			stop
+			
+command /bc [<text>]:
+	aliases: /broadcast, /alert, /rundruf, /rundrufe, /durchsage, /durchsagen, /alertraw
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/bc &f<Text>"
+			stop
+			
+		if arg-1 is set:
+			broadcast "" to player's world		
+			broadcast "{@Prefix} %colored arg%" to player's world
+			broadcast "" to player's world
+			stop

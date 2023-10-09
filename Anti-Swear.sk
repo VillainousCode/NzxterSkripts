@@ -1,0 +1,18 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	CancelMessage: true 
+	DontSwearHereMsg: &7Bitte nicht beleidigen. Das &9Team &7wurde informiert
+	StaffWarnMsg: &f%player% &7wollte &cbeleidigen! &cMessage: &7%message% 
+	SwearToCheckFor: "pedo" or "huan" or "huso" or "hurensohn" or "hurensöhne" or "hundesohn" or "lappen" or "bastard" or "mistgeburt" or "opfa" or "opfer" or "scheiß server" or "kack server" or "scheis server" or "scheiss server" or "drecks server" or "schlechtester server" or "der server ist kacka" or "müllhaufen" or "fickt euch" or "kackserver" or "nazi" or "server ist kake" or "billig server" or "dummer server" or "hitler"
+
+on chat:
+	if player doesn't have permission "server.team":
+		if message contains {@SwearToCheckFor}:
+			loop all players:
+				if loop-player has permission "server.team":
+					send "{@Prefix} {@StaffWarnMsg}" to loop-player
+				if {@CancelMessage} is true:
+					cancel the event
+			send "{@Prefix} {@DontSwearHereMsg}" to player
+			make server execute command "tempmute %player% 30d Beleidigungen sind bei uns &cverboten"
+			stop

@@ -1,0 +1,30 @@
+options:
+	Prefix: &8&l【&e&lEvent&8&l】&8&l▶&7
+	Title: &8&l【&e&lEvent&8&l】
+
+on join:
+	delete {LabyMod::%player%}
+
+on packet:
+	if event-string is "PacketPlayInCustomPayload":
+		set {_fields::*} to packet field "a"
+		wait 10 ticks
+		if {_fields::*} contains "LABYMOD" or "LMC" or "BC":
+			set {LabyMod::%player%} to true
+
+every 60 minutes:
+	play "entity_generic_explode" to players
+	broadcast "{@Prefix} Jeder &fSpieler &7mit &bLabymod &7hat ein Geschenk erhalten"
+	loop all players:	
+		if {LabyMod::%loop-player%} is true:		
+			send loop-player title "{@Title}" with subtitle "&7Labymod Bonus &8(&a1000$&8) &7erhalten." for 2 seconds
+			play "entity_generic_explode" to loop-player	
+			add 1000 to loop-player's account
+			
+command /checklaby [<player>]:
+	trigger:
+		if arg-1 is set:
+			if {LabyMod::%arg-1%} is true:
+				send "{@Prefix} Der Spieler &f%arg-1% &7ist gerade mit &6LabyMod &7online"
+			else:
+				send "{@Prefix} Der &f%arg-1% &7ist nicht mit &bLabyMod &7online"

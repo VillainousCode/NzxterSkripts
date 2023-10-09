@@ -1,0 +1,22 @@
+﻿options:
+	chatcooldownTime: 3 seconds
+
+on chat:
+	if {chatcooldown::%player%} is true:
+		cancel event
+		stop	
+		
+	else:	
+		#play "entity_item_pickup" to player with volume 0.2 and pitch 4.0
+		wait 5 tick
+		set {chatcooldown::%player%} to true
+		wait {@chatcooldownTime}
+		delete {chatcooldown::%player%}	
+		stop
+		
+on load:
+	delete {chatcooldown::*}
+	
+on quit:
+	delete {chatcooldown::%player%}
+	

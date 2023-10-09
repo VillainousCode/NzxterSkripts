@@ -1,0 +1,108 @@
+command /online:
+	trigger:
+		play "entity_player_levelup" to player
+		set {_p} to number of players in player's world
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lONLINE &8)&6&m--&e&m--&7&m--&8&m--"
+		send ""
+		send "         &7Online auf dem Netzwerk &8(&a%number of all players%&8)"					
+		send ""	
+		send "       &7Spieler auf diesem Server &8(&a%{_p}%&8)"		
+		send ""		
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lONLINE &8)&6&m--&e&m--&7&m--&8&m--"
+
+options:
+	Icon: ●
+	IconColor: &8
+	
+	permspieler: nte.s
+	permiron: nte.i
+	permgold: nte.g
+	permdiamond: nte.d
+	permemerald: nte.e
+	permlapis: nte.l
+	permredstone: nte.r
+	permstammi: nte.st
+	permjryoutuber: nte.jyt
+	permyoutuber: nte.yt
+	permbuilder: nte.b
+	permsrbuilder: nte.srb
+	permsupporter: nte.sup
+	permsrsupporter: nte.srsup
+	permmod: nte.m
+	permsrmod: nte.srm
+	permadmin: nte.a
+	permsradmin: nte.sra
+	permteam: nte.tl
+	permcoowner: nte.co
+	permowner: nte.o
+
+command /list:
+	aliases: /glist, /liste
+	trigger:
+		wait 2 ticks
+	
+		play "entity_firework_twinkle_far" to player
+		
+		set {_num} to -1
+		
+		open virtual chest inventory with size 6 named "&6&lO&enline &8&l┃ &7Menu &a&l%number of all players%" to player
+		
+		loop 55 times:			
+			make a gui slot {_slot} of player with gray glass pane named "&7" to do nothing
+			add 1 to {_slot}
+			
+		loop all players:
+			add 1 to {_num}
+			
+			if loop-player has permission "{@permspieler}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&7%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+			
+			if loop-player has permission "{@permiron}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&f%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permgold}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&6%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permdiamond}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&b%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permemerald}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&6%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permlapis}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&3%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permredstone}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&c%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+
+			if loop-player has permission "{@permstammi}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&d%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permjryoutuber}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&d%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permyoutuber}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&5%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permbuilder}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&a%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permsupporter}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&e%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permmod}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&9%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permadmin}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&c%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permteam}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&4%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permcoowner}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&4%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing
+				
+			if loop-player has permission "{@permowner}":
+				make a gui slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&4%loop-player%" with lore "||{@IconColor}{@Icon} %loop-player's prefix% %loop-player%||{@IconColor}{@Icon} &7Exp: &d%loop-player's level%||{@IconColor}{@Icon} &7Leben: &c%loop-player's health * 2%||{@IconColor}{@Icon} &7Hunger: &8%loop-player's hunger * 2%||{@IconColor}{@Icon} &7Ping: &a%loop-player's ping%||{@IconColor}{@Icon} &7Geld: &e%loop-player's balance%||{@IconColor}{@Icon} &7Server: &4%world of loop-players%||" to do nothing	
+				
+		

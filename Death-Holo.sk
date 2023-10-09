@@ -1,0 +1,10 @@
+on death of player:
+	attacker is a player:
+		victim is a player:
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			set {death.pos.%player%} to location of victim
+			create hologram "ItemStack:Iron Sword;&8┃ ♿ &7Der &fSpieler &c%victim% &7wurde getötet!;&8┃ ♿" at block above {death.pos.%player%} for 2 seconds
+			stop
+	
+on quit:
+	delete {death.pos.%player%}

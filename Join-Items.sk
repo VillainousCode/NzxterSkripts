@@ -1,0 +1,8 @@
+﻿on first join:		
+	set slot 0 of player to wooden axe
+	set slot 1 of player to iron sword
+	set slot 2 of player to diamond pickaxe
+	set slot 7 of player to 32 steak
+	set slot 8 of player to bow named "&fTelebogen"
+	set slot 26 of player to 16 arrows
+	stop

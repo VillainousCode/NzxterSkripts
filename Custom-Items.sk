@@ -1,0 +1,27 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+# GELDBEUTEL
+every 350 minutes:
+	loop all players:
+		if loop-player is not in world "CB-Creative" or "Bauen":
+			drop paper named "&fGeldbeutel" at loop-player's location
+
+on rightclick with paper:
+	if name of player's held item contains "&fGeldbeutel":
+		remove 1 paper named "&fGeldbeutel" from player's inventory
+		set {_Amount} to random integer between 500 and 5000
+		add {_Amount} to player's account
+		send "{@Prefix} Du hast &e%{_Amount}%$ &7bekommen"
+		play "entity_player_levelup" to player	
+	
+# FLUGSCHEIN
+on rightclick with paper:
+	if name of player's held item contains "&fFlugschein":
+		remove 1 paper named "&fFlugschein" from player's inventory
+		send "{@Prefix} Du kannst nun &e5 Min &6Fliegen"
+		play "entity_player_levelup" to player	
+		set player's flight mode to true
+		wait 5 minutes
+		set player's flight mode to false
+		stop

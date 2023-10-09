@@ -1,0 +1,14 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+on join:
+	wait 2 ticks
+	loop 300 times:
+		send ""
+	send "&8&l┏                                                              &8&l┓"
+	send ""
+	send "     &8&l✕ &7TeamSpeak³ &8&l▪ &6nzxter.tk &8&l┃ &7Homepage &8&l▪ &6nzxter.tk &8&l✕"
+	send "                         &8&l✕ &7Discord &8&l▪ &6BTdmF27nac &8&l✕"
+	send ""
+	send "&8&l┗                                                              &8&l┛"
+	stop

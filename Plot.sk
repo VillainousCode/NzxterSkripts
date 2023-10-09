@@ -1,0 +1,284 @@
+options:
+	Prefix: &8&l【&e&lCitybuild&8&l】&8&l▶&7
+
+
+on command "p merge all roads" or "plot merge all roads" or "plots merge all roads" or "plotme merge all roads" or "p2 merge all roads":
+	if player don't have permission "*":
+		cancel event
+
+
+
+
+
+#command /merge:
+#	permission: server.gold
+#	trigger:
+#		run player command "p merge" as op
+
+
+
+command /gs:
+	aliases: /plotmenu, /grundstueck, /grundstuck
+	trigger:
+		play "block_anvil_place" to player with volume 1 and pitch 1.0
+			
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+			
+		wait a tick
+		open virtual chest inventory with size 5 named "&6&lP&elotmenu &8&l┃ &7Menu" to player
+		wait a tick
+			
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing	
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing			
+				
+		make a gui slot 0 of player with brick named "&8&l➢ &7Auto &f× &eclaim" with lore "|| &8&l» &7Hol dir ein &8GS &7automatisch|| || &8&l» &7Klicke um zu &etelen" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p auto"
+			stop
+					
+		make a gui slot 8 of player with brick named "&8&l➢ &7Manuell &f× &cclaim" with lore "|| &8&l» &7Hol dir ein &8GS &7manuell|| || &8&l» &7Klicke um zu &etelen" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p home"
+			stop
+
+						
+			
+		make a gui slot 20 of player with clock named "&8&l➢ &7Zeit ändern &f× &eTag" with lore "|| &8&l» &7Schaltet Tag auf deinem Plot &ean|| || &8&l» &7Klicke um zu &eaktivieren" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p flag remove time"
+			stop
+
+		make a gui slot 22 of player with glowing barrier named "&8&l➢ &7Plot löschen &f× &cReset" with lore "|| &8&l» &7Lösche dein Plot komplett|| || &8&l» &7Klicke um zu &eaktivieren" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p reset"
+			stop	
+			
+		make a gui slot 24 of player with clock named "&8&l➢ &7Zeit ändern &f× &eNacht" with lore "|| &8&l» &7Schaltet Nacht auf deinem Plot &ean|| || &8&l» &7Klicke um zu &eaktivieren" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p flag set time 16000"
+			stop
+					
+		make a gui slot 36 of player with green dye named "&8&l➢ &7PvE &f× &eAn" with lore "|| &8&l» &7Schaltet PvE auf deinem Plot &ean|| || &8&l» &7Klicke um zu &eaktivieren" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p flag set pve true"
+			stop
+					
+		make a gui slot 44 of player with red dye named "&8&l➢ &7PvE &f× &cAus" with lore "|| &8&l» &7Schaltet PvE auf deinem Plot &caus|| || &8&l» &7Klicke um zu &cdeaktivieren" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p flag remove pve"
+			stop
+			
+		make a gui slot 40 of player with redstone named "&8&l➢ &7Plot clear &f× &cLeeren" with lore "|| &8&l» &7Leere dein Plot komplett|| || &8&l» &7Klicke um zu &eaktivieren" to run:
+			play "entity_generic_explode" to player
+			make player execute command "p clear"
+			stop
+			
+		make a gui slot 4 of player with book named "&8&l➢ &e&lInfos" with lore "|| &8&l» &7Hier kannst Du dein &cGS|| &8&l» &7so leicht es geht|| &8&l» &eeinstellen" to run:
+			play "entity_bat_takeoff" to player
+			stop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+command /rand:
+	permission: server.gold
+	trigger:
+		play "block_piston_extend" to player
+					
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+		
+		open virtual chest inventory with size 5 named "&6&lR&eand &8&l┃ &7Menu" to player
+
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+			
+			
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing
+		
+		
+		
+		make a gui slot 3 of player with sandstone slab item named "&8&l➢ &7&lSandsteinstufe" to run:
+			make player execute command "p set border 44:1"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l44:1&8) &7geändert"
+			
+		make a gui slot 4 of player with stone slab item named "&8&l➢ &7&lSteinstufe" to run:
+			make player execute command "p set border 44"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l44&8) &7geändert"
+			
+		make a gui slot 5 of player with cobble slab item named "&8&l➢ &7&lBruchsteinstufe" to run:
+			make player execute command "p set border 44:3"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l44:3&8) &7geändert"
+			
+		make a gui slot 11 of player with brick slab item named "&8&l➢ &7&lZiegelstufe" to run:
+			make player execute command "p set border 44:4"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l44:4&8) &7geändert"
+			
+		make a gui slot 12 of player with stone brick slab item named "&8&l➢ &7&lSteinziegelstufe" to run:
+			make player execute command "p set border 44:5"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l44:5&8) &7geändert"
+
+		make a gui slot 13 of player with birch slab item named "&8&l➢ &7&lBirkenholzstufe" to run:
+			make player execute command "p set border 126:2"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l126:2&8) &7geändert"
+
+		make a gui slot 14 of player with dark oak slab item named "&8&l➢ &7&lSchwarzeichenholzstufe" to run:
+			make player execute command "p set border 126:5"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l126:5&8) &7geändert"
+
+
+
+
+		make a gui slot 19 of player with coal block named "&8&l➢ &7&lKohleblock" to run:
+			make player execute command "p set border 173"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l173&8) &7geändert"
+
+		make a gui slot 20 of player with prismarine named "&8&l➢ &7&lPrismarine" to run:
+			make player execute command "p set border 168:0"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l168:0&8) &7geändert"
+
+		make a gui slot 21 of player with hay block named "&8&l➢ &7&lHeuballen" to run:
+			make player execute command "p set border 170"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l170&8) &7geändert"
+
+		make a gui slot 22 of player with melon block named "&8&l➢ &7&lMeloneblock" to run:
+			make player execute command "p set border 103"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l103&8) &7geändert"
+
+		make a gui slot 23 of player with mycelium named "&8&l➢ &7&lMycel" to run:
+			make player execute command "p set border 110"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l110&8) &7geändert"
+
+		make a gui slot 24 of player with netherrack named "&8&l➢ &7&lNetherstein" to run:
+			make player execute command "p set border 87"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l87&8) &7geändert"
+
+		make a gui slot 25 of player with jukebox named "&8&l➢ &7&lMusikbox" to run:
+			make player execute command "p set border 84"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l84&8) &7geändert"
+
+		make a gui slot 29 of player with sandstone named "&8&l➢ &7&lSandstein" to run:
+			make player execute command "p set border 24"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l24&8) &7geändert"
+
+		make a gui slot 30 of player with bedrock named "&8&l➢ &7&lGrundgestein" to run:
+			make player execute command "p set border 7"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l7&8) &7geändert"
+
+		make a gui slot 31 of player with stone named "&8&l➢ &7&lStein" to run:
+			make player execute command "p set border 1"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l1&8) &7geändert"
+
+		make a gui slot 32 of player with obsidian named "&8&l➢ &7&lObsidian" to run:
+			make player execute command "p set border 49"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l49&8) &7geändert"
+
+		make a gui slot 33 of player with bookshelf named "&8&l➢ &7&lBücherregal" to run:
+			make player execute command "p set border 47"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l47&8) &7geändert"
+
+		make a gui slot 39 of player with brick block named "&8&l➢ &7&lBruchsteinblock" to run:
+			make player execute command "p set border 45"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l45&8) &7geändert"
+
+		make a gui slot 40 of player with crafting table named "&8&l➢ &7&lWerkbank" to run:
+			make player execute command "p set border 58"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l58&8) &7geändert"
+
+		make a gui slot 41 of player with barrier named "&8&l➢ &7&lNichts" to run:
+			make player execute command "p set border 0"
+			send "{@Prefix} Du hast den &6Rand &7zu &8(&6&l0&8) &7geändert"
+			
+			
+			
+			
+			
+command /wand:
+	aliases: wall
+	permission: server.gold
+	trigger:
+		play "block_piston_extend" to player
+					
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+		
+		open virtual chest inventory with size 5 named "&6&lW&eand &8&l┃ &7Menu" to player
+
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+			
+			
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing
+		
+		
+		
+		make a gui slot 3 of player with stone named "&8&l➢ &7&lStein" to run:
+			make player execute command "p set wall 1"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l1&8) &7geändert"
+			
+		make a gui slot 4 of player with dirt named "&8&l➢ &7&lErde" to run:
+			make player execute command "p set wall 3"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l3&8) &7geändert"
+			
+		make a gui slot 5 of player with bedrock named "&8&l➢ &7&lGrundgestein" to run:
+			make player execute command "p set wall 7"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l7&8) &7geändert"
+			
+		make a gui slot 11 of player with sandstone named "&8&l➢ &7&lSandstein" to run:
+			make player execute command "p set wall 24"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l24&8) &7geändert"
+	
+		make a gui slot 12 of player with netherrack named "&8&l➢ &7&lNetherstein" to run:
+			make player execute command "p set wall 87"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l87&8) &7geändert"
+			
+		make a gui slot 13 of player with brick block named "&8&l➢ &7&lZiegelstein" to run:
+			make player execute command "p set wall 45"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l45&8) &7geändert"
+			
+		make a gui slot 14 of player with bookshelf named "&8&l➢ &7&lBücherregal" to run:
+			make player execute command "p set wall 47"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l47&8) &7geändert"
+			
+		make a gui slot 15 of player with obsidian named "&8&l➢ &7&lObsidian" to run:
+			make player execute command "p set wall 49"
+			send "{@Prefix} Du hast deine &6Wand &7zu &8(&6&l49&8) &7geändert"

@@ -1,0 +1,41 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /ping [<player>]:
+	aliases: /pi
+	trigger:
+		if arg-1 is not set:
+			set {_ping::%player%} to player's ping
+			if {_ping::%player%} is less than 30:
+				send "{@Prefix} Dein Ping &6%{_ping::%player%}% &7MS"
+				send "{@Prefix} Deine Verbindung ist sehr gut"
+				stop
+				
+			if {_ping::%player%} is higher than or equal to 31:
+				send "{@Prefix} Dein Ping &e%{_ping::%player%}% &7MS"
+				send "{@Prefix} Deine Verbindung ist gut"
+				stop
+				
+			if {_ping::%player%} is higher or equal to 51:
+				send "{@Prefix} Dein Ping &e%{_ping::%player%}% &7MS"
+				send "{@Prefix} Deine Verbindung ist unstabil"
+				stop
+				
+			if {_ping::%player%} is higher or equal to 101:
+				send "{@Prefix} Dein Ping &6%{_ping::%player%}% &7MS"
+				send "{@Prefix} Deine Verbindung ist schwach"
+				stop
+				
+			if {_ping::%player%} is higher or equal to 201:
+				send "{@Prefix} Dein Ping &c%{_ping::%player%}% &7MS"
+				send "{@Prefix} Deine Verbindung ist sehr schwach"
+				stop
+				
+			if {_ping::%player%} is higher or equal to 301:
+				send "{@Prefix} Dein Ping &4%{_ping::%player%}% &7MS"
+				send "{@Prefix} Deine Verbindung ist extrem schlecht"
+				stop
+			
+		if arg-1 is set:
+			send "{@Prefix} &f%arg-1%'s &7Ping &e%player-arg's ping% &7MS"
+			stop

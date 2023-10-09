@@ -1,0 +1,87 @@
+options:
+	Prefix: &8&l【&e&lFrieden&8&l】&8&l▶&7
+	
+on damage of a player:
+	if {frieden::%attacker%::%victim%} is set:
+		send "{@Prefix} Du hast mit &f&l%victim% &cFrieden &7geschlossen!" to attacker
+		cancel event
+		
+command /frieden [<text>] [<player>]:
+	aliases: /friede, /friedens
+	trigger:
+		if arg-1 is not set:
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &c&lFRIEDEN &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &8▪ &6/friedens &eantrag &f<Name> &8&l» &7Stellt einen &e&lFriedens Antrag &7aus."
+			send " &8▪ &6/frieden &eauflösen &f<Name> &8&l» &7Löse den &e&lFrieden &7mit dem &f&lUser."
+			send " &8▪ &6/frieden &eja &f<Name> &8&l» &7Nimm das &e&lFriedens Angebot &7an."
+			send " &8▪ &6/frieden &enein &f<Name> &8&l» &7Lehne das &e&lFriedens Angebot &7ab."		
+			send " "		
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &c&lFRIEDEN &8)&6&m--&e&m--&7&m--&8&m--"
+			stop
+			
+		if arg-1 is "anfragen" or "senden" or "versenden" or "antrag":
+			if arg-2 is set:
+				if {frieden::%player%::%arg-2%} is not set:
+					if arg-2 is player:
+						send "{@Prefix} Du kannst dir selbst kein &c&lFriedenssangebot &7schicken!"
+						stop
+					if arg-2 is not player:
+						send "{@Prefix} Du hast &f&l%arg-2% &7einen &c&lFriedens Antrag &7geschickt"
+							
+						send "          &8&m--&7&m--&e&m--&6&m--&8( &c&lFRIEDEN &8)&6&m--&e&m--&7&m--&8&m--" to arg-2
+						send " " to arg-2
+						send "    &7Du hast ein &c&lFriedens Antrag &7erhalten!" to arg-2
+						send " " to arg-2
+						send "               &7Von: &f&l&n%player%" to arg-2
+						send " " to arg-2
+						send "               &6/frieden ja %player%" to arg-2
+						send "              &6/frieden nein %player%" to arg-2
+						send " " to arg-2
+						send "          &8&m--&7&m--&e&m--&6&m--&8( &c&lFRIEDEN &8)&6&m--&e&m--&7&m--&8&m--" to arg-2
+						set {friedensantrag::%player%::%arg-2%} to true
+					else:
+						send "{@Prefix} Dieser &f&lSpieler &7ist &cnicht online!"
+				else:
+					send "{@Prefix} Du hast bereits &c&lFrieden &7mit diesem &f&lSpieler &7geschlossen!"
+			else:
+				send "{@Prefix} Benutze &6/frienden antrag &f<Name>"	
+					
+		if arg-1 is set:
+			if arg-1 is "auflösen":
+				if arg-2 is set:
+					if arg-2 is not a player:
+						send "{@Prefix} Dieser &f&lSpieler &7ist &cnicht online!"
+						
+					if {frieden::%player%::%arg-2%} is set:
+						delete {frieden::%player%::%arg-2%}
+						delete {frieden::%arg-2%::%player%}
+						broadcast "{@Prefix} Der Spieler &f&l%player% &7hat den &c&lFrieden &7mit &f&l%arg-2% &7aufgelöst!"
+						stop
+					else:
+						send "{@Prefix} Du bist nicht im &c&lFrieden &7mit diesem &f&lSpieler"
+						stop
+				else:
+					send "{@Prefix} Benutze &6/frieden auflösen &f<Name>"
+					
+			if arg-1 is "annehmen" or "ja":
+				if arg-2 is set:
+					if {friedensantrag::%arg-2%::%player%} is set:
+						delete {friedensantrag::%arg-2%::%player%}
+						set {frieden::%arg-2%::%player%} to true
+						set {frieden::%player%::%arg-2%} to true
+						broadcast "{@Prefix} Die Spieler &f&l%arg-2% &7und &f&l%player% &7haben &c&lFrieden &7geschlossen!"
+					else:
+						send "{@Prefix} Du hast von diesem &f&lSpieler &7kein &c&lFriedens Antrag &7erhalten!"
+				else:
+					send "{@Prefix} Benutze &6/frieden ja &f<Name>"
+					
+			if arg-1 is "ablehnen" or "nein":
+				if arg-2 is set:
+					if {friedensantrag::%arg-2%::%player%} is set:
+						delete {friedensantrag::%arg-2%::%player%}
+						broadcast "{@Prefix} Der Spieler &f&l%player% &7hat denn &c&lFriedens Antrag &7von &f&l%arg-2% &7abgelehnt!"
+					else:
+						send "{@Prefix} Du hast von diesem &f&lSpieler &7kein &c&lFriedens Antrag &7erhalten!"
+				else:
+					send "{@Prefix} Benutze &6/frieden nein &f<Name>"

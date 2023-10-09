@@ -1,0 +1,234 @@
+options:
+	Prefix:	&8&l【&e&lCookieclicker&8&l】&8&l▶&7
+	Title: &8&l【&e&lCookieclicker&8&l】
+  
+variables:
+	{Cookies::%player%} = 0
+
+on left click on orange glass block:
+	if player is in world "Spawn":
+		block under block is iron_block
+		
+		show mob spawner flames at the event-block
+		
+		if {Cookiesdoppelt::%player%} is not set:
+			play "entity_chicken_egg" to player
+			add 1 to {Cookies::%player%}
+			set action bar of player to "&6Cookies &8&l● &e%{Cookies::%player%}%"
+			stop
+		if {Cookiesdoppelt::%player%} is set:
+			play "entity_chicken_egg" to player
+			add 4 to {Cookies::%player%}
+			set action bar of player to "&6Cookies &8&l● &e%{Cookies::%player%}%"
+			stop
+			
+on right click on orange glass block:
+	if player is in world "Spawn":
+		cancel event
+		block under block is iron_block
+		
+		play "block_anvil_destroy" to player with volume 1 and pitch 1.0		
+
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+			
+		open virtual chest inventory with size 5 named "&6&lC&eookieclicker &8&l┃ &7Menu" to player
+
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing	
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing
+		
+		
+
+		make a gui slot 0 of player with iron ingot named "&8&l➢ &f&lIron &cRang" with lore "||  &e50.000 &6Cookies &7oder &e5 EUR &7Spende||  ||  &fAlle Vorteile des Ranges||  || &8&l» &f/kit holzfaeller &8&l● &7Bekomme &fHolzfäller Kit|| &8&l» &f/sign &8&l● &7Signiere ein &fItem|| &8&l» &f/itemdb &8&l● &7Rufe Ids von &fItems &7auf|| &8&l» &f/hat &8&l● &7Item auf dem &fKopf|||| &8&l» &7Du kannst &f2 Homes &7besitzen|| &8&l» &7Du kannst &fFarbig schreiben|| &8&l» &7Du kannst &fSchilder farbig &7machen||  ||  &fKlicke um denn Rang zu bekommen" to run:
+			if player has permission "server.iron" or "server.team":
+				send player title "{@Title}" with subtitle "&7Bereits &egekauft" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+			else if {Cookies::%player%} is greater than or equal to 50000:
+				{Cookierang::%player%} was less than 168 hours ago:
+					make server execute command "pex user %player% group set S"
+					stop
+				set {Cookierang::%player%} to now
+				send player title "{@Title}" with subtitle "&8Iron &egekauft" for 2 seconds
+				remove 50000 from {Cookies::%player%}
+				add 5000 to player's account
+				make server execute command "pex user %player% group set I"
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenige &6Cookies" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+				
+		make a gui slot 8 of player with gold ingot named "&8&l➢ &6&lGold &cRang" with lore "||  &e100.000 &6Cookies &7oder &e10 EUR &7Spende||  ||  &fAlle Vorteile des Ranges||  ||  &7Alle Rechte von &8Iron||  || &8&l» &6/kit buddler &8&l● &7Bekomme &6Buddler Kit|| &8&l» &6/craft &8&l● &7Benutze überall die Werkbank|| &8&l» &6/near &8&l● &7Siehe wie weit jemand weg ist|| &8&l» &6/rand &8&l● &7Ändere den &6Rand &7deines &6GSes|| &8&l» &6/wand &8&l● &7Ändere die &6Wand &7deines &6GSes|||| &8&l» &7Du kannst &63 Homes &7besitzen|| &8&l» &7Du kannst &62 Plots &7besitzen|| &8&l» &7Du kannst &6Plots Mergen||  ||  &fKlicke um denn Rang zu bekommen" to run:
+			if player has permission "server.gold" or "server.team":
+				send player title "{@Title}" with subtitle "&7Bereits &egekauft" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+			else if {Cookies::%player%} is greater than or equal to 100000:
+				{Cookierang::%player%} was less than 168 hours ago:
+					make server execute command "pex user %player% group set S"
+					stop
+				set {Cookierang::%player%} to now
+				send player title "{@Title}" with subtitle "&6Gold &egekauft" for 2 seconds
+				remove 100000 from {Cookies::%player%}
+				add 7500 to player's account
+				make server execute command "pex user %player% group set G"
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenige &6Cookies" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+
+		make a gui slot 20 of player with diamond named "&8&l➢ &b&lDiamond &cRang" with lore "||  &e150.000 &6Cookies &7oder &e15 EUR &7Spende||  ||  &fAlle Vorteile des Ranges||  ||  &7Alle Rechte von &6Gold||  || &8&l» &b/kit electro &8&l● &7Bekomme &bElektro Kit|| &8&l» &b/invsee &8&l● &7Du kannst in &bInvs &7sehen|| &8&l» &b/rs &8&l● &7Du kannst einen &bRucksack &7öffnen|||| &8&l» &7Du kannst &b4 Homes &7besitzen|| &8&l» &7Du kannst &bDurchgestrichen &7schreiben||  ||  &fKlicke um denn Rang zu bekommen" to run:
+			if player has permission "server.diamond" or "server.team":
+				send player title "{@Title}" with subtitle "&7Bereits &egekauft" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+			else if {Cookies::%player%} is greater than or equal to 100000:
+				{Cookierang::%player%} was less than 168 hours ago:
+					make server execute command "pex user %player% group set S"
+					stop
+				set {Cookierang::%player%} to now
+				send player title "{@Title}" with subtitle "&bDiamond &egekauft" for 2 seconds
+				remove 150000 from {Cookies::%player%}
+				add 10000 to player's account
+				make server execute command "pex user %player% group set D"
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenige &6Cookies" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+					
+		make a gui slot 24 of player with emerald named "&8&l➢ &2&lEmerald &cRang" with lore "||  &e200.000 &6Cookies &7oder &e25 EUR &7Spende||  ||  &fAlle Vorteile des Ranges||  ||  &7Alle Rechte von &bDiamond||  || &8&l» &2/kit Iron &8&l● &7Bekomme &2Iron Kit|| &8&l» &2/fly &8&l● &7Du kannst &2fliegen|| &8&l» &2/repair &8&l● &7Items &2reparieren|| &8&l» &2/pet &8&l● &7Spawne dir ein &2Tier|||| &8&l» &7Du kannst &25 Homes &7besitzen|| &8&l» &7Du kannst &23 Plots &7besitzen||  ||  &fKlicke um denn Rang zu bekommen" to run:
+			if player has permission "server.emerald" or "server.team":
+				send player title "{@Title}" with subtitle "&7Bereits &egekauft" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+			else if {Cookies::%player%} is greater than or equal to 200000:
+				{Cookierang::%player%} was less than 168 hours ago:
+					make server execute command "pex user %player% group set S"
+					stop
+				set {Cookierang::%player%} to now
+				send player title "{@Title}" with subtitle "&6Emerald &egekauft" for 2 seconds
+				remove 200000 from {Cookies::%player%}
+				add 12500 to player's account
+				make server execute command "pex user %player% group set E"
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenige &6Cookies" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+					
+
+		make a gui slot 36 of player with lapis named "&8&l➢ &3&lLapis &cRang" with lore "||  &e250.000 &6Cookies &7oder &e35 EUR &7Spende||  ||  &fAlle Vorteile des Ranges||  ||  &7Alle Rechte von &2Emerald||  || &8&l» &3/kit hero &8&l● &7Bekomme &3Hero Kit|| &8&l» &3/feed &8&l● &7Stille den &3Hunger|| &8&l» &3/rüstung &8&l● &7Schau dir Spieler Rüstungen an|||| &8&l» &7Du kannst &3Dick &7schreiben|| &8&l» &7Du kannst &36 Homes &7besitzen||  ||  &fKlicke um denn Rang zu bekommen" to run:
+			if player has permission "server.lapis" or "server.team":
+				send player title "{@Title}" with subtitle "&7Bereits &egekauft" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+			else if {Cookies::%player%} is greater than or equal to 250000:
+				{Cookierang::%player%} was less than 168 hours ago:
+					make server execute command "pex user %player% group set S"
+					stop
+				set {Cookierang::%player%} to now
+				send player title "{@Title}" with subtitle "&3Lapis &egekauft" for 2 seconds
+				remove 250000 from {Cookies::%player%}
+				add 15000 to player's account
+				make server execute command "pex user %player% group set L"
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenige &6Cookies" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+					
+					
+		make a gui slot 44 of player with redstone named "&8&l➢ &c&lRedstone &cRang" with lore "|| &e300.000 &6Cookies &7oder &e40 EUR &7Spende||  || &cAlle Vorteile des Ranges||  || &7Alle Rechte von &3Lapis||  || &8&l» &c/kit godset &8&l● &7Bekomme &cGodset Kit|| &8&l» &c/heal &8&l● &7Du kannst &cHeilen|| &8&l» &c/effekte &8&l● &7Du kannst dir &cEffekte &7spawnen|||| &8&l» &7Du kannst &c4 Plots &7besitzen|| &8&l» &7Du kannst &c7 Homes &7besitzen||  ||  &fKlicke um denn Rang zu bekommen" to run:
+			if player has permission "server.redstone" or "server.team":
+				send player title "{@Title}" with subtitle "&7Bereits &egekauft" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+			else if {Cookies::%player%} is greater than or equal to 200000:
+				{Cookierang::%player%} was less than 168 hours ago:
+					make server execute command "pex user %player% group set S"
+					stop
+				set {Cookierang::%player%} to now
+				send player title "{@Title}" with subtitle "&cRedstone &egekauft" for 2 seconds
+				remove 300000 from {Cookies::%player%}
+				add 20000 to player's account
+				make server execute command "pex user %player% group set R"
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenige &6Cookies" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+
+		make a gui slot 22 of player with cookie named "&8&l➢ &6&lVierfache Cookies" with lore "|| &8&l» &e25.000 &6Cookies||  ||  &fKlicke um denn Bonus zu bekommen" to run:
+			if {Cookiesdoppelt::%player%} is set:
+				send player title "{@Title}" with subtitle "&7Bereits &egekauft" for 2 seconds
+				play "entity_bat_takeoff" to player 
+				stop
+			else if {Cookies::%player%} is greater than or equal to 25000:
+				{Cookiesdoppelt::%player%} was less than 1 hours ago:	
+					delete {Cookiesdoppelt::%player%}
+					stop
+				set {Cookiesdoppelt::%player%} to now
+				send player title "{@Title}" with subtitle "&6Vierfache Cookies &egekauft" for 2 seconds
+				remove 25000 from {Cookies::%player%}
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenige &6Cookies" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+					
+				
+		make a gui slot 4 of player with book named "&8&l➢ &e&lInfos" with lore "||  &fWann erhalte ich meinen Rang ?||  || &8&l» &7Du erhälst deinen Rang|| &8&l» &7wenn du mir den PSC Code|| &8&l» &7schickst. Du hast kein Anrecht|| &8&l» &7auf Geldzurückerstattungen||  ||  &7Gespendete &cRänge/Verloste &7sind &6&lLifeTime||  &6Cookieclicker &cRänge &7sind &6&l7 Tage &7gültig" to run:
+			play "entity_bat_takeoff" to player 
+			stop
+			
+		make a gui slot 40 of player with book named "&8&l➢ &e&lInfos" with lore "||  &fWann erhalte ich meinen Rang ?||  || &8&l» &7Du erhälst deinen Rang|| &8&l» &7wenn du mir den PSC Code|| &8&l» &7schickst. Du hast kein Anrecht|| &8&l» &7auf Geldzurückerstattungen||  ||  &7Gespendete &cRänge/Verloste &7sind &6&lLifeTime||  &6Cookieclicker &cRänge &7sind &6&l7 Tage &7gültig" to run:
+			play "entity_bat_takeoff" to player 
+			stop
+
+		
+		
+		
+		
+command /cookies [<player>]:
+	aliases: /cookie, /kekse
+	trigger:
+		play "entity_player_levelup" to player
+		if arg 1 is not set:
+			send "{@Prefix} &7Du hast &6%{Cookies::%player%}%"
+			stop
+		if arg 1 is set:
+			send "{@Prefix} &7Der &f%arg-1% &7hat &6%{Cookies::%arg-1%}%"
+			stop
+
+command /resetcookies:
+	permission: *
+	trigger:
+		set {Cookies::%player%} to 0
+		send "{@Prefix} &7Deine &6Cookies &7wurden &cresettet."
+		stop	

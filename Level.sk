@@ -1,0 +1,74 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	Title: &8&l【&6&lNzxterMC&8&l】
+
+variables:
+	{level::%player%} = 1
+	{exp::%player%} = 0
+
+on first join:
+	set {level::%player%} to 1
+	set {exp::%player%} to 0	
+	
+on damage:
+	if attacker is a player:
+		chance of 25%:
+			show 100 "ENCHANTMENT_TABLE" particles at attacker's location for attacker
+					
+#			loop all players in radius 20 around attacker:
+#			play "ENTITY_EXPERIENCE_ORB_PICKUP" to loop-player at volume 10
+			add 1 to {exp::%attacker%}
+					
+			if {level::%attacker%} is greater than or equal to 1:
+				if {exp::%attacker%} is greater than or equal to 100:
+					set {exp::%attacker%} to 0
+					add 1 to {level::%attacker%}
+					add 500 to attacker's account
+					wait 1 tick
+					send attacker title "{@Title}" with subtitle "&7Neues Level: &e&l%{level::%attacker%}%" for 2 seconds
+							
+			else if {level::%attacker%} is greater than or equal to 2:
+				if {exp::%attacker%} is greater than or equal to 100:
+					set {exp::%attacker%} to 0
+					add 1 to {level::%attacker%}
+					add 1000 to attacker's account
+					wait 1 tick
+					send attacker title "{@Title}" with subtitle "&7Neues Level: &e&l%{level::%attacker%}%" for 2 seconds
+						
+			else if {level::%attacker%} is greater than or equal to 3:
+				if {exp::%attacker%} is greater than or equal to 100:
+					set {exp::%attacker%} to 0
+					add 1 to {level::%attacker%}
+					add 1500 to attacker's account
+					wait 1 tick
+					send attacker title "{@Title}" with subtitle "&7Neues Level: &e&l%{level::%attacker%}%" for 2 seconds
+							
+			else if {level::%attacker%} is greater than or equal to 4:
+				if {exp::%attacker%} is greater than or equal to 100:
+					set {exp::%attacker%} to 0
+					add 1 to {level::%attacker%}
+					add 2000 to attacker's account
+					wait 1 tick
+					send attacker title "{@Title}" with subtitle "&7Neues Level: &e&l%{level::%attacker%}%" for 2 seconds
+							
+			else if {level::%attacker%} is greater than or equal to 5:
+				if {exp::%attacker%} is greater than or equal to 100:
+					set {exp::%attacker%} to 0
+					add 1 to {level::%attacker%}
+					add 2500 to attacker's account
+					wait 1 tick
+					send attacker title "{@Title}" with subtitle "&7Neues Level: &e&l%{level::%attacker%}%" for 2 seconds
+			
+
+command /xp:
+	aliases: /level, /exp
+	trigger: 
+		send "{@Prefix} Deine EXP: &e%{exp::%player%}%"
+		send "{@Prefix} Dein Level: &e%{level::%player%}%"
+		
+			
+command /levelreset:
+	trigger:
+		delete {level::%player%}
+		delete {exp::%player%}
+		send "{@Prefix} Deine &eLevels + Exp wurden &cresettet"

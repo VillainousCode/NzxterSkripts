@@ -1,0 +1,51 @@
+on damage:
+	if attacker is a player:
+		if victim is not a player:
+			wait 1 tick
+			rounded health of victim is 10:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤❤❤❤❤❤❤❤ &8➡ &e&l10 &4❤"
+			rounded health of victim is 9:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤❤❤❤❤❤❤&7❥ &8➡ &e&l9 &4❤"
+			rounded health of victim is 8:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤❤❤❤❤❤&7❥❥ &8➡ &e&l8 &4❤"
+			rounded health of victim is 7:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤❤❤❤❤&7❥❥❥ &8➡ &e&l7 &4❤"
+			rounded health of victim is 2:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤❤❤❤&7❥❥❥❥ &8➡ &e&l6 &4❤"
+			rounded health of victim is 5:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤❤❤&7❥❥❥❥❥ &8➡ &e&l5 &4❤"
+			rounded health of victim is 4: 
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤❤&7❥❥❥❥❥❥ &8➡ &e&l4 &4❤"
+			rounded health of victim is 3:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤❤&7❥❥❥❥❥❥❥ &8➡ &e&l3 &4❤"
+			rounded health of victim is 2:
+				set action bar of attacker to coloured "&8&l▶ &c❤❤&7❥❥❥❥❥❥❥❥ &8➡ &e&l2 &4❤"
+			rounded health of victim is 1:
+				set action bar of attacker to coloured "&8&l▶ &c❤&7❥❥❥❥❥❥❥❥❥ &8➡ &e&l1 &4❤"
+			stop
+
+#options:
+#	Show Health Time: 7 seconds
+#	Health Colour: &c
+#	Health Lose Colour: &7
+#	Health Symbol: ❤
+#	Show Always: false
+
+#on damage:
+#	if {@Show Always} is not true:
+#		attacker is a player
+#	victim is a ender dragon or wither:
+#		stop
+#	wait 1 tick
+#	loop 20 times:
+#		set {_health.%loop-integer%.%victim%} to "{@Health Lose Colour}{@Health Symbol}"
+#		loop-integer is greater than max health of victim
+#		set {_health.%loop-integer%.%victim%} to ""
+#	loop rounded health of victim times:
+#		set {_health.%loop-integer%.%victim%} to "{@Health Colour}{@Health Symbol}"
+#	set action bar of attacker to coloured "%{_health.1.%victim%}%%{_health.2.%victim%}%%{_health.3.%victim%}%%{_health.4.%victim%}%%{_health.5.%victim%}%%{_health.6.%victim%}%%{_health.7.%victim%}%%{_health.8.%victim%}%%{_health.9.%victim%}%%{_health.10.%victim%}%%{_health.11.%victim%}%%{_health.12.%victim%}%%{_health.13.%victim%}%%{_health.14.%victim%}%%{_health.15.%victim%}%%{_health.16.%victim%}%%{_health.17.%victim%}%%{_health.18.%victim%}%%{_health.19.%victim%}%%{_health.20.%victim%}%"
+#	set {_displaytime} to now
+#	while victim exists:
+#		if difference between {_displaytime} and now is greater than {@Show Health Time}:
+#			stop
+#		wait 1 tick

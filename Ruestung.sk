@@ -1,0 +1,60 @@
+options:
+	Prefix: &8&l【&e&lRüstung&8&l】&8&l▶&7
+
+command /rüstung [<player>]:
+	aliases: /armor
+	permission: server.lapis
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/rüstung &f<Text>"
+			stop
+		set {_helmet} to arg-1's helmet
+		set {_namehelmet} to name of arg-1's helmet
+		if {_namehelmet} is not set:
+			set {_namehelmet} to "&fHelm"
+			
+			set {_chest} to arg-1's chestplate
+			set {_namechest} to name of arg-1's chestplate
+			if {_namechest} is not set:
+				set {_namechest} to "&fBrustplatte"
+				
+			set {_leggings} to arg-1's leggings
+			set {_nameleggings} to name of arg-1's leggings
+			if {_nameleggings} is not set:
+				set {_nameleggings} to "&fHose"
+				
+			set {_boots} to arg-1's boots
+			set {_nameboots} to name of arg-1's boots
+			if {_nameboots} is not set:
+				set {_nameboots} to "&fSchuhe"
+				
+			open virtual brewing inventory with size 1 named "&6&lR&eüstung &8&l┃ &f&l%arg 1%" to player
+			wait 2 ticks
+			
+			if arg-1's helmet is air:
+				make a gui slot 3 of player with barrier named "&4&l✘" with lore "&7Dieser Spieler hat kein &6Helm!" to run:
+					play "entity_bat_takeoff" to player
+			else:
+				make a gui slot 3 of player with {_helmet} named "%{_namehelmet}%" to run:
+					play "entity_bat_takeoff" to player
+				
+			if arg-1's chestplate is air:
+				make a gui slot 0 of player with barrier named "&4&l✘" with lore "&7Dieser Spieler hat keine &6Brustplatte" to run:
+					play "entity_bat_takeoff" to player
+			else:
+				make a gui slot 0 of player with {_chest} named "%{_namechest}%" to run:
+					play "entity_bat_takeoff" to player		
+					
+			if arg-1's leggings is air:
+				make a gui slot 2 of player with barrier named "&4&l✘" with lore "&7Dieser Spieler hat kein &6Hose!" to run:
+					play "entity_bat_takeoff" to player
+			else:
+				make a gui slot 2 of player with {_leggings} named "%{_nameleggings}%" to run:
+					play "entity_bat_takeoff" to player
+				
+			if arg-1's boots is air:
+				make a gui slot 1 of player with barrier named "&4&l✘" with lore "&7Dieser Spieler hat kein &6Schuhe!" to run:
+					play "entity_bat_takeoff" to player
+			else:
+				make a gui slot 1 of player with {_boots} named "%{_nameboots}%" to run:
+					play "entity_bat_takeoff" to player

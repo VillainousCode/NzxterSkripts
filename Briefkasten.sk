@@ -1,0 +1,23 @@
+
+on place of dispenser:
+	block below event-block is a fence
+	broadcast "%player% hat einen Briefkasten gebaut"
+
+on rightclick on dispenser:
+	block below event-block is a fence
+	cancel event
+	open chest inventory with 1 row named "&6Briefkasten" to player
+	wait 1 tick
+	set player's current inventory to {Briefkasten::%player%::*}
+
+on inventory close:
+	drop all items of event-inventory
+	clear {Briefkasten::%player%::*}
+
+command /mail <offlineplayer>:
+	trigger:
+		if size of {Briefkasten::%arg-1%::*} is larger than 8:
+			send "&c%arg-1%'s Briefkasten ist voll"
+			stop
+		add 1 of player's tool to {Briefkasten::%arg-1%::*}
+		remove 1 of player's tool from player

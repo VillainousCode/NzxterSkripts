@@ -1,0 +1,14 @@
+on death of a player:
+	victim is a player
+	attacker is a player
+	add 10 to attacker's account
+	chance of 5%:
+		add 33 to attacker's account
+		wait 1 tick
+		send attacker title "&f&l+&a&l33 $" for 2 seconds
+		stop
+	chance of 1%:
+		add 66 to attacker's account
+		wait 1 tick
+		send attacker title "&f&l+&a&l66 $" for 2 seconds
+		stop

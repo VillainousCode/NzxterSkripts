@@ -1,0 +1,101 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+	
+command /globalmute [<text>]:
+	permission: server.admin
+	trigger:
+		{global::mute} is not set:
+			send "{@Prefix} Initiiere den Chatmute..."
+			wait 1 second
+			set {global::mute} to true
+			arg 1 is "an":
+				broadcast "{@Prefix} Der Chat wurde von %colored player's prefix% &f%player% &cgesperrt."
+			else:
+				broadcast "{@Prefix} Der Chat wurde von &7%player% &cgesperrt."
+				broadcast "{@Prefix} &4GRUND: &7%colored arg%"
+			stop
+		
+		{global::mute} is true:
+			send "{@Prefix} Initiiere den Chatunmute..."
+			wait 1 second
+			broadcast "{@Prefix} Der Chat wurde von  %colored player's prefix% &f%player% &eentsperrt."
+			delete {global::mute}	
+		
+
+on chat:
+	if {global::mute} is set:
+		if the player has the permission "server.team":
+			send "{@Prefix} %colored player's prefix% &7%player% &8» &7%message%"
+			cancel event
+			stop
+		if the player does not have the permission "server.team":
+			send "{@Prefix} Der Chat ist gerade &causgeschaltet!"
+			cancel event
+			stop
+			
+on command:
+	if {global::mute} is set:
+		if the command is "msg":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+
+on command:
+	if {global::mute} is set:
+		if the command is "emsg":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "essentials:msg":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "essentials:r":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "essentials:epm":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "tell":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "w":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "t":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "whisper":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "r":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"
+			
+on command:
+	if {global::mute} is set:
+		if the command is "epm":
+			cancel event
+			send "{@Prefix} Der Globalmute ist gerade an! Bald wieder aus!"

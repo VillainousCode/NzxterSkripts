@@ -1,0 +1,66 @@
+options:
+	Prefix:	&8&l【&e&lKits&8&l】&8&l▶&7
+			
+command /kit:
+	trigger:
+		play "entity_firework_twinkle_far" to player
+
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+		
+		open virtual chest inventory with size 5 named "&6&lK&eits &8&l┃ &7Menu" to player
+
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing	
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing	
+
+		
+
+		make a gui slot 0 of player with gold axe named "&8&l➢ &a&lHolzfäller" with lore "||  &fWas ist enthalten|| || &8&l» &aLeder Helm &8&l● &8(&a1&8) || &8&l» &aLeder Kappe &8&l● &8(&a1&8)|| &8&l» &aRüstung &8&l● &8(&a1&8)|| &8&l» &aLeder Hose &8&l● &8(&a1&8)|| &8&l» &aDiamant Axt &8&l● &8(&a1&8) || &8&l» &a16 Steaks &8&l● &8(&a1&8) || || &f&lKlicke um das &a&lKit &f&lzu bekommen" to run:
+			make console execute command "sudo %player% essentials:kit holzfaeller"
+			play "entity_player_levelup" to player
+			
+		make a gui slot 8 of player with wooden shovel named "&8&l➢ &6&lBuddler" with lore "||  &fWas ist enthalten|| || &8&l» &6Leder Helm &8&l● &8(&61&8) || &8&l» &6Leder Kappe &8&l● &8(&61&8)|| &8&l» &6Leder Rüstung &8&l● &8(&61&8)|| &8&l» &6Leder Hose &8&l● &8(&61&8)|| &8&l» &6Eisen Hose &8&l● &8(&61&8) || &8&l» &6Diamant Schaufel &8&l● &8(&61&8) || &8&l» &616 Steaks &8&l● &8(&61&8) || || &f&lKlicke um das &6&lKit &f&lzu bekommen" to run:
+			make console execute command "sudo %player% essentials:kit buddler"
+			play "entity_player_levelup" to player
+
+
+		make a gui slot 20 of player with iron axe named "&8&l➢ &c&lHero" with lore "||  &fWas ist enthalten|| || &8&l» &cEisen Axt Ench &8&l● &8(&c1&8) || &8&l» &cLeder Kappe Ench &8&l● &8(&c1&8)|| &8&l» &cLeder Rüstung Ench &8&l● &8(&c1&8)|| &8&l» &cLeder Hose Ench &8&l● &8(&c1&8)|| &8&l» &cDiamant Schuhe Ench &8&l● &8(&c1&8) || || &f&lKlicke um das &c&lKit &f&lzu bekommen" to run:
+			make console execute command "sudo %player% essentials:kit hero"	
+			play "entity_player_levelup" to player
+				
+
+		make a gui slot 22 of player with leather chestplate named "&8&l➢ &5&lYoutuber" with lore "||  &fWas ist enthalten|| || &8&l» &5Diamant Schwert Ench &8&l● &8(&51&8) || &8&l» &5Bogen Ench &8&l● &8(&51&8)|| &8&l» &51 Stack Pfeile &8&l● &8(&51&8)|| &8&l» &5Diamant Spitzhacke Ench &8&l● &8(&51&8)|| &8&l» &5Diamant Helm Ench &8&l● &8(&51&8)|| &8&l» &5Diamant Rüstung Ench &8&l● &8(&51&8) || &8&l» &5Diamant Hose Ench &8&l● &8(&51&8) || &8&l» &5Diamant Schuhe Ench &8&l● &8(&51&8) || || &f&lKlicke um das &5&lKit &f&lzu bekommen" to run:
+			make console execute command "sudo %player% essentials:kit youtuber"
+			play "entity_player_levelup" to player				
+	
+	
+		make a gui slot 24 of player with diamond sword named "&8&l➢ &e&lElectro" with lore "||  &fWas ist enthalten|| || &8&l» &eDiamant Schwert &8&l● &8(&e1&8) || &8&l» &eLeder Helm &8&l● &8(&e1&8)|| &8&l» &eGold Rüstung &8&l● &8(&e1&8)|| &8&l» &eEisen Hose &8&l● &8(&e1&8)|| &8&l» &eDiamant Schuhe &8&l● &8(&e1&8) || &8&l» &eFeuerkugeln &8&l● &8(&e8&8)|| &8&l» &eBogen &8&l● &8(&e1&8) || &8&l» &ePfeile &8&l● &8(&e16&8) || &8&l» &eSchneebälle &8&l● &8(&e16&8) || || &f&lKlicke um das &e&lKit &f&lzu bekommen" to run:
+			make console execute command "sudo %player% essentials:kit electro"
+			play "entity_player_levelup" to player
+				
+				
+		make a gui slot 36 of player with iron sword named "&8&l➢ &7&lIron" with lore "||  &fWas ist enthalten|| || &8&l» &7Eisen Schwert Ench &8&l● &8(&71&8) || &8&l» &7Eisen Helm Ench &8&l● &8(&71&8)|| &8&l» &7Eisen Rüstung Ench &8&l● &8(&71&8)|| &8&l» &7Eisen Hose Ench &8&l● &8(&71&8)|| &8&l» &7Eisen Schuhe Ench &8&l● &8(&71&8) || || &f&lKlicke um das &7&lKit &f&lzu bekommen" to run:
+			make console execute command "sudo %player% essentials:kit iron"
+			play "entity_player_levelup" to player
+
+							
+		make a gui slot 44 of player with diamond chestplate named "&8&l➢ &b&lGodset" with lore "||  &fWas ist enthalten|| || &8&l» &bDiamant Schwert Ench &8&l● &8(&b1&8) || &8&l» &bDiamant Helm Ench &8&l● &8(&b1&8)|| &8&l» &bDiamant Schuhe Ench &8&l● &8(&b1&8)|| &8&l» &bDiamant Hose Ench &8&l● &8(&b1&8)|| &8&l» &bDiamant Rüstung Ench &8&l● &8(&b1&8) || || &f&lKlicke um das &b&lKit &f&lzu bekommen" to run:
+			make console execute command "sudo %player% essentials:kit godset"		
+			play "entity_player_levelup" to player	
+
+			
+			
+			
+		make a gui slot 4 of player with book named "&8&l➢ &e&lInfos" with lore "|| &fWas sind &6Kits &7?||  || &8&l» &7Du erhälst deine &eKits|| &8&l» &7mit dem jeweiligen &cRang|| &8&l» &7in bestimmten &eZeit &7abständen|| &8&l» &7leichteres &ecraften/farmen" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+		make a gui slot 40 of player with book named "&8&l➢ &e&lInfos" with lore "|| &fWas sind &6Kits &7?||  || &8&l» &7Du erhälst deine &eKits|| &8&l» &7mit dem jeweiligen &cRang|| &8&l» &7in bestimmten &eZeit &7abständen|| &8&l» &7leichteres &ecraften/farmen" to run:
+			play "entity_bat_takeoff" to player
+			stop				

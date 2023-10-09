@@ -1,0 +1,35 @@
+﻿#Runde Kreis Symbole
+
+on chat:
+	if player doesn't have permission "server.team":
+		if message contains "ⓐ" or "ⓑ" or "ⓒ" or "ⓓ" or "ⓓ" or "ⓕ" or "ⓖ" or "ⓗ" or "ⓡ" or "ⓙ" or "ⓘ" or "ⓚ" or "ⓛ" or "ⓜ" or "ⓝ" or "ⓞ" or "ⓟ" or "ⓠ" or "ⓡ" or "ⓢ" or "ⓣ" or "ⓤ" or "ⓥ" or "ⓦ" or "ⓧ" or "ⓨ" or "ⓩ" or "Ⓑ" or "Ⓒ" or "Ⓓ" or "Ⓒ" or "Ⓔ" or "Ⓕ" or "Ⓖ" or "Ⓗ" or "Ⓘ" or "Ⓢ" or "Ⓡ" or "Ⓠ" or "Ⓟ" or "Ⓞ" or "Ⓝ" or "Ⓛ" or "Ⓚ" or "Ⓙ" or "Ⓣ" or "Ⓤ" or "Ⓥ" or "Ⓦ" or "Ⓧ" or "Ⓨ" or "Ⓩ":
+			cancel event
+			stop
+
+
+#Große Buchstaben	
+		
+on chat:
+	if player doesn't have permission "server.team":
+		if message contains "ａ" or "ｂ" or "ｃ" or "ｄ" or "ｅ" or "ｆ" or "ｇ" or "ｈ" or "ｉ" or "ｊ" or "ｋ" or "ｌ" or "ｍ" or "ｎ" or "ｏ" or "ｐ" or "ｑ" or "ｒ" or "ｓ" or "ｔ" or "ｕ" or "ｖ" or "ｗ" or "ｘ" or "ｙ" or "ｚ" or "Ａ" or "Ｂ" or "Ｃ" or "Ｄ" or "Ｅ" or "Ｆ" or "Ｇ" or "Ｈ" or "Ｉ" or "Ｊ" or "Ｋ" or "Ｌ" or "Ｍ" or "Ｎ" or "Ｏ" or "Ｐ" or "Ｑ" or "Ｒ" or "Ｓ" or "Ｔ" or "Ｕ" or "Ｖ" or "Ｗ" or "Ｘ" or "Ｙ" or "Ｚ":
+			cancel event
+			stop
+			
+			
+			
+			
+			
+			
+#Nur Buchstaben und Zahlen
+			
+on chat:
+	if player doesn't have permission "server.team":
+		if message regex matches "[^A-z]+[^0-9]":
+			cancel event
+			stop
+			
+on command:	
+	if player doesn't have permission "server.team":
+		if command regex matches "[^A-z]+[^0-9]":
+			cancel event
+			stop	

@@ -1,0 +1,34 @@
+﻿on damage:
+	if victim is not in world "1Hit" or "Fastbridgen" or "GunFFA":
+		if attacker is a player:
+			if victim is a skeleton:
+				chance of 20%:
+					bind hologram "&4Geblockt!" to victim for 0.75 seconds offset by 1, 1.5, 0
+					stop
+			else if victim is a player:
+				clear {holoschaden::%victim%}
+				if victim is wearing all diamond armour:
+					add 60 to {holoschaden::%victim%}
+					chance of {holoschaden::%victim%}%:
+						bind hologram "&cGeblockt!" to victim for 0.75 seconds offset by 1, 1.5, 0
+						stop
+			else:
+				chance of 20%:
+					cancel event
+					bind hologram "&cPariert" to victim for 0.75 seconds offset by 1, 1.5, 0
+					stop
+			set {_damage} to damage
+			bind hologram "&e-%{_damage}*2%" to victim for 0.75 seconds offset by 0, 1.5, 1
+	
+on damage:
+	if victim is not in world "1Hit" or "Fastbridgen" or "GunFFA":
+		bind hologram "&c-%final damage%" to victim for 1 second offset by 0.4, 2.0, 0.
+	
+on join:
+	delete {holoschaden::%player%}
+	
+on quit:
+	delete {holoschaden::%player%}
+	
+on kick:
+	delete {holoschaden::%player%}

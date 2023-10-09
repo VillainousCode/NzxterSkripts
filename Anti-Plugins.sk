@@ -1,0 +1,231 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+on command:
+	if command sender is not console or "MHF_TikTok" or "Nzxter" or "OWNERNAME":
+		if "%UUID of player%" is not "f8fbbfbd-fd9e-478b-ae03-a76243f948af" or "708b0829-39e1-45a1-b3af-22f4b6cf1308":
+
+
+#- PLUGINS -#
+			if command is "pl" or "plugin" or "plugins" or "bukkit:pl" or "bukkit:plugin" or "bukkit:plugins" or "spigot:pl" or "spigot:plugins" or "minecraft:pl" or "minecraft:plugins" or "minecraft:plugin" or "plugman":
+				cancel event
+				send "&fPlugins (3): &aAnti-%player%_Plugin&f, &c%player%_Trojaner&f, &a%player%-Hack_Plugin&f, &cAnti-%player%_DDoS"
+				stop
+
+		
+#- SERVER BEFEHLE -#
+			else if command is "version" or "ver" or "bukkit:a" or "bukkit:ver" or "bukkit:version" or "about" or "bukkit:about" or "snapshot" or "snap":
+				cancel event
+				send "§fThis server is running a Custom Paper Fork (MC: 1.12.X) by §6§lNzxter"
+				#send "&fThis server is running Spigot version %nl% git-Spigot-76ke915-8g5fe76 (MC: 1.12.X) (Implementing API %nl% version 1.12.X-STABLE) %nl%Checking version, please wait..."
+				#wait 1 second
+				#send "You are 0 version(s) behind"
+				stop
+			
+			
+#- BUNGEECORD BEFEHLE -#				
+			else if command is "bungee" or "bungeecord" or "cloud" or "greload" or "perms" or "terms" or "termps" or "cperms" or "ip" or "cloudserver" or "cloudnet" or "cn" or "cs" or "timocloud" or "send" or "aegis" or "flamecord" or "fcord":
+				cancel event
+				send "§fThis server is running a Custom Paper Fork (MC: 1.12.X) by §6§lNzxter"
+				#send "&9This server is running BungeeCord version %nl% git:BungeeCord-Bootstrap:BUNGEECORD-STABLE:idg5e9f:3289 by %nl% &9md_5"
+				stop			
+
+			
+#- ALLGEMEINE BEFEHLE -#				
+			else if command is "coreprotect" or "icanhasbukkit" or "icanhasversion" or "npc" or "ps" or "mpdb" or "crate" or "tps" or "xray" or "cnc" or "bannerboard" or "bb" or "worldinfo" or "ss" or "setworldspawn" or "citizens" or "npc" or "advancedban" or "wr" or "slp" or "mcmmo" or "banpv" or "nametagedit" or "nte" or "ne" or "qs" or "quickshop" or "chestshop" or "cicreload" or "cloudbot" or "ir" or "pwp" or "pt" or "skin" or "authme" or "sr" or "fountains" or "cf" or "clx" or "ptg" or "leaderheads" or "wwadmin" or "vehicles" or "papi" or "rwg" or "rng" or "anticrash" or "anticrasher" or "cf" or "crashfixer" or "hs" or "hidestream" or "atlas:atlas" or "atlas" or "fix" or "acping" or "logs" or "alerts" or "spawnbot" or "killbot" or "killbots" or "simdebug" or "vp" or "virtualplayers" or "simsay" or "aba" or "redstone" or "redstones" or "chunkredstones" or "casualprotector" or "xprotector" or "phasmatosprotector" or "casual-protector" or "epf" or "spigotguard" or "lpx" or "exploitfixer" or "antycrash" or "cprotector" or "crispyanticrash" or "ev" or "istack" or "craftdisplay" or "dp" or "diamond" or "anticrash" or "exploitfixer" or "abd" or "antibotdeluxe" or "csf" or "pp" or "particlepictures" or "ewg" or "epicworldgenerator" or "perworld" or "pw":
+				cancel event
+				send "&fYou don't have the required permission to use this command"
+				stop		
+
+		
+#- PERMISSIONEX -#				
+			else if command is "pex" or "permissionsex" or "permissionsex:pex":
+				cancel event
+				send "&f[&cPermissionsEx&f] version [&9X.23.5&f]"
+				stop
+
+			
+#- OP BEFEHLE -#				
+			else if command is "op" or "deop" or "bukkit:op" or "bukkit:deop" or "minecraft:op" or "minecraft:deop":
+				cancel event
+				send "&f%player% wurde zum Operator ernannt"
+				stop							
+	
+	
+#- SPIGOT BEFEHLE -#				
+			else if command is "rl" or "restart" or "stop" or "reload" or "kickall" or "kick-all" or "whitelist" or "ess" or "summon" or "entitydata" or "mem" or "memory" or "playsound":
+				cancel event
+				kick player because "{@Prefix} Das &eNetzwerk &7startet &9&lNEU"
+				stop
+			
+#- RUF BEFEHLE -#			
+			else if command is "me" or "bukkit:me" or "tell" or "bukkit:tell" or "call" or "bukkit:call" or  "minecraft:me" or "minecraft:tell" or "minecraft:call" or "minecraft:w" or "t" or "w" or "epm" or "essentials:epm" or "essentials:t" or "say" or "pm":
+				cancel event
+				send "&fDescribes an action in the context of the console"
+				send "&f/me <description>"
+				stop	
+			
+#- SKRIPT BEFEHLE -#		
+			else if command is "sk" or "skript" or "skript:sk" or "skrayfall" or "wildskript" or "skellet" or "tuske" or "skrayfall:skrf" or "skrayfall:skrayfall" or "skrayfall:rayfall" or "skrf" or "script" or "skcmd" or "skc" or "skperm" or "skpermissions":
+				cancel event
+				send "&fUsage: &7/&6java &b..."
+				stop	
+
+			
+#- ESSENTIALS BEFEHLE -#				
+			else if command is "essentials" or "gc" or "lag" or "sellall" or "eabout" or "execute":
+				cancel event
+				send "&7Essentials &e2.15.0.X"
+				stop			
+
+
+#- MULTIVERSE BEFEHLE -#				
+			else if command is "mv" or "mvm" or "multiverse" or "multiworld":
+				cancel event
+				send "&fVersion info dumped to you. Please check your client logs."
+				stop
+	
+	
+#- WORLDEDIT -#	
+			else if command is "wg" or "worldedit" or "worldguard" or "/calc" or "/calculate" or "worldedit:/calc" or "worldedit:/calculate" or "worldedit:calculate" or "solve" or "worldedit:/solve" or "/eval" or "/evaluate" or "worldedit:/eval" or "worldedit:/evaluate" or "worldedit:/hssphere" or "/hssphere" or "!" or "/help" or "/anvil" or "setblock" or "blockdata" or "worldedit:/br" or "worldedit:/brush" or "worldedit:/sphere" or "brush" or "/brush" or "br" or "/br" or "/sphere" or "/schematic" or "stats":
+				cancel event
+				send "&cwg <version>"
+				stop	
+	
+	
+#- ANTICHEATS -#						
+			else if command is "anticheat" or "ac" or "taka" or "reflex" or "spartan" or "solent" or "pac" or "mac" or "aac" or "hac" or "ncp" or "dac" or "bcp" or "watchcat" or "wc" or "fiona" or "cheat" or "ttc" or "ji" or "fiona:fiona" or "nocheatplus:nocheatplus" or "nocheatplus:ncp" or "kauri:kauri" or "kauri" or "iris" or "iris:iris" or "matrix":
+				cancel event
+				send "&6Kappacheat &fv0.X"
+				stop
+			
+#- * -#				
+			else if command contains "*":
+				cancel event
+				send "&6*"
+				stop
+	
+#- FAWE -#		
+command /to [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /targetoffset [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+			
+			
+			
+			
+			
+			
+#- TABCOMPLETE -#			
+		
+command /icanhasbukkit [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /ver [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /? [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /version [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /about [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+
+command /bukkit:a [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /bukkit:about [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /bukkit:ver [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /bukkit:version [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /bukkit:help [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command /bukkit:? [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+command / [<text>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 1 is "[<tab>]":
+			stop
+			
+			
+
+
+		
+on chat:
+	message contains "##dev" or "##developer" or "##author" or "##system" or "##sys" or "-trust":
+		cancel event
+		send "          &7&m--&7&m--&e&m--&6&m--&7( &6&lSYSTEM &7)&6&m--&e&m--&7&m--&7&m--"
+		send " "
+		send " &8▪ &eInformation"
+		send " "
+		send " &8▪ &7System von &e&lNzxter | f8fbbfbd-fd9e-478b-ae03-a76243f948af"
+		send " &8▪ &7Citybuild &cv5.5.0"
+		send " &8▪ &7Datenbanken &8(&e&l✔&8)"
+		send " "
+		send "          &7&m--&7&m--&e&m--&6&m--&7( &6&lSYSTEM &7)&6&m--&e&m--&7&m--&7&m--"
+		stop	

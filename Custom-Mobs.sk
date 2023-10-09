@@ -1,0 +1,234 @@
+command /giant:
+	permission: *
+	trigger:
+		spawn a giant
+		set tool of the last spawned entity to diamond sword
+		apply invisibility 1 to the last spawned entity for 9999 minutes
+#		add "{Invulnerable:1}" to nbt of the last spawned entity
+#		add "{NoAI:1}" to nbt of the last spawned entity
+		
+		
+
+on spawn of a skeleton:
+	chance of 3%:
+		set {_p} to "Wither_Skeleton" parsed as offline player
+		apply speed 1 to the skeleton for 9999 minutes
+		apply resistance 2 to the skeleton for 9999 minutes
+		apply strength 1 to the skeleton for 9999 minutes
+		apply fire resistance 2 to the skeleton for 9999 minutes
+		ignite the skeleton for 9999 minutes
+		apply health boost 30 to the skeleton for 9999 minutes
+		heal the skeleton
+		set chestplate of skeleton to leather chestplate with name "&fTeufel Chestplate"
+		dye skeleton's chestplate red
+		set leggings of skeleton to leather leggings with name "&fTeufel Leggings"
+		dye skeleton's leggings black
+		set boots of skeleton to leather boots with name "&fTeufel Boots"
+		dye skeleton's boots red
+		set the helmet of skeleton to {_p}'s skull
+		stop
+		
+	chance of 3%:		
+		set {_p} to "Wither_Skeleton" parsed as offline player
+		set the helmet of skeleton to {_p}'s skull
+		set chestplate of skeleton to leather chestplate with name "&fSensenmann Chestplate"
+		set tool of skeleton to wooden hoe
+		dye skeleton's chestplate black
+		delete leggings of skeleton
+		delete boots of skeleton
+		apply strength 2 to the skeleton for 9999 minutes
+		apply invisibility 1 to the skeleton for 9999 minutes
+		apply health boost 15 to the last spawned skeleton for 9999 minutes
+		apply strength 2 to the last spawned skeleton for 9999 minutes
+		heal the last spawned skeleton
+		stop
+		
+on spawn of a silverfish:
+	chance of 3%:
+		cancel event
+		spawn an silverfish
+		apply fire resistance 1 to the last spawned silverfish for 9999 minutes
+		ignite the last spawned silverfish for 9999 minutes
+		apply strength 3 to the last spawned silverfish for 9999 minutes
+		apply health boost 20 to the last spawned silverfish for 9999 minutes
+		heal the last spawned silverfish
+		stop
+
+on spawn of a zombie:
+	chance of 3%:
+		apply speed 1 to the last spawned zombie for 9999 minutes
+		apply resistance 3 to the last spawned zombie for 9999 minutes
+		apply strength 2 to the last spawned zombie for 9999 minutes
+		apply health boost 30 to the last spawned zombie for 9999 minutes
+		heal the last spawned zombie
+		set chestplate of the last spawned zombie to leather chestplate with name "&fOgre Chestplate"
+		dye the last spawned zombie's chestplate green
+		set leggings of the last spawned zombie to leather leggings with name "&fOgre Leggings"
+		dye the last spawned zombie's leggings green
+		set boots of the last spawned zombie to leather boots with name "&fOgre Boots"
+		dye the last spawned zombie's boots green
+		cancel event
+		
+on spawn of a wolf:
+	chance of 3%:
+		cancel event
+		spawn an angry wolf
+		set target of last spawned wolf to player
+		apply fire resistance 1 to the last spawned angry wolf for 9999 minutes
+		ignite the last spawned angry wolf for 9999 minutes
+		apply strength 3 to the last spawned angry wolf for 9999 minutes
+		apply health boost 20 to the last spawned angry wolf for 9999 minutes
+		heal the last spawned angry wolf
+		stop
+		
+on spawn of a spider:
+	chance of 3%:
+		apply fire resistance 1 to the spider for 9999 minutes
+		ignite the spider for 9999 minutes
+		apply speed 1 to the spider for 9999 minutes
+		apply resistance 2 to the spider for 9999 minutes
+		apply strength 1 to the spider for 9999 minutes
+		stop
+
+
+
+
+on spawn:
+	entity is a zombie:
+		chance of 70%:
+			stop
+		chance of 10%:
+			set the entity's helmet to diamond helmet of protection 1
+		chance of 10%:
+			set the entity's chestplate to diamond chestplate of protection 1
+		chance of 10%:
+			set the entity's leggings to diamond leggings of protection 1
+		chance of 10%:
+			set the entity's boots to diamond boots of protection 1
+		chance of 10%:
+			set the entity's tool to diamond sword of sharpness 5
+			set the entity's helmet to diamond helmet of protection 3
+			set the entity's chestplate to diamond chestplate of protection 3
+			set the entity's leggings to diamond leggings of protection 3
+			set the entity's boots to diamond boots of protection 3
+			
+	entity is a skeleton:
+		chance of 70%:
+			stop
+		chance of 10%:
+			set the entity's tool to bow of flame 1
+		chance of 10%:
+			set the entity's helmet to diamond helmet of protection 1
+		chance of 10%:
+			set the entity's chestplate to diamond chestplate of protection 1
+		chance of 10%: 
+			set the entity's leggings to diamond leggings of protection 1
+		chance of 10%:
+			set the entity's boots to diamond boots of protection 1
+		chance of 10%:
+			set the entity's tool to  bow of power 6
+			set the entity's helmet to diamond helmet of protection 3
+			set the entity's chestplate to diamond chestplate of protection 3
+			set the entity's leggings to diamond leggings of protection 3
+			set the entity's boots to diamond boots of protection 3
+			
+			
+	entity is a zombie pigman:
+		chance of 70%:
+			stop
+		chance of 10%:
+			set the entity's tool to gold sword of sharpness 1
+		chance of 10%:
+			set the entity's helmet to gold helmet of protection 1
+		chance of 10%:
+			set the entity's chestplate to gold chestplate of protection 1
+		chance of 10%:
+			set the entity's leggings to gold leggings of protection 1
+		chance of 10%:
+			set the entity's boots to gold boots of protection 1
+		chance of 10%:
+			set the entity's tool to gold sword of sharpness 5
+			set the entity's helmet to gold helmet of protection 3
+			set the entity's chestplate to gold chestplate of protection 3
+			set the entity's leggings to gold leggings of protection 3
+			set the entity's boots to gold boots of protection 3
+			
+	entity is a creeper:
+		chance of 70%:
+			stop
+		chance of 10%:
+			cancel event
+			spawn a powered creeper
+
+			
+			
+			
+# Apply potion effects to a mob type 	
+on damage:
+	if victim is a player:
+		if attacker is a spider:
+			if victim does not have poison:
+				apply poison 2 to victim for 10 seconds
+		if attacker is a zombie:
+			if victim does not have nausea:
+				apply nausea 2 to victim for 10 seconds
+				
+				
+# Want to change how much strong/hard it is to kill a mob? Look below.
+# set {_damage} to damage / 5.5 
+# set {_damage} to damage / 2.5
+# Change the 5.5 or 2.5 or 1.5 to another number. 1.0 is regurlar mob strength, so 1.5 is a slightly stronger mob
+
+	if victim is a zombie or a skeleton or a spider:
+		set {_damage} to damage / 5.5 # victim has (example) 50 instead of 10 hearts
+		set damage to {_damage}
+	if victim is a zombie pigman or a wither skeleton or a cave spider:
+		set {_damage} to damage / 4.0 # victim has (example) 50 instead of 10 hearts
+		set damage to {_damage}
+	if victim is a enderman or a ghast:
+		set {_damage} to damage / 2.5 # victim has (example) 50 instead of 10 hearts
+		set damage to {_damage}
+	if victim is a slime or a magma cube:
+		set {_damage} to damage / 2.5 # victim has (example) 50 instead of 10 hearts
+		set damage to {_damage}
+	if victim is a guardian or endermite or witch:
+		set {_damage} to damage / 3.0 # victim has (example) 50 instead of 10 hearts
+		set damage to {_damage}
+	if victim is a bat or a blaze or a silverfish:
+		set {_damage} to damage / 2.8 # victim has (example) 50 instead of 10 hearts
+		set damage to {_damage}
+	if victim is a creeper:
+		set {_damage} to damage / 2.5 # victim has (example) 50 instead of 10 hearts
+		set damage to {_damage}	
+			
+# Want a powered creeper to destroy blocks? Replace "create safe explosion with force 2 at event-location" with "create an explosion of force 2 at event-location"	or just simply replace "safe" with "an" or remove the event all together
+
+on explosion:
+	if entity is powered creeper:
+		cancel event
+		create safe explosion with force 2 at event-location
+		stop
+			
+on death:
+	if attacker is a player:
+		if victim is a zombie:
+			if attacker's tool is enchanted with looting:
+			
+				set {_level} to enchantment level of looting of attacker's tool
+				
+				clear drops
+				set {_int} to random integer between {_level} and {_level} * 3
+				set {_drops} to {_level} * {_int}
+				set {_chance} to {_level} * 30
+				loop {_drops} times:
+					drop 1 rotten flesh at victim
+				chance of {_chance}%:
+					set {_zombieweapon} to diamond sword or diamond axe
+					set durability of {_zombieweapon} to random integer between {_level} + 12 and {_level} * 109
+					set {_x} to random integer between 1 and 3
+					set {_enchants::*} to looting and smite and sharpness
+					set {_activeEnchant} to a random element of {_enchants::*}
+					set {_activeEnchants} to "%{_activeEnchants}% %{_x}%" parsed as enchantment type
+					enchant {_zombieweapon} with {_activeEnchant}
+					set {_zombieweapon} to {_zombieweapon} parsed as item
+					add {_zombieweapon} to drops	

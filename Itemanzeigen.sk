@@ -1,0 +1,248 @@
+options:
+	Prefix: &8&l【&e&lItem&8&l】&8&l▶&7
+	namecolour: &7
+	amountcolour: &e
+	chatcolour: &f
+
+command /item [<text>]:
+	cooldown: 10 seconds
+	cooldown message: {@Prefix} Bitte warte noch &c%remaining time%
+	trigger:
+		if player's held item is air:
+			send "{@Prefix} Halte das Item, welches du dem &fSpielern &7zeigen möchtest, in deiner Hand."
+			stop
+		if arg-1 is not set:
+			set {_text} to "&7"
+		if arg-1 is set:
+			set {_text} to arg-1
+		set {_name} to held item's name
+		if {_name} is not set:
+			set {_name} to "{@namecolour}%player's tool's type%"
+		set {_amount} to amount of player's held item in player's inventory
+			
+		set {_protection} to "%level of protection of player's tool%" parsed as a number
+		if {_protection} is greater than or equal to 1:
+			set {_enchants} to "&7Protection %{_protection}%"
+			
+		set {_fprotection} to "%level of fire protection of player's tool%" parsed as a number
+		if {_fprotection} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Fire Protection %{_fprotection}%"
+			else:
+				set {_enchants} to "&7Fire Protection %{_fprotection}%"
+			
+		set {_featherfalling} to "%level of feather falling of player's tool%" parsed as a number
+		if {_featherfalling} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Feather Falling %{_featherfalling}%"
+			else:
+				set {_enchants} to "&7Feather Falling %{_featherfalling}%"
+			
+		set {_bprotection} to "%level of blast protection of player's tool%" parsed as a number
+		if {_bprotection} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Blast Protection %{_bprotection}%"
+			else:
+				set {_enchants} to "&7Blast Protection %{_bprotection}%"
+			
+		set {_pprotection} to "%level of projectile protection of player's tool%" parsed as a number
+		if {_pprotection} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Projectile Protection %{_pprotection}%"
+			else:
+				set {_enchants} to "&7Projectile Protection %{_pprotection}%"
+			
+		set {_respiration} to "%level of respiration of player's tool%" parsed as a number
+		if {_respiration} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Respiration %{_respiration}%"
+			else:
+				set {_enchants} to "&7Respiration %{_respiration}%"
+			
+		set {_aquaaffinity} to "%level of aqua affinity of player's tool%" parsed as a number
+		if {_aquaaffinity} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Aqua Affinity %{_aquaaffinity}%"
+			else:
+				set {_enchants} to "&7Aqua Affinity %{_aquaaffinity}%"
+			
+		set {_thorns} to "%level of thorns of player's tool%" parsed as a number
+		if {_thorns} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Thorns %{_thorns}%"
+			else:
+				set {_enchants} to "&7Thorns %{_thorns}%"
+			
+		set {_depthstrider} to "%level of depth strider of player's tool%" parsed as a number
+		if {_depthstrider} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Depth Strider %{_depthstrider}%"
+			else:
+				set {_enchants} to "&7Depth Strider %{_depthstrider}%"
+			
+		set {_frostwalker} to "%level of frost walker of player's tool%" parsed as a number
+		if {_frostwalker} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Frost Walker %{_frostwalker}%"
+			else:
+				set {_enchants} to "&7Frost Walker %{_frostwalker}%"
+			
+		set {_sharpness} to "%level of sharpness of player's tool%" parsed as a number
+		if {_sharpness} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Sharpness %{_sharpness}%"
+			else:
+				set {_enchants} to "&7Sharpness %{_sharpness}%"
+			
+		set {_smite} to "%level of smite of player's tool%" parsed as a number
+		if {_smite} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Smite %{_smite}%"
+			else:
+				set {_enchants} to "&7Smite %{_smite}%"
+			
+		set {_boa} to "%level of bane of arthropods of player's tool%" parsed as a number
+		if {_boa} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Bane Oof Arthropods %{_boa}%"
+			else:
+				set {_enchants} to "&7Bane of Arthropods %{_bca}%"
+			
+		set {_knockback} to "%level of knockback of player's tool%" parsed as a number
+		if {_knockback} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Knockback %{_knockback}%"
+			else:
+				set {_enchants} to "&7Knockback %{_knockback}%"
+			
+		set {_fireaspect} to "%level of fire aspect of player's tool%" parsed as a number
+		if {_fireaspect} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Fire Aspect %{_fireaspect}%"
+			else:
+				set {_enchants} to "&7Fire Aspect %{_fireaspect}%"
+			
+		set {_looting} to "%level of looting of player's tool%" parsed as a number
+		if {_looting} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Looting %{_looting}%"
+			else:
+				set {_enchants} to "&7Looting %{_looting}%"
+			
+		set {_se} to "%level of sweeping edge of player's tool%" parsed as a number
+		if {_se} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Sweeping Edge %{_se}%"
+			else:
+				set {_enchants} to "&7Sweeping Edge %{_se}%"
+			
+		set {_unbreaking} to "%level of unbreaking of player's tool%" parsed as a number
+		if {_unbreaking} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Unbreaking %{_unbreaking}%"
+			else:
+				set {_enchants} to "&7Unbreaking %{_unbreaking}%"
+			
+		set {_power} to "%level of power of player's tool%" parsed as a number
+		if {_power} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Power %{_power}%"
+			else:
+				set {_enchants} to "&7Power %{_power}%"
+			
+		set {_punch} to "%level of punch of player's tool%" parsed as a number
+		if {_punch} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Punch %{_punch}%"
+			else:
+				set {_enchants} to "&7Punch %{_punch}%"
+			
+		set {_flame} to "%level of flame of player's tool%" parsed as a number
+		if {_flame} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Flame %{_flame}%"
+			else:
+				set {_enchants} to "&7Flame %{_flame}%"
+			
+		set {_infinity} to "%level of infinity of player's tool%" parsed as a number
+		if {_infinity} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Infinty %{_infinity}%"
+			else:
+				set {_enchants} to "&7Infinity %{_infinity}%"
+			
+		set {_mending} to "%level of mending of player's tool%" parsed as a number
+		if {_mending} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Mending %{_mending}%"
+			else:
+				set {_enchants} to "&7Mending %{_mending}%"
+			
+		set {_efficiency} to "%level of efficiency of player's tool%" parsed as a number
+		if {_efficiency} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Efficiency %{_efficiency}%"
+			else:
+				set {_enchants} to "&7Efficiency %{_efficiency}%"
+			
+		set {_silktouch} to "%level of silk touch of player's tool%" parsed as a number
+		if {_silktouch} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Silk Touch %{_silktouch}%"
+			else:
+				set {_enchants} to "&7Silk Touch %{_silktouch}%"
+			
+		set {_fortune} to "%level of fortune of player's tool%" parsed as a number
+		if {_fortune} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Fortune %{_fortune}%"
+			else:
+				set {_enchants} to "&7Fortune %{_fortune}%"
+			
+		set {_lots} to "%level of luck of the sea of player's tool%" parsed as a number
+		if {_lots} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Lust of the Sea %{_lots}%"
+			else:
+				set {_enchants} to "&7Luck of the Sea %{_lots}%"
+			
+		set {_lure} to "%level of lure of player's tool%" parsed as a number
+		if {_lure} is greater than or equal to 1:
+			if {_enchants} is set:
+				set {_enchants} to "%{_enchants}%%new line%&7Lure %{_lure}%"
+			else:
+				set {_enchants} to "&7Lure %{_lure}%"
+		set {_lore1} to line 1 of lore of player's tool
+		if {_lore1} is set:
+			set {_lore2} to line 2 of lore of player's tool
+			set {_lore} to "%{_lore1}%"
+			if {_lore2} is set:
+				set {_lore3} to line 3 of lore of player's tool
+				set {_lore} to "%{_lore}%%newline%%{_lore2}%"
+				if {_lore3} is set:
+					set {_lore4} to line 4 of lore of player's tool
+					set {_lore} to "%{_lore}%%newline%%{_lore3}%"
+					if {_lore4} is set:
+						set {_lore5} to line 5 of lore of player's tool
+						set {_lore} to "%{_lore}%%newline%%{_lore4}%"
+						if {_lore5} is set:
+							set {_lore6} to line 6 of lore of player's tool
+							set {_lore} to "%{_lore}%%newline%%{_lore5}%"
+							if {_lore6} is set:
+								set {_lore7} to line 7 of lore of player's tool
+								set {_lore} to "%{_lore}%%newline%%{_lore6}%"
+								if {_lore7} is set:
+									set {_lore8} to line 8 of lore of player's tool
+									set {_lore} to "%{_lore}%%newline%%{_lore7}%"
+									if {_lore8} is set:
+										set {_lore} to "%{_lore}%%newline%%{_lore8}%"
+		if {_enchants} is set:
+			json("@a", "{@Prefix} Der &f%player% &7zeigt euch sein &eItem %nl% &7Er hat &7%{_name}%{@amountcolour} (%{_amount}%x) {@chatcolour}%{_text}%||ttp:&7%{_name}%%newline%&7%{_enchants}%%newline%%{_lore}%%newline%&8%player's tool's type%")
+			stop
+		else:
+			json("@a", "{@Prefix} Der &f%player% &7zeigt euch sein &eItem %nl% &7Er hat &7%{_name}%{@amountcolour} (%{_amount}%x) {@chatcolour}%{_text}%||ttp:&7%{_name}%%newline%%{_lore}%%newline%&8%player's tool's type%")
+			stop
+			
+			
+on quit:
+	delete {itemanzeigen::%player%}

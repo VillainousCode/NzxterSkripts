@@ -1,0 +1,144 @@
+options:
+	Prefix: &8&l【&e&lCasino&8&l】&8&l▶&7
+	Title: &8&l【&e&lCasino&8&l】
+	
+	
+on sign change:
+	if name of player is "MHF_TikTok" or "Nzxter" or "OWNERNAME":
+		if line 1 of block is "casino":
+			set line 1 of block to "&eCasino"
+			set line 4 of block to "&7(Rechtsklick)"
+
+on right click on sign:
+	if line 1 of block is "&eCasino":		
+		line 4 of block is "&7(Rechtsklick)"
+		if balance of player is bigger than 500:
+			remove 500 from balance of player
+			send "{@Prefix} Dir wurden &e500$ &7entnommen.."
+			loop 50 times:
+				set {_reel1} to a random integer between 1 and 4
+				set {_reel2} to a random integer between 1 and 4
+				set {_reel3} to a random integer between 1 and 4
+				wait a tick
+				if {_reel1} is 1:
+					set {_reel1} to "&0■"
+				if {_reel1} is 2:
+					set {_reel1} to "&7■"		
+				if {_reel1} is 3:
+					set {_reel1} to "&f■"
+				if {_reel1} is 4:
+					set {_reel1} to "&8■"
+				if {_reel2} is 1:
+					set {_reel2} to "&0■"
+				if {_reel2} is 2:
+					set {_reel2} to "&7■"
+				if {_reel2} is 3:
+					set {_reel2} to "&f■"
+				if {_reel2} is 4:
+					set {_reel2} to "&8■"
+				if {_reel3} is 1:
+					set {_reel3} to "&0■"
+				if {_reel3} is 2:
+					set {_reel3} to "&7■"
+				if {_reel3} is 3:
+					set {_reel3} to "&f■"
+				if {_reel3} is 4:
+					set {_reel3} to "&8■"
+				set line 2 of block to "&e  %{_reel1}% %{_reel2}% %{_reel3}% &e  "
+				wait 1 tick
+			if {_reel1} is {_reel2}:
+				if {_reel1} is {_reel3}:
+					add 3000 to balance of player
+					send player title "{@Title}" with subtitle "&eGewonnen! &7Du erhältst &e3000 $" for 2 seconds with 0.0 second fade in and 0.0 second fade out
+					play "entity_player_levelup" to player
+					set line 3 of block to "&f&l%player%"					
+					stop
+				else if {_reel1} is not {_reel3}:
+					send "{@Prefix} Leider nichts. Versuch es doch nochmal!"
+					stop
+			else if {_reel1} is not {_reel2}:
+				send "{@Prefix} Leider nichts. Versuch es doch nochmal!"
+				stop
+		else if balance of player is less than 500:
+			send "{@Prefix} Du hast &cnicht &7genug &eGuthaben"	
+
+
+on right click on entity:
+	if name of event-entity is "&6&lC&easino":
+		cancel event
+		play "entity_player_levelup" to player with volume 1 and pitch 1.0
+		
+		open virtual brewing inventory with size 1 named "&6&lC&easino &8&l┃ &7Menu" to player	
+		
+		make a gui slot 0 of player with green dye named "&8&l➢ &a&lAnnehmen" with lore "|| &8&l» &7Chance zu gewinnen|| &8&l» &7ist gleich &40 |||| &8&l» &7Kosten: &e500$|| &8&l» &7Gewinn: &e3000$||  ||  &7Klicke um zu &aspielen" to run:
+			
+			if balance of player is bigger than 500:
+				close player's inventory
+				play "entity_player_levelup" to player
+				remove 500 from balance of player
+				send player title "{@Title}" with subtitle "&e500$ &7eingezahlt" for 1 second with 0.0 second fade in and 0.0 second fade out
+				wait 2 seconds
+				loop 15 times:
+					set {_reel1} to a random integer between 1 and 4
+					set {_reel2} to a random integer between 1 and 4
+					set {_reel3} to a random integer between 1 and 4
+					wait a tick
+					if {_reel1} is 1:
+						set {_reel1} to "&0■"
+					if {_reel1} is 2:
+						set {_reel1} to "&7■"		
+					if {_reel1} is 3:
+						set {_reel1} to "&f■"
+					if {_reel1} is 4:
+						set {_reel1} to "&8■"
+					if {_reel2} is 1:
+						set {_reel2} to "&0■"
+					if {_reel2} is 2:
+						set {_reel2} to "&7■"
+					if {_reel2} is 3:
+						set {_reel2} to "&f■"
+					if {_reel2} is 4:
+						set {_reel2} to "&8■"
+					if {_reel3} is 1:
+						set {_reel3} to "&0■"
+					if {_reel3} is 2:
+						set {_reel3} to "&7■"
+					if {_reel3} is 3:
+						set {_reel3} to "&f■"
+					if {_reel3} is 4:
+						set {_reel3} to "&8■"
+					play "entity_villager_hurt" to player
+					send player title "&e  %{_reel1}% %{_reel2}% %{_reel3}% &e  " for 1 second with 0.0 second fade in and 0.0 second fade out
+					wait 3 ticks
+				if {_reel1} is {_reel2}:
+					if {_reel1} is {_reel3}:
+						add 3000 to balance of player
+						send player title "{@Title}" with subtitle "&eGewonnen! &7Du erhältst &e3000 $" for 2 seconds with 0.0 second fade in and 0.0 second fade out
+						play "entity_player_levelup" to player				
+						stop
+					else if {_reel1} is not {_reel3}:
+						send player title "{@Title}" with subtitle "&7Leider nichts. Versuch es doch nochmal" for 2 seconds with 0.0 second fade in and 0.0 second fade out
+						play "entity_bat_takeoff" to player
+						stop
+				else if {_reel1} is not {_reel2}:
+					send player title "{@Title}" with subtitle "&7Leider nichts. Versuch es doch nochmal" for 2 seconds with 0.0 second fade in and 0.0 second fade out
+					play "entity_bat_takeoff" to player
+					stop
+			else if balance of player is less than 500:
+				close player's inventory
+				send player title "{@Title}" with subtitle "&7Du hast nicht genug &eGeld" for 2 seconds with 0.0 second fade in and 0.0 second fade out
+				play "entity_bat_takeoff" to player
+			stop
+
+		make a gui slot 1 of player with bars named "&7" to run:	
+			play "entity_bat_takeoff" to player	
+
+		make a gui slot 2 of player with red dye named "&8&l➢ &c&lAblehnen" with lore "||  &7Klicke um nicht zu &cspielen" to run:			
+			close player's inventory
+			play "entity_bat_takeoff" to player
+			
+		make a gui slot 3 of player with sign item named "&8&l➢ &e&lCasino" with lore "|| &8&l» &7Hier kannst Du dein|| &8&l» &7wertvolles &eGeld &7verspielen" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+

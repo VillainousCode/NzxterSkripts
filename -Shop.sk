@@ -1,0 +1,94 @@
+﻿options:
+	Prefix: &8&l【&e&lShop&8&l】
+
+#on right click on entity:
+#	if name of event-entity is "&6&lS&echlachter":
+#		cancel event
+command /debug:
+	permission: *
+	trigger:
+
+		play "block_chest_open" to player with volume 1 and pitch 1.0
+		
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+		
+		open virtual chest inventory with size 5 named "&6&lS&echlachter &8&l┃ &7Menu" to player
+			
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing	
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing			
+				
+		make a gui slot 3 of player with cooked beef named "&8&l➢ &7&lSteak" to run:
+			stop
+			
+		make a gui slot 4 of player with cooked mutton named "&8&l➢ &7&lHammel" to run:
+			stop
+			
+		make a gui slot 5 of player with cooked chicken named "&8&l➢ &7&lHähnchen" to run:
+			stop
+			
+		make a gui slot 11 of player with cooked porkchop named "&8&l➢ &7&lSchwein" to run:
+			stop
+			
+		make a gui slot 12 of player with cooked rabbit named "&8&l➢ &7&lHase" to run:
+			stop
+
+		make a gui slot 13 of player with rabbit stew named "&8&l➢ &7&lRagout" to run:
+			stop
+
+		make a gui slot 14 of player with dark oak slab item named "&8&l➢ &7&lSchwarzeichenholzstufe" to run:
+			stop
+
+
+
+
+		make a gui slot 19 of player with coal block named "&8&l➢ &7&lKohleblock" to run:
+			stop
+
+		make a gui slot 20 of player with prismarine named "&8&l➢ &7&lPrismarine" to run:
+			stop
+
+		make a gui slot 21 of player with hay block named "&8&l➢ &7&lHeuballen" to run:
+			stop
+
+		make a gui slot 22 of player with melon block named "&8&l➢ &7&lMeloneblock" to run:
+			stop
+
+		make a gui slot 23 of player with mycelium named "&8&l➢ &7&lMycel" to run:
+			stop
+
+		make a gui slot 24 of player with netherrack named "&8&l➢ &7&lNetherstein" to run:
+			stop
+
+		make a gui slot 25 of player with jukebox named "&8&l➢ &7&lMusikbox" to run:
+			stop
+
+		make a gui slot 29 of player with sandstone named "&8&l➢ &7&lSandstein" to run:
+			stop
+
+		make a gui slot 30 of player with bedrock named "&8&l➢ &7&lGrundgestein" to run:
+			stop
+
+		make a gui slot 31 of player with stone named "&8&l➢ &7&lStein" to run:
+			stop
+
+		make a gui slot 32 of player with obsidian named "&8&l➢ &7&lObsidian" to run:
+			stop
+
+		make a gui slot 33 of player with bookshelf named "&8&l➢ &7&lBücherregal" to run:
+			stop
+
+		make a gui slot 39 of player with brick block named "&8&l➢ &7&lBruchsteinblock" to run:
+			stop
+
+		make a gui slot 40 of player with crafting table named "&8&l➢ &7&lWerkbank" to run:
+			stop
+
+		make a gui slot 41 of player with barrier named "&8&l➢ &7&lNichts" to run:
+			stop

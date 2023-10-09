@@ -1,0 +1,136 @@
+options:
+	Prefix: &8&l【&e&lCitybuild&8&l】&8&l▶&7
+	Title: &8&l【&e&lCitybuild&8&l】
+
+command /haus:
+	aliases: /houses, /house
+	trigger:
+		play "block_anvil_place" to player with volume 1 and pitch 1.0
+			
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+			
+		wait a tick
+		open virtual chest inventory with size 5 named "&6&lH&eaus &8&l┃ &7Menu" to player
+		wait a tick
+			
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing	
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing			
+
+		make a gui slot 0 of player with coal named "&8&l➢ &7Haus 1" with lore "|| &e200.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Fischerhütte|| &8&l» &7Mehrere Kisten|| &8&l» &7Kleiner Teich|| &8&l» &7Kleinere Werkzeuge|| &8&l» &72 Bäume|| || &e&l/p h haus1" to run:
+			if {bank::%player%} is greater than or equal to 200000:
+				remove 200000 from {bank::%player%}
+				make player execute command "p clear"
+				wait 1 second
+				make player execute command "p schematic paste haus1"
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast dir ein &e&lHaus &7gekauft &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+		make a gui slot 8 of player with iron ingot named "&8&l➢ &7Haus 2" with lore "|| &e300.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Windmühlenhaus|| &8&l» &7Mehrere Kisten|| &8&l» &7Weizenfeld|| &8&l» &7Kleinere Werkzeuge|| &8&l» &7Baum|| &8&l» &7Mehrere Banner|| || &e&l/p h haus2" to run:
+			if {bank::%player%} is greater than or equal to 300000:
+				remove 300000 from {bank::%player%}
+				make player execute command "p clear"
+				wait 1 second
+				make player execute command "p schematic paste haus2"
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast dir ein &e&lHaus &7gekauft &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+		make a gui slot 20 of player with gold ingot named "&8&l➢ &7Haus 3" with lore "|| &e400.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Kleine Villa|| &8&l» &7Mehrere Kisten|| &8&l» &7Farbigem Glass|| &8&l» &7Kleinere Werkzeuge|| &8&l» &72 Bäume|| &8&l» &7Zuckerrohr|| || &e&l/p h haus3" to run:
+			if {bank::%player%} is greater than or equal to 400000:
+				remove 400000 from {bank::%player%}
+				make player execute command "p clear"
+				wait 1 second
+				make player execute command "p schematic paste haus3"
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast dir ein &e&lHaus &7gekauft &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop		
+
+		make a gui slot 22 of player with diamond named "&8&l➢ &7Haus 4" with lore "|| &e500.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Mehrfamilien Haus|| &8&l» &7Mehrere Kisten|| &8&l» &7Laternen aus Beacons|| &8&l» &7Kleinere Werkzeuge|| &8&l» &72 Bäume|| &8&l» &7Mehrere Banner|| &8&l» &7Viel Quartz|| || &e&l/p h haus4" to run:
+			if {bank::%player%} is greater than or equal to 500000:
+				remove 500000 from {bank::%player%}
+				make player execute command "p clear"
+				wait 1 second
+				make player execute command "p schematic paste haus4"
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast dir ein &e&lHaus &7gekauft &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+		make a gui slot 24 of player with lapis named "&8&l➢ &7Haus 5" with lore "|| &e600.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Große Villa|| &8&l» &7Mehrere Kisten|| &8&l» &7Seltenes Quartz|| &8&l» &7Kleinere Werkzeuge|| &8&l» &7Zuckerrohr|| &8&l» &7Mehrere Schilder|| &8&l» &7Farbiges Glass|| &8&l» &7Glowstone|| || &e&l/p h haus5" to run:
+			if {bank::%player%} is greater than or equal to 600000:
+				remove 600000 from {bank::%player%}
+				make player execute command "p clear"
+				wait 1 second
+				make player execute command "p schematic paste haus5"
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast dir ein &e&lHaus &7gekauft &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+		make a gui slot 36 of player with emerald named "&8&l➢ &7Haus 6" with lore "|| &e700.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Hochhaus|| &8&l» &7Mehrere Kisten|| &8&l» &7Seltenes Quartz|| &8&l» &7Kleinere Werkzeuge|| &8&l» &7Zuckerrohr|| &8&l» &7Mehrere Schilder|| &8&l» &7Farbiges Glass|| &8&l» &7Glowstone|| &8&l» &7Farbige Wolle|| &8&l» &7Farbige Teppiche|| &8&l» &7Bücherregale|| &8&l» &7Mehrere Seelaternen|| || &e&l/p h haus6" to run:
+			if {bank::%player%} is greater than or equal to 700000:
+				remove 700000 from {bank::%player%}
+				make player execute command "p clear"
+				wait 1 second
+				make player execute command "p schematic paste haus6"
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast dir ein &e&lHaus &7gekauft &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+
+		make a gui slot 40 of player with redstone named "&8&l➢ &7Haus 7" with lore "|| &e800.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Hochhaus|| &8&l» &7Mehrere Kisten|| &8&l» &7Seltenes Quartz|| &8&l» &7Kleinere Werkzeuge|| &8&l» &7Zuckerrohr|| &8&l» &7Mehrere Schilder|| &8&l» &7Farbiges Glass|| &8&l» &7Glowstone|| &8&l» &7Farbige Wolle|| &8&l» &7Farbige Teppiche|| &8&l» &7Bücherregale|| &8&l» &7Mehrere Seelaternen|| || &e&l/p h haus7" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+		make a gui slot 44 of player with flint named "&8&l➢ &7Haus 8" with lore "|| &e900.000 &eBankkonto||  || &fHaus Umfang||  || &8&l» &7Hochhaus|| &8&l» &7Mehrere Kisten|| &8&l» &7Seltenes Quartz|| &8&l» &7Kleinere Werkzeuge|| &8&l» &7Zuckerrohr|| &8&l» &7Mehrere Schilder|| &8&l» &7Farbiges Glass|| &8&l» &7Glowstone|| &8&l» &7Farbige Wolle|| &8&l» &7Farbige Teppiche|| &8&l» &7Bücherregale|| &8&l» &7Mehrere Seelaternen|| || &e&l/p h haus8" to run:
+			play "entity_bat_takeoff" to player
+			stop
+
+#		if {bank::%player%} is greater than or equal to 800000:
+#				remove 800000 from {bank::%player%}
+#				make player execute command "p clear"
+#				wait 1 second
+#				run player command "p schematic paste haus6" as op
+#				play "entity_player_levelup" to player
+#				send player title "{@Title}" with subtitle "&7Du hast dir ein &e&lHaus &7gekauft &8(&e%{bank::%player%}%$&8)" for 2 seconds
+#				stop
+#			else:
+#				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+#				play "entity_bat_takeoff" to player
+#				stop				
+
+				
+		
+		
+		make a gui slot 4 of player with book named "&8&l➢ &e&lInfos" with lore "|| &8&l» &7Hier kannst Du dir ein &e&lHaus|| &8&l» &ekaufen &7und &cumbauen &7lassen|| &8&l» &7Wenn Du &e&lGeld &7auf deiner|| &8&l» &e&lBank &7hast|| || &fDein &ePlot &fwird dadurch &4&lgelöscht!!!" to run:
+			play "entity_bat_takeoff" to player
+			stop		

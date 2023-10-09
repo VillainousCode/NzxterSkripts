@@ -1,0 +1,15 @@
+options:
+	Prefix: &8&l【&e&lParkour&8&l】
+
+on walking on lapis block:
+	if player is in world "Spawn":
+		send player title "{@Prefix}" with subtitle "&7Du schaffst Ihn" for 2 seconds
+		play "entity_player_levelup" to player
+		stop
+		
+on walking on redstone block:
+	if player is in world "Spawn":
+		send player title "{@Prefix}" with subtitle "&7Du hast Ihn geschafft" for 2 seconds
+		play "entity_player_levelup" to player
+		stop
+	

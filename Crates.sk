@@ -1,0 +1,228 @@
+options:
+	Prefix: &8&l【&e&lCrates&8&l】&8&l▶&7
+	Title: &8&l【&e&lCrates&8&l】
+
+on place chest:
+	if "&fOpkiste" is name of player's tool:
+		cancel event
+		apply blindness 5 to player for 1 second
+		open virtual chest inventory with size 6 named "&6&lO&epkiste &8&l┃ &7Menu" to player
+		play "block_chest_open" to player with volume 0.2 and pitch 0.5
+		wait a tick
+		
+		#!Fügen Sie Ihre Artikel unten hinzu
+		
+		add 8 diamond to {_roll::*}
+		add 4 golden apple to {_roll::*}
+		
+		add 2 paper named "&fGeldbeutel" to {_roll::*}
+		add 2 paper named "&fFlugschein" to {_roll::*}
+		
+		add 1 diamond chestplate of thorns 5 and unbreaking 1 to {_roll::*}
+		add 1 diamond boots of thorns 5 and unbreaking 1 to {_roll::*}
+		add 1 diamond helmet of thorns 5 and unbreaking 1 to {_roll::*}
+		add 1 diamond leggings of thorns 5 and unbreaking 1 to {_roll::*}
+		
+		chance of 5%:	
+			add 1 beacon to {_roll::*}
+			add 1 dragon egg to {_roll::*}
+			add 1 mob spawner to {_roll::*}
+			add 1 spawn_egg:90 to {_roll::*}
+			add 1 spawn_egg:91 to {_roll::*}
+			add 1 spawn_egg:92 to {_roll::*}
+			add 1 spawn_egg:93 to {_roll::*}
+			add 1 spawn_egg:95 to {_roll::*}
+			add 1 spawn_egg:98 to {_roll::*}
+			add 1 spawn_egg:100 to {_roll::*}
+			add 1 spawn_egg:101 to {_roll::*}
+			
+		chance of 1%:		
+			add 1 command block to {_roll::*}
+			add 1 of skull of "MHF_TikTok" parsed as offline player named "&fMHF_TikTok" to {_roll::*}
+			add 1 of skull of "MHF_Snapchat" parsed as offline player named "&fMHF_Snapchat" to {_roll::*}
+			add 1 of skull of "MHF_Instagram" parsed as offline player named "&fMHF_Instagram" to {_roll::*}
+			add 1 of skull of "MHF_Facebook" parsed as offline player named "&fMHF_Facebook" to {_roll::*}
+			add 1 of skull of "MHF_Twitter" parsed as offline player named "&fMHF_Twitter" to {_roll::*}
+			add 1 of skull of "MHF_Youtube" parsed as offline player named "&fMHF_Youtube" to {_roll::*}
+			add 1 of skull of "GommeHD" parsed as offline player named "&fGommeHD" to {_roll::*}
+			add 1 of skull of "Paluten" parsed as offline player named "&fPaluten" to {_roll::*}
+			add 1 of skull of "NzxzerMC" parsed as offline player named "&fNzxterMC" to {_roll::*}
+			add 1 of skull of "GermanLetsPlay" parsed as offline player named "&fGermanLetsPlay" to {_roll::*}
+			add 1 of skull of "Rewinside" parsed as offline player named "&fRewinside" to {_roll::*}
+			add 1 of skull of "Notch" parsed as offline player named "&fNotch" to {_roll::*}
+			add 1 of skull of "Mojang" parsed as offline player named "&fMojang" to {_roll::*}
+			add 1 of skull of "Minecraft" parsed as offline player named "&fMinecraft" to {_roll::*}
+		
+		#!Sicherheitsnetz für Geschwindigkeitsoptionen, sodass das Ausführen von 0 Ticks Ihren Server nicht zum Absturz bringt
+		set {_speedFinal} to 2
+				
+		#!Auswahleinstellungen
+		set {_Selector1} to 4
+		set {_Selector2} to 22
+#		set {rolling.%player%} to true
+				
+		#!Hauptcode unten. Diese zufällige Ganzzahl ist die Länge der Kistenöffnung, die zufällig ist
+		loop (random integer between 11 and 40) times:
+			if inventory name of player's current inventory is not "&6&lO&epkiste &8&l┃ &7Menu":
+				stop
+				
+			#Die 11 teilt dem Skript mit, wie viele Elemente gespeichert werden sollen
+			set {_sel} to 15
+			loop 15 times:
+			
+				#!Dies ist die Datenspeicherung für den Scroll-Effekt
+				set {_sel2} to {_sel} - 1
+				set {_item::%{_sel}%} to {_item::%{_sel2}%}
+				subtract 1 from {_sel}
+			set {_item::1} to a random element out of {_roll::*}
+						
+			#!Dies unten aktualisiert nur die GUI (53 bedeutet maximale Slots pro Brust)
+			loop integers between 0 and 53:
+				if loop-number-2 is {_Selector1} or {_Selector2}:
+					set slot loop-number-2 of player's current inventory to shiny light green stained glass pane named "&7"
+				else:
+					set slot loop-number-2 of player's current inventory to gray stained glass pane named "&7"
+				
+				loop 11 times:
+					if loop-number-3 = 1:
+						set slot 46 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 2:
+						set slot 37 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 3:
+						set slot 28 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 4:
+						set slot 20 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 5:
+						set slot 12 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 6:
+						set slot 13 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 7:
+						set slot 14 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 8:
+						set slot 24 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 9:
+						set slot 34 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 10:
+						set slot 43 of player's current inventory to {_item::%loop-number-3%}
+					else if loop-number-3 = 11:
+						set slot 52 of player's current inventory to {_item::%loop-number-3%}
+												
+			#!Das unten ist nur Ton. Es spielt es am Standort des Players ab, sodass Sie es in clientseitige Sounds usw. ändern können.
+			add 1 to {_sound}
+			if {_sound} > 3:
+				set {_sound} to 1
+			if {_sound} = 1:
+				play "entity_chicken_egg" to player with volume 0.2 and pitch 2
+			if {_sound} = 2:
+				play "entity_chicken_egg" to player with volume 0.2 and pitch 1
+			if {_sound} = 3:
+				play "entity_chicken_egg" to player with volume 0.2 and pitch 0.5
+								
+			#!Sein unten bewirkt, dass die Kiste langsamer wird, wenn sie sich dem Ende der Animation nähert. Je höher der Prozentsatz, desto länger ist die Tick-Verzögerung.
+			add 1 to {_speed}
+						
+			#!Dies unten sind die Zecken pro Absenkung. Dies bedeutet, dass die Geschwindigkeit pro X Anzahl von Schleifen verringert wird
+			if {_speed} is 5:
+				set {_speed} to 0
+				add 1 to {_speedFinal}
+			loop {_speedFinal} times:
+				wait a tick
+
+		give player slot 13 of player's current inventory
+		remove 1 chest named "&fOpkiste" from player's inventory
+		play "entity_player_levelup" to player
+		send player title "{@Title}" with subtitle "&7Du hast &f&l%{_item::6}% &7erhalten" for 2 seconds
+		wait 0.5 seconds
+		set event-block to chest
+		close player's inventory
+		wait 0.5 seconds
+		create a safe explosion of force 2 at event-block
+		show 50 "LAVA" particles at event-block for player
+		launch "BALL" firework at event-block timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		set event-block to air
+	
+on inventory click:
+    if inventory name of player's current inventory is "&6&lO&epkiste &8&l┃ &7Menu":
+        cancel event
+	
+
+
+
+
+
+
+on place chest:
+	if "&fRandomkiste" is name of player's tool:
+		cancel event
+		apply blindness 5 to player for 1 second
+		open virtual chest inventory with size 3 named "&6&lR&eandomkiste &8&l┃ &7Menu" to player
+		play "block_chest_open" to player with volume 0.2 and pitch 0.5
+		wait a tick
+
+		add a random item of all items to {_roll::*}
+		add a random item of all items to {_roll::*}
+		add a random item of all items to {_roll::*}
+		add a random item of all items to {_roll::*}
+		add a random item of all items to {_roll::*}
+		add a random item of all items to {_roll::*}
+		add a random item of all items to {_roll::*}
+		add a random item of all items to {_roll::*}
+
+
+		set {_speedFinal} to 2
+		set {_Selector1} to 4
+		set {_Selector2} to 22
+	
+		loop (random integer between 30 and 40) times:
+			if inventory name of player's current inventory is not "&6&lR&eandomkiste &8&l┃ &7Menu":
+				stop	
+
+			set {_sel} to 9			
+			loop 9 times:
+				set {_sel2} to {_sel} - 1
+				set {_item::%{_sel}%} to {_item::%{_sel2}%}
+				subtract 1 from {_sel}
+			set {_item::1} to a random element out of {_roll::*}
+			
+			loop integers between 0 and 26:
+				if loop-number-2 is {_Selector1} or {_Selector2}:
+					set slot loop-number-2 of player's current inventory to shiny light green stained glass pane named "&7"
+				else:
+					set slot loop-number-2 of player's current inventory to gray stained glass pane named "&7"
+				
+				loop 9 times:
+					set slot 8 + loop-number-3 of player's current inventory to {_item::%loop-number-3%}
+				
+			add 1 to {_sound}
+			if {_sound} > 3:
+				set {_sound} to 1
+			if {_sound} = 1:
+				play "entity_chicken_egg" to player with volume 0.2 and pitch 2
+			if {_sound} = 2:
+				play "entity_chicken_egg" to player with volume 0.2 and pitch 1
+			if {_sound} = 3:
+				play "entity_chicken_egg" to player with volume 0.2 and pitch 0.5
+				
+			add 1 to {_speed}
+			if {_speed} is 5:
+				set {_speed} to 0
+				add 1 to {_speedFinal}
+			loop {_speedFinal} times:
+				wait a tick
+
+		give player slot 13 of player's current inventory
+		remove 1 chest named "&fRandomkiste" from player's inventory
+		play "entity_player_levelup" to player
+		send player title "{@Title}" with subtitle "&7Du hast &f&l%{_item::6}% &7erhalten" for 2 seconds
+		wait 0.5 seconds
+		set event-block to chest
+		close player's inventory
+		wait 0.5 seconds
+		create a safe explosion of force 2 at event-block
+		show 50 "LAVA" particles at event-block for player
+		launch "BALL" firework at event-block timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		set event-block to air
+		
+on inventory click:
+    if inventory name of player's current inventory is "&6&lR&eandomkiste &8&l┃ &7Menu":
+        cancel event		

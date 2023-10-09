@@ -1,0 +1,19 @@
+on load:
+	if file "plugins/Skript/logs/logins.log" doesn't exists:
+		create file "plugins/Skript/logs/logins.log"
+
+on connect:
+	if player doesn't have permission "server.bypass":
+		if value "%uuid of player%" get of "plugins/Skript/logs/logins.log" is not set:
+			wf "%uuid of player%: %name of player%" to "plugins/Skript/logs/logins.log"
+			set {account} to value "%uuid of player%" get of "plugins/Skript/logs/logins.log"
+			broadcast "wird erstellt"
+		else if value "%uuid of player%" get of "plugins/Skript/logs/logins.log" is "%name of player%":
+			set {account} to value "%uuid of player%" get of "plugins/Skript/logs/logins.log"
+			broadcast "existiert"
+	
+
+		
+command /debuger:
+	trigger:
+		send "%{account}%"

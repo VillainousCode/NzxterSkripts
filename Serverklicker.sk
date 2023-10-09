@@ -1,0 +1,15 @@
+on sign change:
+    if name of player is "MHF_TikTok" or "Nzxter" or "OWNERNAME":
+        if line 1 of block is "serverklicker":
+            set line 1 of block to "&m----"
+            set line 2 of block to "&6&lServerklicker"
+            set line 3 of block to "&0[ &c0 &0]"
+            set line 4 of block to "&m----"
+            #play "block_note_pling" to player    
+            set {clicker::loc::%location of block%} to 0
+
+on right click on sign:
+    if line 2 of block is "&6&lServerklicker":
+        if {clicker::loc::%location of block%} is set:
+            add 1 to {clicker::loc::%location of block%}
+            set line 3 of block to "&0[ &a&l%{clicker::loc::%location of block%}% &0]"

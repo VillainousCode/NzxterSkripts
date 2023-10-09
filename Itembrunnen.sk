@@ -1,0 +1,84 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /itembrunnen [<text>]:
+	permission: *
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/itembrunnen &f<geben/delete>"
+			stop
+	
+		if arg-1 is "geben":
+			give 1 stick with name "&fItembrunnen 1" to player
+			give 1 stick with name "&fItembrunnen 2" to player
+			give 1 stick with name "&fItembrunnen 3" to player
+			give 1 stick with name "&fItembrunnen 4" to player
+		
+		if arg-1 is "delete":
+			delete {itembrunnen::1}
+			delete {itembrunnen::2}
+			delete {itembrunnen::3}
+			delete {itembrunnen::4}
+			send "{@Prefix} Der Itembrunnen wurde &cgelöscht"
+		
+		
+		
+		
+		
+every 1 minute:
+	loop all dropped items in world "Spawn":
+		delete loop-entity
+		
+on pickup:
+	world is "Spawn"
+	name of event-item contains "drop"
+	cancel event
+	
+	
+	
+on rightclick with a stick:
+	if name of tool is "&fItembrunnen 1":
+		send "{@Prefix} Itembrunnen 1 &egesetzt"
+		set {itembrunnen::1} to location of player
+		
+	else if name of tool is "&fItembrunnen 2":
+		send "{@Prefix} Itembrunnen 2 &egesetzt"
+		set {itembrunnen::2} to location of player
+		 
+	else if name of tool is "&fItembrunnen 3":
+		send "{@Prefix} Itembrunnen 3 &egesetzt"
+		set {itembrunnen::3} to location of player
+	else:
+		name of tool is "&fItembrunnen 4"
+		send "{@Prefix} Itembrunnen 4 &egesetzt"
+		set {itembrunnen::4} to location of player
+		
+		
+		
+		
+	
+every 1 seconds:	
+	set {_zahl} to 0
+	loop 2 times:
+		add 1 to {_zahl}
+		wait 1 tick
+		drop diamond with name "%{_zahl}%nondrop" under {itembrunnen::1} and {itembrunnen::2} and {itembrunnen::3} and {itembrunnen::4}
+		add 1 to {_zahl}
+		wait 1 tick
+		drop emerald with name "%{_zahl}%nondrop" under {itembrunnen::1} and {itembrunnen::2} and {itembrunnen::3} and {itembrunnen::4}
+		add 1 to {_zahl}
+		wait 1 tick
+		drop gold_ingot with name "%{_zahl}%nondrop" under {itembrunnen::1} and {itembrunnen::2} and {itembrunnen::3} and {itembrunnen::4}
+		wait 1 tick
+		add 1 to {_zahl}
+		wait 1 tick
+		drop iron_ingot with name "%{_zahl}%nondrop" under {itembrunnen::1} and {itembrunnen::2} and {itembrunnen::3} and {itembrunnen::4}
+		wait 1 tick
+		add 1 to {_zahl}
+		wait 1 tick
+		drop redstone with name "%{_zahl}%nondrop" under {itembrunnen::1} and {itembrunnen::2} and {itembrunnen::3} and {itembrunnen::4}
+		wait 1 tick
+		add 1 to {_zahl}
+		wait 1 tick
+		drop lapis with name "%{_zahl}%nondrop" under {itembrunnen::1} and {itembrunnen::2} and {itembrunnen::3} and {itembrunnen::4}
+		wait 1 tick

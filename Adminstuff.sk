@@ -1,0 +1,10 @@
+command /adminstuff:
+	permission: *
+	trigger:
+		give 1 diamond sword of sharpness 30000 and unbreaking 10 and fire aspect 10 and looting 10 to player
+		give 1 diamond chestplate of thorns 30000 and unbreaking 10 to player
+		give 1 diamond boots of thorns 30000 and unbreaking 10 to player
+		give 1 diamond helmet of thorns 30000 and unbreaking 10 to player
+		give 1 diamond leggings of thorns 30000 and unbreaking 10 to player
+		apply absorption 1000 to the player for 999 minutes
+		

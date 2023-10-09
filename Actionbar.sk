@@ -1,0 +1,18 @@
+on load:
+	loop 10000 times:
+		wait 5 seconds
+		set action bar of players to coloured "&6● &7● ● ● ● ● ● ● ● &8┃ &7Vergess nicht dich zu &a&lLinken &7auf &aTeamSpeak &8(&e&l/link&8)"
+		wait 5 seconds
+		set action bar of players to coloured "&7● &6● &7● ● ● ● ● ● &8┃ &7Schau dir doch mal unsere &c&lRänge &7an &8(&e&l/spenden&8)"
+		wait 5 seconds
+		set action bar of players to coloured "&7● ● &6● &7● ● ● ● ● &8┃ &7Auf keinen Fall die &6&lUpdates &7vergessen &8(&e&l/updates&8)"
+		wait 5 seconds
+		set action bar of players to coloured "&7● ● ● &6● &7● ● ● ● &8┃ &7Du magst den &5&lYtber &7benutze &8(&e&l/yt&8)"
+		wait 5 seconds
+		set action bar of players to coloured "&7● ● ● ● &6● &7● ● ● &8┃ &7Mit dem &6&lCommand &8(&e&l/?&8) &7siehst du alle Commands"
+		wait 5 seconds
+		set action bar of players to coloured "&7● ● ● ● ● &6● &7● ● &8┃ &7Alle &c&lRegeln &7bekommst du mit &8(&e&l/regeln&8) &7aufgelistet"
+		wait 5 seconds
+		set action bar of players to coloured "&7● ● ● ● ● ● ● &6● &7● &8┃ &7Du kannst auch für uns &6&lVoten &8(&e&l/vote&8)"
+		wait 5 seconds
+		set action bar of players to coloured "&7● ● ● ● ● ● ● ● &6● &8┃ &7Du magst &5&lSkyblock &7spielen &8(&e&l/is&8)"

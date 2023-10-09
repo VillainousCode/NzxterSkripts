@@ -1,0 +1,78 @@
+﻿options:
+	Prefix: &8&l【&e&lOnlinezeit&8&l】&8&l▶&7
+  
+variables:
+	{Spielzeit::Seconds::%player%} = 0
+	{Spielzeit::Minuten::%player%} = 0
+	{Spielzeit::Stunden::%player%} = 0
+	{Spielzeit::Tage::%player%} = 0
+	
+	{Spielzeit::JoinDate::%player%} = 0
+
+
+on first join:
+	set {Spielzeit::Seconds::%player%} to 0
+	set {Spielzeit::Tage::%player%} to 0
+	set {Spielzeit::Stunden::%player%} to 0
+	set {Spielzeit::Minuten::%player%} to 0
+
+	set {Spielzeit::JoinDate::%player%} to "%now%"
+	replace all "/" in {Spielzeit::JoinDate::%player%} with "."
+	replace all "." in {Spielzeit::JoinDate::%player%} with ":"
+
+		
+command /time [<player>]:
+	aliases: /onlinezeit, /playtime, /zeit, /spielzeit, /onlinetime, /ontime
+	trigger:
+		play "entity_player_levelup" to player
+		if arg-1 is not set:
+			send "{@Prefix} &e%{Spielzeit::Tage::%player%}% &7Tage(n) &e%{Spielzeit::Stunden::%player%}% &7Stunden(n)"
+			send "{@Prefix} &e%{Spielzeit::Minuten::%player%}% &7Minute(n) &e%{Spielzeit::Seconds::%player%}% &7Sekunde(n)"
+			send " "
+			send "{@Prefix} Join &e%{Spielzeit::JoinDate::%player%}%"
+			stop
+		if arg-1 is set:
+			send "{@Prefix} Der &f%arg-1% &7hat &e%{Spielzeit::Tage::%arg-1%}% &7Tage(n) &e%{Spielzeit::Stunden::%arg-1%}% &7Stunden(n)"
+			send "{@Prefix} &e%{Spielzeit::Minuten::%arg-1%}% &7Minute(n) &e%{Spielzeit::Seconds::%arg-1%}% &7Sekunde(n)"
+			send " "
+			send "{@Prefix} Der &f%arg-1% &7jointe am &e%{Spielzeit::JoinDate::%arg-1%}%"
+			stop
+			
+			
+			
+			
+			
+			
+			
+every 1 second:
+	loop all players:
+		add 1 to {Spielzeit::Seconds::%loop-player%}
+		
+		
+every 1 second:
+	loop all players:
+		if {Spielzeit::Seconds::%loop-player%} is more than 59:
+			remove 60 from {Spielzeit::Seconds::%loop-player%}
+			add 1 to {Spielzeit::Minuten::%loop-player%}	
+			
+			
+every 1 second:
+	loop all players:
+		if {Spielzeit::Minuten::%loop-player%} is more than 59:
+			remove 59 from {Spielzeit::Minuten::%loop-player%}
+			add 1 to {Spielzeit::Stunden::%loop-player%}
+
+
+every 1 second:
+	loop all players:
+		if {Spielzeit::Stunden::%loop-player%} is more than 23:
+			remove 24 from {Spielzeit::Stunden::%loop-player%}
+			add 1 to {Spielzeit::Tage::%loop-player%}			
+	
+		
+
+			
+
+			
+
+

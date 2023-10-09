@@ -1,0 +1,126 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /gm [<text>] [<player>]:
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} Wähle ein &c&lGamemode"
+			stop
+			
+			
+			
+			
+		if arg-1 is set:
+			if arg-2 is not set:
+				if arg-1 is "survival" or "s" or "0":
+					set the player's gamemode to survival
+					send "{@Prefix} Du bist nun im &c&lSurvivial &7Mode"
+					stop
+					
+				if arg-1 is "adventure" or "a" or "2":
+					set player's gamemode to adventure
+					send "{@Prefix} Du bist nun im &c&lAdventure &7Mode"
+					stop
+					
+				if arg-1 is "spectator" or "s" or "3":
+					set player's gamemode to spectator
+					send "{@Prefix} Du bist nun im &c&lZuschauer &7Mode"
+					stop
+					
+				if player has permission "server.builder":
+					if arg-1 is "creative" or "c" or "1":
+						set player's gamemode to creative
+						send "{@Prefix} Du bist nun im &c&lCreative &7Mode"
+						stop
+						
+
+					
+					
+					
+					
+					
+			if arg-2 is set:
+				if player has permission "server.team":
+					if arg-1 is "survival" or "s" or "0":
+						set arg-2's gamemode to survival
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lSurvivial &7Mode"
+						stop
+						
+					if arg-1 is "adventure" or "a" or "2":
+						set arg-2's gamemode to adventure
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lAdventure &7Mode"
+						stop
+						
+					if arg-1 is "spectator" or "s" or "3":
+						set arg-2's gamemode to spectator
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lZuschauer &7Mode"
+						stop
+						
+				if player has permission "server.admin":
+					if arg-1 is "creative" or "c" or "1":
+						set arg-2's gamemode to creative
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lCreative &7Mode"
+						stop
+						
+command /gamemode [<text>] [<player>]:
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} Wähle ein &c&lGamemode"
+			stop
+			
+			
+			
+			
+		if arg-1 is set:
+			if arg-2 is not set:
+				if arg-1 is "survival" or "s" or "0":
+					set the player's gamemode to survival
+					send "{@Prefix} Du bist nun im &c&lSurvivial &7Mode"
+					stop
+					
+				if arg-1 is "adventure" or "a" or "2":
+					set player's gamemode to adventure
+					send "{@Prefix} Du bist nun im &c&lAdventure &7Mode"
+					stop
+					
+				if arg-1 is "spectator" or "s" or "3":
+					set player's gamemode to spectator
+					send "{@Prefix} Du bist nun im &c&lZuschauer &7Mode"
+					stop
+					
+				if player has permission "server.builder":
+					if arg-1 is "creative" or "c" or "1":
+						set player's gamemode to creative
+						send "{@Prefix} Du bist nun im &c&lCreative &7Mode"
+						stop
+						
+
+					
+					
+					
+					
+					
+			if arg-2 is set:
+				if player has permission "server.team":
+					if arg-1 is "survival" or "s" or "0":
+						set arg-2's gamemode to survival
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lSurvivial &7Mode"
+						stop
+						
+					if arg-1 is "adventure" or "a" or "2":
+						set arg-2's gamemode to adventure
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lAdventure &7Mode"
+						stop
+						
+					if arg-1 is "spectator" or "s" or "3":
+						set arg-2's gamemode to spectator
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lZuschauer &7Mode"
+						stop
+						
+				if player has permission "server.admin":
+					if arg-1 is "creative" or "c" or "1":
+						set arg-2's gamemode to creative
+						send "{@Prefix} &f%arg-2% &7ist nun im &c&lCreative &7Mode"
+						stop

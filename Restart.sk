@@ -1,0 +1,48 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】
+	
+
+command /restart [<text>]:
+	permission: *
+	trigger:
+		if arg-1 is not set:
+			play "entity_player_levelup" to players
+			send players title "{@Prefix}" with subtitle "&7Der Server startet in &41 Minute &7neu" for 2 seconds
+			wait 30 seconds
+			play "entity_player_levelup" to players
+			send players title "{@Prefix}" with subtitle "&7Server startet in &430 Sekunden &7neu" for 2 seconds
+			wait 20 seconds
+			play "entity_player_levelup" to players
+			send players title "{@Prefix}" with subtitle "&7In &410 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &49 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &48 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &47 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &46 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &45 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &44 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &43 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &42 Sekunden &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			wait 1 second
+			send players title "{@Prefix}" with subtitle "&7In &41 Sekunde &7neustart" for 1 second with 0.0 second fade in and 0.0 second fade out
+			
+			make server execute command "kickall The server is Prefixing, please wait while it reboots."
+			
+			wait 0.5 seconds	
+			
+			make server execute command "stop"
+			
+		if arg-1 is set: 
+			if arg-1 is "instant" or "now":
+				if player has permission "*":
+					make server execute command "kickall The server is Prefixing, please wait while it reboots."
+					make server execute command "stop"
+		else:
+			make player execute command "stop"

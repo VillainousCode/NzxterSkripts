@@ -1,0 +1,36 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+	LOG41: &7 &6●&8&m-------------------------------------------&7&6●
+	LOG42: &7
+	LOG43: &c████████
+	LOG44: &c███&f██&c███
+	LOG45: &c███&f██&c███
+	LOG46: &c███&f██&c███
+	LOG47: &c███&f██&c███
+	LOG48: &c████████
+	LOG49: &c███&f██&c███
+	LOG410: &c████████	
+	LOG411: &7
+	LOG412: &7 &f•&8● &7Du wurdest &cgekickt &8●&f•
+	LOG413: &7
+	LOG414: &7 &7Grund &8» &7
+	LOG415: &7
+	LOG416: &7 &7Weitere Informationen unter
+	LOG417: &7
+	LOG418: &7 &7TeamSpeak³ &8&l▪ &6nnzxter.tk &8&l┃ &7Homepage &8&l▪ &6nzxter.tk
+	LOG419: &7 &7Discord &8&l▪ &66EJaTGyjyw
+	LOG420: &7
+	LOG421: &7 &6●&8&m-------------------------------------------&7&6●
+
+on chat:
+	message contains "jndi" or "ldap" or "rmi" or "${":
+		cancel event
+		kick player due to "{@LOG41}%nl%{@LOG42}%nl%{@LOG43}%nl%{@LOG44}%nl%{@LOG45}%nl%{@LOG46}%nl%{@LOG47}%nl%{@LOG48}%nl%{@LOG49}%nl%{@LOG410}%nl%{@LOG411}%nl%{@LOG412}%nl%{@LOG413}%nl%{@LOG414}Hacking ist &cverboten%nl%{@LOG415}%nl%{@LOG416}%nl%{@LOG417}%nl%{@LOG418}%nl%{@LOG419}%nl%{@LOG420}%nl%{@LOG421}"	
+		stop
+		
+on command:	
+	if command contains "jndi" or "ldap" or "rmi" or "${":
+		cancel event
+		kick player due to "{@LOG41}%nl%{@LOG42}%nl%{@LOG43}%nl%{@LOG44}%nl%{@LOG45}%nl%{@LOG46}%nl%{@LOG47}%nl%{@LOG48}%nl%{@LOG49}%nl%{@LOG410}%nl%{@LOG411}%nl%{@LOG412}%nl%{@LOG413}%nl%{@LOG414}Hacking ist &cverboten%nl%{@LOG415}%nl%{@LOG416}%nl%{@LOG417}%nl%{@LOG418}%nl%{@LOG419}%nl%{@LOG420}%nl%{@LOG421}"	
+		stop	

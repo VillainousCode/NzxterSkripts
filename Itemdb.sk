@@ -1,0 +1,50 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /itemdb [<item>]:
+	permission: server.iron
+	trigger:
+		if arg 1 is not set:
+			if tool of player is air:
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &8▪ &7Durability &8&l» &6N/A"
+				send " &8▪ &7ID &8&l» &60"
+				send " &8▪ &7Amount &8&l» &6N/A"
+				send " &8▪ &7Name &8&l» &6air"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+			else:
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &8▪ &7Durability &8&l» &6%durability of tool of player%"
+				send " &8▪ &7ID &8&l» &6%id of tool of player%"
+				send " &8▪ &7Amount &8&l» &6%amount of tool of player%"
+				send " &8▪ &7Name &8&l» &6%tool of player%"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+				
+		if arg 1 is set:
+			if arg 1 is air:
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &8▪ &7Durability &8&l» &6N/A"
+				send " &8▪ &7ID &8&l» &60"
+				send " &8▪ &7Amount &8&l» &6N/A"
+				send " &8▪ &7Name &8&l» &6air"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+			else:
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &8▪ &7Durability &8&l» &6%durability of arg 1%"
+				send " &8▪ &7ID &8&l» &6%id of arg 1%"
+				send " &8▪ &7Amount &8&l» &6N/A"
+				send " &8▪ &7Name &8&l» &6%arg 1%"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lITEMDB &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+		

@@ -1,0 +1,34 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	cooldown: 20 seconds
+
+command /report [<player>] [<text>]:
+	trigger:
+		set {_wait} to difference between now and {display::%player%}
+		if {_wait} is less than {@cooldown}:
+			send "{@Prefix} Bitte warte &c%difference between {@cooldown} and {_wait}%."
+			stop
+		set {display::%player%} to now
+		if arg 1 is not set:
+			send "{@Prefix} Bitte nutze &9/report &f<Spieler> &cHacking, &bFly, &4KillAura, &eAntiKnockback, &eSpamming, &6Beleidigungen, &6Teaming"
+			stop
+		if arg 1 has permission "server.team": 
+			send "{@Prefix} Diesen User kannst du nicht reporten!"
+			stop
+		if arg 2 is not set:
+			send "{@Prefix} Bitte nutze &9/report &f<Spieler> &cHacking, &bFly, &4KillAura, &eAntiKnockback, &eSpamming, &6Beleidigungen, &6Teaming" 
+			stop
+		if arg 2 is not "Hacking" or "Fly" or "KillAura" or "AntiKnockback" or "Spamming" or "Beleidigungen" or "Teaming":
+			send "{@Prefix} Bitte nutze &9/report &f<Spieler> &cHacking, &bFly, &4KillAura, &eAntiKnockback, &eSpamming, &6Beleidigungen, &6Teaming"
+			stop
+		if arg 2 is "Hacking" or "Fly" or "KillAura" or "AntiKnockback" or "Spamming" or "Beleidigungen" or "Teaming":
+			wait 1 tick
+			send "{@Prefix} Du hast &f%arg-1% &4reportet. &7Ein freies &9Teammitglied &7wird sich in kuerze darum kuemmern."
+			loop all players:
+				loop-player has permission "server.team"
+				send "{@Prefix} Der &f%sender% &7hat &f%arg-1% &4reportet!" to loop-player
+				send "{@Prefix} &4&lGRUND: &7%arg-2%" to loop-player
+				
+
+on quit:
+	delete {display::%player%}

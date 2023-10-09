@@ -1,0 +1,504 @@
+options:
+	Prefix: &8&l【&e&lJobs&8&l】&8&l▶&7
+	Title: &8&l【&e&lEvent&8&l】
+
+	
+	
+
+command /jobs:
+	aliases: /job, /joben, /arbeit, /arbeiten,
+	trigger:
+		play "entity_skeleton_death" to player with volume 1 and pitch 1.0
+	
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+		
+		open virtual chest inventory with size 5 named "&6&lJ&eobs &8&l┃ &7Menu" to player
+
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing	
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing		
+			
+		make a gui slot 0 of player with pickaxe named "&8&l➢ &7&lMiner" with lore "||  &6Freebuild||  || &8&l» &6Smaragd Erz &e6,50$ || &8&l» &bDiamanten Erz &e5$ || &8&l» &6Gold Erz &e4$ || &8&l» &7Eisen Erz 2,5$ || &8&l» &cRedstone Erz &e1$ || &8&l» &8Kohle Erz &e0,75$ || &8&l» &3Lapis lazuli Erz &e1$ || ||  &fKlicke um anzunehmen/abzulehnen" to run:
+			if {Jobs::%player%::Miner} is not set:
+				play "entity_enderdragon_flap" to player 
+				set {Jobs::%player%::Miner} to true
+				send "{@Prefix} Du arbeitest nun als &7&lMinenarbeiter."
+				stop
+			if {Jobs::%player%::Miner} is set: 
+				play "entity_bat_hurt" to player 
+				clear {Jobs::%player%::Miner}
+				send "{@Prefix} Du hast deinen &e&lBeruf &7verlassen."
+			else if {Jobs::%player%::Holzfaeller} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Graeber} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Jaeger} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Farmer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Schmied} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+		
+		make a gui slot 8 of player with axe named "&8&l➢ &f&lHolzfäller" with lore "||  &6Freebuild||  || &8&l» &7Für alle Holzarten &e2$ || ||  &fKlicke um anzunehmen/abzulehnen" to run:
+			if {Jobs::%player%::Holzfaeller} is not set:
+				play "entity_enderdragon_flap" to player 
+				set {Jobs::%player%::Holzfaeller} to true
+				send "{@Prefix} Du arbeitest nun als &f&lHolzfäller."
+				stop
+			if {Jobs::%player%::Holzfaeller} is set: 
+				play "entity_bat_hurt" to player 
+				clear {Jobs::%player%::Holzfaeller}
+				send "{@Prefix} Du hast deinen &e&lBeruf &7verlassen."
+			else if {Jobs::%player%::Miner} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Graeber} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Jaeger} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Farmer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."	
+			else if {Jobs::%player%::Schmied} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."				
+				
+		make a gui slot 20 of player with shovel named "&8&l➢ &e&lGräber" with lore "||  &6Freebuild||  || &8&l» &7Für alle Sandsorten &e0,01$ || ||  &fKlicke um anzunehmen/abzulehnen" to run:			
+			if {Jobs::%player%::Graeber} is not set:
+				play "entity_enderdragon_flap" to player 
+				set {Jobs::%player%::Graeber} to true
+				send "{@Prefix} Du arbeitest nun als &e&lGräber."
+				stop
+			if {Jobs::%player%::Graeber} is set: 
+				play "entity_bat_hurt" to player 
+				clear {Jobs::%player%::Graeber}
+				send "{@Prefix} Du hast deinen &e&lBeruf &7verlassen."
+			else if {Jobs::%player%::Miner} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Holzfaeller} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Jaeger} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Farmer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Schmied} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+					
+		make a gui slot 36 of player with stone named "&8&l➢ &8&lBauer" with lore "||  &fÜberall||  || &8&l» &7Für alle gebauten Steine &e0,50$ || ||  &fKlicke um anzunehmen/abzulehnen" to run:
+			if {Jobs::%player%::Bauer} is not set:
+				play "entity_enderdragon_flap" to player 
+				set {Jobs::%player%::Bauer} to true
+				send "{@Prefix} Du arbeitest nun als &8&lBauer."
+				stop
+			if {Jobs::%player%::Bauer} is set: 
+				play "entity_bat_hurt" to player 
+				clear {Jobs::%player%::Bauer}
+				send "{@Prefix} Du hast deinen &e&lBeruf &7verlassen."
+			else if {Jobs::%player%::Miner} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Holzfaeller} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Jaeger} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Farmer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Schmied} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+					
+		make a gui slot 44 of player with bow named "&8&l➢ &e&lJäger" with lore "||  &6Freebuild||  || &8&l» &7Für alle Tierarten &e0.50$ || ||  &fKlicke um anzunehmen/abzulehnen" to run:	
+			if {Jobs::%player%::Jaeger} is not set:
+				play "entity_enderdragon_flap" to player 
+				set {Jobs::%player%::Jaeger} to true
+				send "{@Prefix} Du arbeitest nun als &6&lJäger."
+				stop
+			if {Jobs::%player%::Jaeger} is set: 
+				play "entity_bat_hurt" to player 
+				clear {Jobs::%player%::Jaeger}
+				send "{@Prefix} Du hast deinen &e&lBeruf &7verlassen."
+			else if {Jobs::%player%::Miner} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Holzfaeller} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Bauer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Farmer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Schmied} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+				
+		make a gui slot 22 of player with potato named "&8&l➢ &6&lFarmer" with lore "||  &fÜberall||  || &8&l» &7Für alle Pflanzensorten &e0,50$ || ||  &fKlicke um anzunehmen/abzulehnen" to run:		
+			if {Jobs::%player%::Farmer} is not set:
+				play "entity_enderdragon_flap" to player 
+				set {Jobs::%player%::Farmer} to true
+				send "{@Prefix} Du arbeitest nun als &e&lFarmer."
+				stop
+			if {Jobs::%player%::Farmer} is set: 
+				play "entity_bat_hurt" to player 
+				clear {Jobs::%player%::Farmer}
+				send "{@Prefix} Du hast deinen &e&lBeruf &7verlassen."
+			else if {Jobs::%player%::Miner} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Holzfaeller} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Bauer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Jaeger} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Schmied} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."				
+				
+		make a gui slot 24 of player with anvil named "&8&l➢ &7&lSchmied" with lore "||  &fÜberall||  || &8&l» &7Für alle Diamond Sachen|| &8&l» &7craften/enchanten &e0,50$ || ||  &fKlicke um anzunehmen/abzulehnen" to run:		
+			if {Jobs::%player%::Schmied} is not set:
+				play "entity_enderdragon_flap" to player 
+				set {Jobs::%player%::Schmied} to true
+				send "{@Prefix} Du arbeitest nun als &7&lSchmied."
+				stop
+			if {Jobs::%player%::Schmied} is set: 
+				play "entity_bat_hurt" to player 
+				clear {Jobs::%player%::Schmied}
+				send "{@Prefix} Du hast deinen &e&lBeruf &7verlassen."
+			else if {Jobs::%player%::Miner} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Holzfaeller} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Bauer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Jaeger} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+			else if {Jobs::%player%::Farmer} is set:
+				send "{@Prefix} Du hast schon einen &e&lBeruf."
+	
+
+		make a gui slot 4 of player with book named "&8&l➢ &e&lInfos" with lore "|| &fWann erhalte ich meinen &eGeld ?||  || &8&l» &7Du erhälst deine &eGeld|| &8&l» &7wenn du die folgenden Sachen|| &8&l» &7beachtet hast die|| &8&l» &7in den &eJobs &7stehen" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+		make a gui slot 40 of player with book named "&8&l➢ &e&lInfos" with lore "|| &fWann erhalte ich meinen &eGeld ?||  || &8&l» &7Du erhälst deine &eGeld|| &8&l» &7wenn du die folgenden Sachen|| &8&l» &7beachtet hast die|| &8&l» &7in den &eJobs &7stehen" to run:
+			play "entity_bat_takeoff" to player
+			stop	
+	
+	
+	
+command /jobsxp:
+	aliases: /jobxp
+	permission: *
+	trigger:
+		if {JobXP::Event} is not set:
+			set {JobXP::Event} to true
+			play "entity_enderdragon_flap" to players
+			loop all players:
+				send loop-player title "{@Title}" with subtitle "&7Doppeltes Job-Geld für 1 h!" for 3 seconds
+		else:
+			play "entity_enderdragon_flap" to players
+			delete {JobXP::Event}	
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+on break of diamond ore:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Miner} is set:
+			add 5 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Miner} is set:
+				add 10 to player's account
+			
+on break of Emerald ore:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Miner} is set:
+			add 6.50 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Miner} is set:
+				add 13 to player's account
+			
+on break of Gold ore:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Miner} is set:
+			add 4 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Miner} is set:
+				add 8 to player's account
+			
+on break of Iron ore:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Miner} is set:
+			add 2.50 to player's account
+		
+on break of Redstone ore:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Miner} is set:
+			add 1 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Miner} is set:
+				add 2 to player's account
+			
+on break of Coal ore:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Miner} is set:
+			add 0.75 to player's account
+		
+on break of Lapis Lazuli ore:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Miner} is set:
+			add 1 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Miner} is set:
+				add 2 to player's account
+
+
+
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+			
+on break of log or log:0 or log:1 or log:2 or planks or wood or oak wood or birch wood or acacia wood or spruce wood or logs:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Holzfaeller} is set:
+			add 2 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Holzfaeller} is set:
+				add 4 to player's account
+
+
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+				
+on break of sand:
+	if player is in world "Freebuild":
+		if {Jobs::%player%::Graeber} is set:
+			add 0.01 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Graeber} is set:
+				add 0.5 to player's account
+		
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+			
+on place of cobblestone or plank:
+	if {Jobs::%player%::Bauer} is set:
+		chance of 10%:
+			add 0.50 to player's account
+	if {JobXP::Event} is set:
+		if {Jobs::%player%::Bauer} is set:
+			add 1 to player's account
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+on death:
+	if attacker is a player:
+		if attacker's tool is bow:
+			if victim is a pig:
+				if {Jobs::%attacker%::Jaeger} is set:
+					add 0.50 to attacker's account
+				if {JobXP::Event} is set:
+					if {Jobs::%attacker%::Jaeger} is set:
+						add 1 to attacker's account			
+
+on death:
+	if attacker is a player:
+		if attacker's tool is bow:
+			if victim is a sheep:
+				if {Jobs::%attacker%::Jaeger} is set:
+					add 0.50 to attacker's account
+				if {JobXP::Event} is set:
+					if {Jobs::%attacker%::Jaeger} is set:
+						add 1 to attacker's account
+						
+on death:
+	if attacker is a player:
+		if attacker's tool is bow:
+			if victim is a cow:
+				if {Jobs::%attacker%::Jaeger} is set:
+					add 0.50 to attacker's account
+				if {JobXP::Event} is set:
+					if {Jobs::%attacker%::Jaeger} is set:
+						add 1 to attacker's account
+						
+						
+on death:
+	if attacker is a player:
+		if attacker's tool is bow:
+			if victim is a chicken:
+				if {Jobs::%attacker%::Jaeger} is set:
+					add 0.50 to attacker's account
+				if {JobXP::Event} is set:
+					if {Jobs::%attacker%::Jaeger} is set:
+						add 1 to attacker's account
+						
+
+
+on death of skeleton or zombie or enderman or creeper or spider or slime:
+	if attacker is in world "Freebuild":
+		if {Jobs::%attacker%::Jaeger} is set:
+			add 0.50 to attacker's account
+		if {JobXP::Event} is set:
+			if {Jobs::%attacker%::Jaeger} is set:
+				add 1 to attacker's account
+		
+on death of pig or chicken or cow or sheep or horse:
+	if attacker is in world "Freebuild":
+		if {Jobs::%attacker%::Jaeger} is set:
+			add 0.50 to attacker's account
+		if {JobXP::Event} is set:
+			if {Jobs::%attacker%::Jaeger} is set:
+				add 1 to attacker's account
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+on break of grass:
+	if {Jobs::%player%::Farmer} is set:
+		chance of 10%:
+			add 0.50 to player's account
+	if {JobXP::Event} is set:
+		if {Jobs::%player%::Farmer} is set:
+			add 3 to player's account			
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+			
+on craft of diamond sword:
+	if {Jobs::%player%::Schmied} is set:
+		chance of 10%:
+			add 0.50 to player's account
+	if {JobXP::Event} is set:
+		if {Jobs::%player%::Schmied} is set:
+			add 3 to player's account
+
+on craft of diamond chestplate:
+	if {Jobs::%player%::Schmied} is set:
+		chance of 10%:
+			add 0.50 to player's account
+	if {JobXP::Event} is set:
+		if {Jobs::%player%::Schmied} is set:
+			add 3 to player's account
+
+on craft of diamond boots:
+	if {Jobs::%player%::Schmied} is set:
+		chance of 10%:
+			add 0.50 to player's account
+	if {JobXP::Event} is set:
+		if {Jobs::%player%::Schmied} is set:
+			add 3 to player's account
+
+on craft of diamond helmet:
+	if {Jobs::%player%::Schmied} is set:
+		chance of 10%:
+			add 0.50 to player's account
+	if {JobXP::Event} is set:
+		if {Jobs::%player%::Schmied} is set:
+			add 3 to player's account
+
+on craft of diamond sword:
+	if {Jobs::%player%::Schmied} is set:
+		chance of 10%:
+			add 0.50 to player's account
+	if {JobXP::Event} is set:
+		if {Jobs::%player%::Schmied} is set:
+			add 3 to player's account			
+
+
+on enchant:  
+	if event-item is diamond sword:
+		if {Jobs::%player%::Schmied} is set:
+			chance of 10%:
+				add 1.50 to player's account
+		if {JobXP::Event} is set:
+			if {Jobs::%player%::Schmied} is set:
+				add 5 to player's account	
+
+
+			
+			
+on quit:
+	delete {Jobs::%player%::Graeber}
+	delete {Jobs::%player%::Holzfaeller}
+	delete {Jobs::%player%::Miner}
+	delete {Jobs::%player%::Bauer}
+	delete {Jobs::%player%::Jaeger}
+	delete {Jobs::%player%::Farmer}
+	delete {Jobs::%player%::Schmied}

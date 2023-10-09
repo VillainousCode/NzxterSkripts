@@ -1,0 +1,607 @@
+options:
+	Prefix: &8&l【&e&lEvent&8&l】&8&l▶&7
+	Title: &8&l【&e&lEvent&8&l】
+
+command /go:
+	aliases: /los, /eventplatz, /eventdrop, /dropplatz
+	trigger:
+		close player's inventory
+		set player's gamemode to spectator
+		apply blindness 4 to the player for 1 second
+		apply speed 4 to the player for 1 second
+		play "entity_bat_takeoff" to player
+		push the player upward at speed 0.5
+		push player (direction from player to location of target block) at speed 5
+		wait 0.3 seconds
+		teleport player to {event}
+#		show 1000 "SPELL_MOB" particles at player's location for player
+#		show 1000 "SPELL_MOB_AMBIENT" particles at player's head for player
+		play "entity_enderdragon_flap" to player
+		set player's gamemode to survival
+		send "{@Prefix} Du befindest dich nun am &e&lEventplatz"
+
+		
+command /setevent [<text>] [<text>]:
+	permission: *
+	trigger:	
+		if arg-1 is not set:
+			send "{@Prefix} &e/setevent spawn/all/cookies/taler/items/drop/ams"
+			stop
+			
+		if arg-1 is "spawn":
+			set {event} to location of player
+			play "block_note_pling" to player
+			send "{@Prefix} &eEvent Warp &agesetzt"	
+			
+			
+		else if arg-1 is "block":
+			set {blockevent} to location of player
+			play "block_note_pling" to player
+			send "{@Prefix} &eBlockevent &agesetzt"
+
+		else if arg-1 is "ams":
+			set {amsevent} to location of player
+			play "block_note_pling" to player
+			send "{@Prefix} &eAmsevent &agesetzt"			
+			
+		else if arg-1 is "cookies":
+			if arg-2 is "1":
+				set {cookieevent::1} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eCookieevent 1 &agesetzt"	
+				
+			else if arg-2 is "2":
+				set {cookieevent::2} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eCookieevent 2 &agesetzt"
+	
+			else if arg-2 is "3":
+				set {cookieevent::3} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eCookieevent 3 &agesetzt"
+				
+			else if arg-2 is "4":
+				set {cookieevent::4} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eCookieevent 4 &agesetzt"	
+				
+			
+
+
+			
+		else if arg-1 is "taler":
+			if arg-2 is "1":
+				set {talerevent::1} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eTalerevent 1 &agesetzt"	
+				
+			else if arg-2 is "2":
+				set {talerevent::2} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eTalerevent 2 &agesetzt"
+	
+			else if arg-2 is "3":
+				set {talerevent::3} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eTalerevent 3 &agesetzt"
+				
+			else if arg-2 is "4":
+				set {talerevent::4} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eTalerevent 4 &agesetzt"	
+				
+		
+
+
+
+		
+		else if arg-1 is "items":
+			if arg-2 is "1":
+				set {itemevent::1} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eItemevent 1 &agesetzt"	
+				
+			else if arg-2 is "2":
+				set {itemevent::2} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eItemevent 2 &agesetzt"
+	
+			else if arg-2 is "3":
+				set {itemevent::3} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eItemevent 3 &agesetzt"
+				
+			else if arg-2 is "4":
+				set {itemevent::4} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eItemevent 4 &agesetzt"
+
+	
+
+
+	
+		else if arg-1 is "geld":
+			if arg-2 is "1":
+				set {geldevent::1} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eGeldevent 1 &agesetzt"	
+				
+			else if arg-2 is "2":
+				set {geldevent::2} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eGeldevent 2 &agesetzt"
+	
+			else if arg-2 is "3":
+				set {geldevent::3} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eGeldevent 3 &agesetzt"
+				
+			else if arg-2 is "4":
+				set {geldevent::4} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eGeldevent 4 &agesetzt"
+				
+				
+				
+				
+				
+				
+		else if arg-1 is "all":
+			if arg-2 is "1":
+				set {cookieevent::1} to location of player
+				set {talerevent::1} to location of player
+				set {itemevent::1} to location of player
+				set {geldevent::1} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eAll 1 &agesetzt"
+			
+			if arg-2 is "2":
+				set {cookieevent::2} to location of player
+				set {talerevent::2} to location of player
+				set {itemevent::2} to location of player
+				set {geldevent::2} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eAll 2 &agesetzt"
+				
+			if arg-2 is "3":
+				set {cookieevent::3} to location of player
+				set {talerevent::3} to location of player
+				set {itemevent::3} to location of player
+				set {geldevent::3} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eAll 3 &agesetzt"
+				
+			if arg-2 is "4":
+				set {cookieevent::4} to location of player
+				set {talerevent::4} to location of player
+				set {itemevent::4} to location of player
+				set {geldevent::4} to location of player
+				play "block_note_pling" to player	
+				send "{@Prefix} &eAll 4 &agesetzt"
+
+
+every 53 minutes:
+	make console execute command "event drop"
+	stop
+	
+every 216 minutes:
+	make console execute command "event ams"
+	stop
+
+				
+command /event [<text>]:
+	permission: server.admin
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/event stop/give/all/cookies/taler/items/drop/ams"
+			stop
+			
+		if arg-1 is "stop":
+			set {itemevent} to "0"
+			set {cookieevent} to "0"
+			set {geldevent} to "0"
+			set {talerevent} to "0"
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&cbeendet" for 2 seconds
+
+		else if arg-1 is "give":			
+			give 1 beacon to player
+			give 1 dragon egg to player
+			give 1 mob spawner to player
+			give 1 end portal frame to player
+			give 1 nether star to player
+			give 2 sponge named "&fLuckyblock" to player
+			give 1 chest named "&fOpkiste" to player
+			give 1 chest named "&fRandomkiste" to player
+			
+		else if arg-1 is "all":
+			set {itemevent} to "1"
+			set {cookieevent} to "1"
+			set {geldevent} to "1"
+			set {talerevent} to "1"
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&7Alle Events &agestartet &8(&e/go&8)" for 5 seconds
+
+		else if arg-1 is "items":
+			set {itemevent} to "1"
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&7Itemevent &agestartet &8(&e/go&8)" for 5 seconds
+			
+		else if arg-1 is "cookies":
+			set {cookieevent} to "1"
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&7Cookieevent &agestartet &8(&e/go&8)" for 5 seconds
+			
+		else if arg-1 is "taler":
+			set {talerevent} to "1"
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&7Talerevent &agestartet &8(&e/go&8)" for 5 seconds
+			
+		else if arg-1 is "geld":
+			set {geldevent} to "1"
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&7Geldevent &agestartet &8(&e/go&8)" for 5 seconds
+			
+		else if arg-1 is "ams":
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&7Amsevent &agestartet &8(&e/go&8)" for 5 seconds
+			loop 10 times:
+				wait 6 ticks
+				set {_radius} to 25
+				set {_chance} to 1
+				set {_py} to y-coordinate of {amsevent}
+				loop blocks in radius {_radius} around {amsevent}:
+					loop-block is air:
+						chance of 1%:
+							set {_location} to location of loop-block
+							set {_testy} to y-coordinate of {_location}
+							set {_diff} to {_testy}
+							subtract {_py} from {_diff}
+							{_diff} is less than 2:
+								{_diff} is more than -2:
+									chance of 0.1%:
+										detonate flickering burst firework coloured purple and pink at block 1 meters above the location at {_location}
+										chance of 0.1%:
+											drop 1 dragon egg at {_location}
+											drop 1 mob spawner at {_location}
+											drop 1 beacon at {_location}	
+											drop 1 shulker box at {_location}
+										drop 1 ender chest at {_location}
+										drop 1 golden apple at {_location}	
+										drop 1 armor stand at {_location}
+										drop 1 bedrock at {_location}
+										drop 1 obsidian at {_location}
+										drop 1 obsidian at {_location}
+										drop 1 paper named "&fWiederbelebungsrolle" at {_location}
+										chance of 0.05%:
+											drop 1 chest named "&fOpkiste" at {_location}	
+											drop 1 chest named "&fRandomkiste" at {_location}										
+									chance of 1%:
+										pop flickering burst firework coloured yellow and orange at block 1 meters above the location at {_location}
+										drop 10 bottle o' enchanting at {_location}	
+										drop 2 apple at {_location}	
+										drop 32 steaks at {_location}	
+										drop 3 gunpowder at {_location}	
+										drop 2 gold ingot at {_location}
+										drop 1 hopper at {_location}
+									chance of 1%:
+										detonate flickering burst firework coloured blue at block 1 meters above the location at {_location}
+										drop 10 bottle o' enchanting at {_location}	
+										drop 2 apple at {_location}	
+										drop 32 steaks at {_location}	
+										drop 3 gunpowder at {_location}	
+										drop 2 gold ingot at {_location}	
+										drop 1 hopper at {_location}
+									chance of 1%:
+										pop flickering burst firework coloured yellow and orange at block 1 meters above the location at {_location}
+										drop 10 bottle o' enchanting at {_location}	
+										drop 2 apple at {_location}	
+										drop 32 steaks at {_location}	
+										drop 3 gunpowder at {_location}	
+										drop 2 gold ingot at {_location}
+										drop 1 hopper at {_location}
+		
+		else if arg-1 is "drop":
+			loop all players:
+				if loop-player is not in world "1Hit" or "Fastbridgen" or "GunFFA" or "CB-Creative":
+					send loop-player title "{@Title}" with subtitle "&7Dropall" for 2 seconds
+					play "entity_generic_explode" to loop-player
+					set {_radius} to 3
+					set {_chance} to 2
+					set {_py} to y-coordinate of loop-player
+					loop blocks in radius {_radius} around loop-player:
+						loop-block is air:
+							chance of {_chance}%:
+								set {_location} to location of loop-block
+								set {_testy} to y-coordinate of {_location}
+								set {_diff} to {_testy}
+								subtract {_py} from {_diff}
+								{_diff} is less than 3:
+									{_diff} is more than -3:
+										chance of 50%:
+											drop 1 diamond at {_location}
+										chance of 50%:
+											drop 1 gold ingot at {_location}
+										chance of 50%:
+											drop 1 iron ingot at {_location}
+										chance of 50%:
+											drop 1 bottle o' enchanting at {_location}
+										chance of 10%:
+											drop 1 golden apple at {_location}
+										chance of 50%:
+											drop 1 hopper at {_location}
+										chance of 50%:
+											drop 1 gunpowder at {_location}
+										chance of 50%:
+											drop 1 golden carrot at {_location}
+										chance of 10%:
+											drop 1 obsidian at {_location}
+										chance of 1%:
+											drop 1 paper named "&fWiederbelebungsrolle" at {_location}
+										chance of 1%:
+											drop 1 paper named "&fFlugschein" at {_location}
+										chance of 0.5%:
+											drop 1 paper named "&fGeldbeutel" at {_location}
+										chance of 0.1%:
+											drop 1 chest named "&fOpkiste" at {_location}
+										chance of 0.1%:
+											drop 1 paper named "&fRandomkiste" at {_location}
+										clear {_location}	
+										
+
+
+											
+								
+
+		
+		
+		
+
+		
+every 1 second in world "Spawn":
+	if {talerevent} is "1":
+		detonate flickering burst firework coloured blue at block 1 meters above the location at {talerevent::1}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::1}
+		drop 1 compass named "&NoPick-%{_i}%-%{_i}%" at {talerevent::1}
+		drop 1 apple named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {talerevent::1}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::1}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::2}
+		drop 1 compass named "&NoPick-%{_i}%-%{_i}%" at {talerevent::2}
+		drop 1 apple named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {talerevent::2}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::2}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::3}
+		drop 1 compass named "&NoPick-%{_i}%-%{_i}%" at {talerevent::3}
+		drop 1 apple named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {talerevent::3}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::3}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::4}
+		drop 1 compass named "&NoPick-%{_i}%-%{_i}%" at {talerevent::4}
+		drop 1 apple named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {talerevent::4}
+		drop 1 green wool block named "&NoPick-%{_i}%" at {talerevent::4}
+
+				
+on pickup of green wool block or apple or compass:
+	name of item contains "&NoPick-":
+		cancel event
+		set {_Amount} to random integer between 10 and 30
+		add {_Amount} to {Taler::%player%}
+		send player title "{@Title}" with subtitle "&7Du hast &f&l%{_Amount}% &e&lTaler &7aufgesammelt." for 1 second
+		delete event-entity
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+every 1 second in world "Spawn":
+	if {geldevent} is "1":
+		detonate flickering burst firework coloured yellow and orange at block 1 meters above the location at {geldevent::2}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::1}
+		drop 1 book named "&NoPick-%{_i}%-%{_i}%" at {geldevent::1}
+		drop 1 green dye named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {geldevent::1}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::1}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::2}
+		drop 1 book named "&NoPick-%{_i}%-%{_i}%" at {geldevent::2}
+		drop 1 green dye named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {geldevent::2}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::2}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::3}
+		drop 1 book named "&NoPick-%{_i}%-%{_i}%" at {geldevent::3}
+		drop 1 green dye named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {geldevent::3}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::3}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::4}
+		drop 1 book named "&NoPick-%{_i}%-%{_i}%" at {geldevent::4}
+		drop 1 green dye named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {geldevent::4}
+		drop 1 paper named "&NoPick-%{_i}%" at {geldevent::4}
+
+		
+on pickup of paper or green dye or book:
+	name of item contains "&NoPick-":
+		cancel event
+		set {_Amount} to random integer between 50 and 500
+		add {_Amount} to player's account
+		send player title "{@Title}" with subtitle "&7Du hast &f&l%{_Amount}% &e&l$ &7aufgesammelt." for 1 second
+		delete event-entity
+		
+		
+		
+		
+		
+		
+		
+		
+every 1 second in world "Spawn":
+	if {itemevent} is "1":
+		detonate flickering burst firework coloured red at block 1 meters above the location at {itemevent::3}
+		chance of 5%:
+			drop 1 diamond at {itemevent::1}
+			drop 1 gold ingot at {itemevent::2}
+			drop 1 iron ingot at {itemevent::3}
+			drop 1 xp bottles at {itemevent::4}
+			
+		chance of 20%:		
+			drop 1 golden apple at {itemevent::1}
+			drop 1 hopper at {itemevent::2}
+			drop 1 golden carrot at {itemevent::3}
+			drop 1 apple at {itemevent::4}
+			
+		chance of 20%:		
+			drop 1 gunpowder at {itemevent::1}
+			drop 1 obsidian at {itemevent::2}
+			drop 1 sword at {itemevent::3}
+			drop 1 pickaxe at {itemevent::4}
+			
+		chance of 20%:		
+			drop 1 leggings at {itemevent::1}
+			drop 1 boots at {itemevent::2}
+			drop 1 chestplate at {itemevent::3}
+			drop 1 helmet at {itemevent::4}
+			
+		chance of 20%:
+			drop 1 tnt named "&fC4" at {itemevent::1}
+			drop 1 bow named "&fTelebogen" at {itemevent::2}
+			drop 1 green dye named "&fMedizin" at {itemevent::3}
+			chance of 1%:
+				drop 1 shulker box named "&fShulkerbox" at {itemevent::4}
+				
+		chance of 2%:
+			drop 1 paper named "&fFlugschein" at {itemevent::1}
+			drop 1 paper named "&fFlugschein" at {itemevent::2}
+			chance of 0.1%:
+				drop 1 paper named "&fGeldbeutel" at {itemevent::3}
+				drop 1 paper named "&fGeldbeutel" at {itemevent::4}
+			
+		chance of 0.05%:
+			drop 1 chest named "&fOpkiste" at {itemevent::1}
+			drop 1 paper named "&fRandomkiste" at {itemevent::2}
+			drop 1 chest named "&fOpkiste" at {itemevent::3}
+			drop 1 paper named "&fRandomkiste" at {itemevent::4}
+			
+		set {_radius} to 10
+		set {_chance} to 10
+		set {_py} to y-coordinate of {event}
+		loop blocks in radius {_radius} around {event}:
+			loop-block is air:
+				chance of {_chance}%:
+					set {_location} to location of loop-block
+					set {_testy} to y-coordinate of {_location}
+					set {_diff} to {_testy}
+					subtract {_py} from {_diff}
+					{_diff} is less than 3:
+						{_diff} is more than -3:
+							chance of 10%:
+								spawn falling block of gold block or iron block or redstone block or lapis block at {_location}
+							clear {_location}
+							push last spawned entity upwards at speed 1
+							chance of 30%:
+								wait 2 tick
+							push last spawned entity north or northwest or east or southwest or west or south at speed 0.2 or 0.3 or 0.4 or 0.5			
+		
+		
+		
+		
+	
+
+
+
+	
+every 1 second in world "Spawn":
+	if {cookieevent} is "1":
+		detonate flickering burst firework coloured purple and pink at block 1 meters above the location at {cookieevent::4}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::1}
+		drop 1 emerald block named "&NoPick-%{_i}%-%{_i}%" at {cookieevent::1}
+		drop 1 sunflower named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {cookieevent::1}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::1}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::2}
+		drop 1 emerald block named "&NoPick-%{_i}%-%{_i}%" at {cookieevent::2}
+		drop 1 sunflower named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {cookieevent::2}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::2}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::3}
+		drop 1 emerald block named "&NoPick-%{_i}%-%{_i}%" at {cookieevent::3}
+		drop 1 sunflower named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {cookieevent::3}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::3}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::4}
+		drop 1 emerald block named "&NoPick-%{_i}%-%{_i}%" at {cookieevent::4}
+		drop 1 sunflower named "&NoPick-%{_i}%-%{_i}%-%{_i}%" at {cookieevent::4}
+		drop 1 cookie named "&NoPick-%{_i}%" at {cookieevent::4}
+		set {_radius} to 10
+		set {_chance} to 10
+		set {_py} to y-coordinate of {event}
+		loop blocks in radius {_radius} around {event}:
+			loop-block is air:
+				chance of {_chance}%:
+					set {_location} to location of loop-block
+					set {_testy} to y-coordinate of {_location}
+					set {_diff} to {_testy}
+					subtract {_py} from {_diff}
+					{_diff} is less than 3:
+						{_diff} is more than -3:
+							chance of 10%:
+								strike fake fake lightning at {_location}
+							clear {_location}
+
+				
+on pickup of cookie or sunflower or emerald block:
+	name of item contains "&NoPick-":
+		cancel event
+		set {_Amount} to random integer between 100 and 250
+		add {_Amount} to {Cookies::%player%}
+		send player title "{@Title}" with subtitle "&7Du hast &f&l%{_Amount}% &6&lCookies &7aufgesammelt." for 1 second
+		delete event-entity		
+		
+
+
+
+
+
+
+ 
+every 55 minutes:
+	set {random.integer.two} to 0
+	set {random.integer} to a random integer between 100000 and 999999
+	play "entity_player_levelup" to players
+	send players title "{@Title}" with subtitle "&7Gebe als erster den &cCode &6&n%{random.integer}%"
+
+on chat:
+	if message contains "%{random.integer}%":
+		if {random.integer.two} = 0:
+			cancel event
+			add 2548 to {Cookies::%player%}
+			play "entity_player_levelup" to players
+			send players title "{@Title}" with subtitle "&f%player% &7gewann &8(&a2548&8) &6Cookies!"
+			set {random.integer.two} to 1
+			stop
+		else if {random.integer.two} = 1:
+			cancel event
+			send "{@Prefix} Du warst zu langsam jemand war &cschneller!"
+			stop
+	else:
+		stop
+		
+		
+
+
+		   
+every 42 minutes:
+	set block at {blockevent} to emerald block
+	send players title "{@Title}" with subtitle "&7EXP Block Event &7sei der erste &e/go" for 5 seconds
+ 
+on left click on a emerald block:
+	if player is in world "Spawn":
+		send players title "{@Title}" with subtitle "&f%player% &7gewann &d128 EXP!"
+		set the event-block to bedrock
+		launch "BALL" firework at clicked block timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		create a fake explosion at event-block
+		play mob spawner flames at the targeted block to the player
+		give player 128 bottle o' enchanting

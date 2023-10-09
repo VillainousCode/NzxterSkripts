@@ -1,0 +1,25 @@
+options:
+	block: daylight sensor
+
+on jumping:
+	if block below player is {@block}:
+		loop 256 times:
+			if block loop-number up player is {@block}:
+				loop 256 times:
+					if block loop-number-2 down player's location is {@block}:
+						add 1 to {_floor}
+				teleport player to location loop-number+1 up player's location
+				send player title "&a⬆ &7Up" with subtitle "" for 1 seconds
+				stop
+	
+on sneak toggle:
+	if block at player's location is {@block}:
+		loop 256 times:
+			if block loop-number+1 below player is {@block}:
+				loop 256 times:
+					if block loop-number-2 down location of player is {@block}:
+						add 1 to {_floor}
+				teleport player to location loop-number down player's location
+				send player title "&c⬇ &7Down" with subtitle "" for 1 seconds
+				stop
+				

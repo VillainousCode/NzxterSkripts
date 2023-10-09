@@ -1,0 +1,20 @@
+options:
+	Prefix:	&8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /name [<offline player>]:
+	aliases: /namehistory, /history, /names
+	trigger:
+		if arg 1 is set:
+			set {_id} to text from "https://api.mojang.com/users/profiles/minecraft/%arg-1%"
+			replace all "{""id"":""" with "" in {_id}
+			replace all """,""name"":""%arg-1%""}" with "" in {_id}
+
+			set {_navne} to text from "https://api.mojang.com/user/profiles/%{_id}%/names"
+			replace all "{""name"":""" with " &8- &7 " in {_navne}
+			replace all """,""changedToAt"":" with " (" in {_navne}
+			replace all "}" with ") " in {_navne}
+			replace all "]" and "[" and " ," with "" in {_navne}
+			replace all """)" with "" in {_navne}
+			message "{@Prefix} Namechanges von &f%arg-1% &8&l» &a%{_navne}%"
+		else:
+			message "{@Prefix} Du musst einen &fSpieler &7angeben"

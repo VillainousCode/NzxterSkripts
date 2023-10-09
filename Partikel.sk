@@ -1,0 +1,80 @@
+options:
+	Prefix: &8&l【&e&lEffekte&8&l】&8&l▶&7
+	Title: &8&l【&e&lEffekte&8&l】
+
+	
+command /effect [<Text>] [<Text>]:
+	permission: server.redstone
+	aliases: /partikel, /effekte, /effekt, /trail, /effecte, /particles, /particle, /trails
+	trigger:
+		play "block_anvil_place" to player with volume 1 and pitch 1.0	
+		
+		open virtual brewing inventory with size 1 named "&6&lP&eartikel &8&l┃ &7Menu" to player	
+		
+		make a gui slot 0 of player with nether star named "&8&l➢ &c&lFlügel" with lore "|| &8&l» &7Hier kannst Du die|| &8&l» &cFlügel &7geben wie bei &bLabymod||  ||  &fKlicke um die Partikel zu bekommen" to run:
+			if {partikel::%player%} is true:
+				send player title "{@Title}" with subtitle "&7Du hast deine Partikel &centfernt" for 2 seconds
+				stopEffect id "%player%.wings"
+				stopEffect id "%player%.shield"
+				stopEffect id "%player%.tail"
+				play "block_anvil_destroy" to player
+				set {partikel::%player%} to false
+			else:
+				drawWings style 17, particle1 "flame", speed 0, XYZ 0, 0, 0, particle2 "redstone", particle3 "redstone", center player, id "%player%.wings", rainbowMode true, flapSpeed 2, flapRange 30, angle 120, height 0, space 0.2, visibleRange 30, tps 0, second 3
+				send player title "{@Title}" with subtitle "&7Du hast das Partikel &eaktiviert" for 2 seconds
+				play "entity_player_levelup" to player
+				set {partikel::%player%} to true
+
+		make a gui slot 1 of player with flower named "&8&l➢ &e&lNyancat" with lore "|| &8&l» &7Hier kannst Du dir|| &8&l» &7einen &eNyancat Schwanz &7geben||  ||  &fKlicke um die Partikel zu bekommen" to run:				
+			if {partikel::%player%} is true:				
+				send player title "{@Title}" with subtitle "&7Du hast deine Partikel &centfernt" for 2 seconds
+				stopEffect id "%player%.wings"
+				stopEffect id "%player%.shield"
+				stopEffect id "%player%.tail"
+				play "block_anvil_destroy" to player
+				set {partikel::%player%} to false
+			else:
+				drawNyanCat center player, id "%player%.tail", visibleRange 100
+				send player title "{@Title}" with subtitle "&7Du hast das Partikel &eaktiviert" for 2 seconds
+				play "entity_player_levelup" to player
+				set {partikel::%player%} to true
+			
+		make a gui slot 2 of player with magma cream named "&8&l➢ &e&lSchild" with lore "|| &8&l» &7Hier kannst Du dir|| &8&l» &7ein &eSchild &7geben||  ||  &fKlicke um die Partikel zu bekommen" to run:
+			if {partikel::%player%} is true:
+				send player title "{@Title}" with subtitle "&7Du hast deine Partikel &centfernt" for 2 seconds
+				stopEffect id "%player%.shield"
+				stopEffect id "%player%.wings"
+				stopEffect id "%player%.tail"
+				play "block_anvil_destroy" to player
+				set {partikel::%player%} to false
+			else:
+				drawWarpRings style 1, particle "redstone", center player, id "%player%.shield", rainbowMode true, scan true, height 2, radius 1, ringCount 40, ringDensity 20, visibleRange 32 
+				send player title "{@Title}" with subtitle "&7Du hast das Partikel &eaktiviert" for 2 seconds
+				play "entity_player_levelup" to player
+				set {partikel::%player%} to true
+				
+		make a gui slot 3 of player with sign item named "&8&l➢ &e&lPartikel" with lore "|| &8&l» &7Hier kannst Du dir|| &8&l» &7verschiedene &ePartikel &7geben" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+on quit:
+	if {partikel::%player%} is true:
+		stopEffect id "%player%.wings"
+		stopEffect id "%player%.shield"
+		stopEffect id "%player%.tail"
+		delete {partikel::%player%}
+		
+on join:
+	if {partikel::%player%} is true:
+		stopEffect id "%player%.wings"
+		stopEffect id "%player%.shield"
+		stopEffect id "%player%.tail"
+		delete {partikel::%player%}
+
+on kick:
+	if {partikel::%player%} is true:
+		stopEffect id "%player%.wings"
+		stopEffect id "%player%.shield"
+		stopEffect id "%player%.tail"
+		delete {partikel::%player%}
+	

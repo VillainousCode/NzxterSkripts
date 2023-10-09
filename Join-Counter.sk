@@ -1,0 +1,32 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+variables:
+	{alltimeplayers} = 0
+
+on first join:
+	add 1 to {alltimeplayers}
+	broadcast ""	
+	broadcast "{@Prefix} &f%player% &7ist &4N&eE&bU &8[&7##&a&l%{alltimeplayers}%&8]"
+	broadcast ""
+	
+	
+	
+	
+command /counter [<text>] [<number>]:
+	permission: *
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/counter &f<setzen/delete/info>"
+			stop
+
+		if arg-1 is "setzen":
+			set {alltimeplayers} to arg-2
+			send "{@Prefix} Counter auf &e%{alltimeplayers}% &7gesetzt"
+			
+		if arg-1 is "delete":
+			clear {alltimeplayers}
+			send "{@Prefix} Counter wurde &cgelöscht"
+			
+		if arg-1 is "info":
+			send "{@Prefix} Counter ist bei &6%{alltimeplayers}%"

@@ -1,0 +1,54 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+on jumping:
+	if metadata value "Frozen" of player is set:
+		cancel event
+		
+command /l: 
+	aliases: /hub, /lb, /lobby, /leave, /verlassen
+	trigger:
+		set metadata value "Frozen" of player to true
+		set the player's walk speed to 0
+		close player's inventory
+		send player title "&8⚪ ⚪ ⚪" with subtitle "&7teleportieren" for 1 second
+		play "block_portal_trigger" to player with volume 0.5 and pitch 1.5
+#		show 1000 "PORTAL" particles at player's location for player offset by 0.2, 0, 0.2
+#		show 100 "SMOKE_NORMAL" particles at player's location for player offset by 1, 1, 1
+		apply blindness 1 to the player for 1 second		
+		wait 1 second
+		send player title "&c⚫ &8⚪ ⚪" with subtitle "&7teleportieren&c." for 1 second
+#		show 10000 "PORTAL" particles at player's location for player offset by 1, 0, 1
+#		show 200 "SMOKE_NORMAL" particles at player's location for player offset by 1, 1, 1
+		apply blindness 1 to the player for 1 second		
+		wait 1 second
+		send player title "&c⚫ &e⚫ &8⚪" with subtitle "&7teleportieren&c.&e." for 1 second
+#		show 50000 "PORTAL" particles at player's location for player offset by 3, 0, 3
+#		show 300 "SMOKE_NORMAL" particles at player's location for player offset by 2, 2, 2
+		apply blindness 1 to the player for 1 second
+		wait 1 second	
+		send player title "&c⚫ &e⚫ &a⚫" with subtitle "&7teleportieren&c.&e.&a." for 0.5 seconds	
+#		show 400 "EXPLOSION_NORMAL" particles at player's location for player offset by 0.2, 1, 0.2
+#		show 15 "EXPLOSION_HUGE" particles at player's location for player offset by 5, 5, 5
+		apply blindness 1 to the player for 1 second
+		run player command "mvtp Spawn" as op	
+		send "{@Prefix} Du befindest dich nun am &e&lSpawn"
+		set the player's walk speed to 0.2
+		delete metadata value "Frozen" of player
+		play "entity_generic_explode" to player with volume 2 and pitch 2
+
+		
+		
+command /back: 
+	aliases: /spawn
+	trigger:
+		close player's inventory
+		apply blindness 4 to the player for 2 seconds
+		play "entity_elder_guardian_curse" to player
+		push the player upward at speed 1
+		show 1 "MOB_APPEARANCE" particles at player's location for player offset by 1, 1, 1
+		wait 1 second
+		run player command "mvtp %world%" as op
+		launch "BALL" firework at player timed 0 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		remove blindness from player
+		

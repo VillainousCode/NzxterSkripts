@@ -1,0 +1,7 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+on chat:
+    if player doesn't have permission "server.team":
+        if length of regex replace "[^A-Z]" with "" in message >= 10:
+            cancel event

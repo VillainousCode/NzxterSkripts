@@ -1,0 +1,93 @@
+﻿on jumping:
+	if metadata value "Join" of player is set:
+		cancel event
+
+on first join:
+	teleport player to {spawn}
+	set metadata value "Join" of player to true
+	set the gamemode of the player to survival
+	set player's flight mode to false
+	set player's hunger to 1
+	set player's hunger to 1
+	set player's level to 0
+	set player's health to 1
+	set player's max health to 10
+	set the player's walk speed to 0
+	apply blindness 3 to the player for 5 seconds
+	launch "BALL" firework at player timed 0 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+	wait 3.5 seconds
+	set the player's walk speed to 0.2
+	set player's level to 2
+	set player's health to 2
+	set player's hunger to 2
+	wait 4 ticks
+	set player's health to 3
+	set player's hunger to 3
+	wait 4 ticks
+	set player's health to 4
+	set player's hunger to 4
+	wait 4 ticks
+	set player's health to 5
+	set player's hunger to 5
+	wait 2 ticks
+	set player's health to 6
+	set player's hunger to 6
+	wait 2 ticks
+	set player's health to 7
+	set player's hunger to 7
+	wait 2 ticks
+	set player's health to 8
+	set player's hunger to 8
+	wait 2 ticks
+	set player's health to 9
+	set player's hunger to 9
+	wait 2 ticks
+	set player's hunger to 10
+	set player's health to 10
+	delete metadata value "Join" of player
+	stop
+	
+on join:
+	teleport player to {spawn}
+	set metadata value "Join" of player to true
+	set the gamemode of the player to survival
+	set player's flight mode to false
+	set player's hunger to 1
+	set player's hunger to 1
+	set player's level to 0
+	set player's health to 1
+	set player's max health to 10
+	set the player's walk speed to 0
+	apply blindness 3 to the player for 3 seconds
+	launch "BALL" firework at player timed 0 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+	wait 3 seconds
+	set the player's walk speed to 0.2
+	set player's level to 2
+	set player's health to 2
+	set player's hunger to 2
+	wait 4 ticks
+	set player's health to 3
+	set player's hunger to 3
+	wait 4 ticks
+	set player's health to 4
+	set player's hunger to 4
+	wait 4 ticks
+	set player's health to 5
+	set player's hunger to 5
+	wait 2 ticks
+	set player's health to 6
+	set player's hunger to 6
+	wait 2 ticks
+	set player's health to 7
+	set player's hunger to 7
+	wait 2 ticks
+	set player's health to 8
+	set player's hunger to 8
+	wait 2 ticks
+	set player's health to 9
+	set player's hunger to 9
+	wait 2 ticks
+	set player's hunger to 10
+	set player's health to 10
+	delete metadata value "Join" of player
+	stop

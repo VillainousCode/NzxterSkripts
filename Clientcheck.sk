@@ -1,0 +1,198 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+	Clientcheck1: &7 &6●&8&m-------------------------------------------&7&6●
+	Clientcheck2: &7
+	Clientcheck3: &c████████
+	Clientcheck4: &c███&f██&c███
+	Clientcheck5: &c███&f██&c███
+	Clientcheck6: &c███&f██&c███
+	Clientcheck7: &c███&f██&c███
+	Clientcheck8: &c████████
+	Clientcheck9: &c███&f██&c███
+	Clientcheck10: &c████████	
+	Clientcheck11: &7
+	Clientcheck12: &7 &f•&8● &7Du wurdest &cgekickt &8●&f•
+	Clientcheck13: &7
+	Clientcheck14: &7 &7Grund &8» &7
+	Clientcheck15: &7
+	Clientcheck16: &7 &7Weitere Informationen unter
+	Clientcheck17: &7
+	Clientcheck18: &7 &7TeamSpeak³ &8&l▪ &6nzxter.tk &8&l┃ &7Homepage &8&l▪ &6nzxter.tk
+	Clientcheck19: &7 &7Discord &8&l▪ &6BTdmF27nac
+	Clientcheck20: &7
+	Clientcheck21: &7 &6●&8&m-------------------------------------------&7&6●
+		
+	
+on chat:
+	if player do not have permission "server.team":
+		if message contains ".help" or ".helps" or ".say" or ".bind" or "-help" or "+gm" or "##help":
+			kick player because "{@Prefix} Clientmods &7sind &cverboten"
+			cancel event
+			stop	
+			
+			
+
+command /client [<text>] [<player>]:
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/client check/uncheck &f<Spieler>"
+			stop
+			
+		if arg-1 is "check":
+			if arg-2 is set:
+				if arg-2 has permission "server.team":			
+					stop
+				set {clientcheck::%arg-2%} to true
+				send "{@Prefix} Der Spieler &f%arg-2% &7wird auf &4&lClientmods &7geprüft"
+				set {clientloc::%arg-2%} to arg-2's location
+				
+		else if arg-1 is "uncheck":
+			if arg-2 is set:
+				if arg-2 has permission "server.team":			
+					stop
+				delete {clientcheck::%arg-2%}
+				delete {clientcheck2::%arg-2%}
+				delete {clientcheck3::%arg-2%}
+				delete {clientcheck4::%arg-2%}
+				delete {clientcheck5::%arg-2%}
+				delete {clientloc::%arg-2%}
+				send "{@Prefix} Der Spieler &f%arg-2% &7erfolgreich &ebefreit"
+
+on any move:
+	if {clientcheck::%player%} is true:
+		if {_w} is not set:
+			set {_w} to true
+			teleport player to {clientloc::%player%}
+			send "{@Prefix} Du wirst geprüft! Tippe &6&l.bind"
+			send player title "&7Schreibe &6&l.bind &7in den &eChat" for 1 second
+			wait 2 second
+			delete {_w}
+			
+	if {clientcheck2::%player%} is true:
+		if {_w} is not set:
+			set {_w} to true
+			teleport player to {clientloc::%player%}
+			send "{@Prefix} Du wirst geprüft! Tippe &6&l.say"
+			send player title "&7Schreibe &6&l.say &7in den &eChat" for 1 second
+			wait 2 second
+			delete {_w}
+			
+	if {clientcheck3::%player%} is true:
+		if {_w} is not set:
+			set {_w} to true
+			teleport player to {clientloc::%player%}
+			send "{@Prefix} Du wirst geprüft! Tippe &6&l.help"
+			send player title "&7Schreibe &6&l.help &7in den &eChat" for 1 second
+			wait 2 second
+			delete {_w}
+			
+	if {clientcheck4:%player%} is true:
+		if {_w} is not set:
+			set {_w} to true
+			teleport player to {clientloc::%player%}
+			send "{@Prefix} Du wirst geprüft! Tippe &6&l+gm"
+			send player title "&7Schreibe &6&l+gm &7in den &eChat" for 1 second
+			wait 2 second
+			delete {_w}
+			
+	if {clientcheck5::%player%} is true:
+		if {_w} is not set:
+			set {_w} to true
+			teleport player to {clientloc::%player%}
+			send "{@Prefix} Du wirst geprüft! Tippe &6&l##"
+			send player title "&7Schreibe &6&l## &7in den &eChat" for 1 second
+			wait 2 second
+			delete {_w}
+
+on chat:
+	if {clientcheck::%player%} is true:
+		if message is ".bind":
+			cancel event
+			delete {clientcheck::%player%}
+			set {clientcheck2::%player%} to true
+			loop all players:
+				if loop-player has permission "server.team":
+					send "{@Prefix} Der Spieler &f%player% &7hat &eerfolgreich &6&l.bind &7eingetippt" to loop-player
+					
+	if {clientcheck2::%player%} is true:
+		if message is ".say":
+			cancel event
+			delete {clientcheck2::%player%}
+			set {clientcheck3::%player%} to true
+			loop all players:
+				if loop-player has permission "server.team":
+					send "{@Prefix} Der Spieler &f%player% &7hat &eerfolgreich &6&l.say &7eingetippt" to loop-player
+					
+	if {clientcheck3::%player%} is true:
+		if message is ".help":
+			cancel event
+			delete {clientcheck3::%player%}
+			set {clientcheck4::%player%} to true
+			loop all players:
+				if loop-player has permission "server.team":
+					send "{@Prefix} Der Spieler &f%player% &7hat &eerfolgreich &6&l.help &7eingetippt" to loop-player
+					
+	if {clientcheck4::%player%} is true:
+		if message is "+gm":
+			cancel event
+			delete {clientcheck4::%player%}
+			set {clientcheck5::%player%} to true
+			loop all players:
+				if loop-player has permission "server.team":
+					send "{@Prefix} Der Spieler &f%player% &7hat &eerfolgreich &6&l+gm &7eingetippt" to loop-player
+					
+	if {clientcheck5::%player%} is true:
+		if message is "##":
+			cancel event
+			delete {clientcheck5::%player%}
+			send "{@Prefix} Erfolgreich &eabgeschlossen"
+			loop all players:
+				if loop-player has permission "server.team":
+					send "{@Prefix} Der Spieler &f%player% &7hat &eerfolgreich &6&l## &7eingetippt" to loop-player
+					wait 3 tick
+					send "{@Prefix} Der Spieler &f%player% &7hat keine &4&lClientmods &7mit &6&l.bind,.say,.help,+gm &7oder &6&l##" to loop-player
+					
+	
+	
+#on packet:
+#	if event-string is "PacketPlayInCustomPayload":
+#		set {_this::*} to packet field "a"	
+#		set {_this2::*} to packet field "b"
+		
+#		broadcast "%{_this::*}% %{_this2::*}%"
+		
+#		if {_this::*} contains "LABYMOD":	
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."
+#
+#		if {_this::*} contains "PX|Version":			
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#
+#		if {_this::*} contains "LOLIMAHCKER":			
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#			
+#		if {_this::*} contains "BLC|M":	
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#			
+#		if {_this::*} contains "BLC|N":
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#			
+#		if {_this::*} contains "CustomNPCsPlayer":
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#			
+#		if {_this::*} contains "jei" or "JEI":
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#			
+#		if {_this::*} contains "waila" or "Walia":
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#			
+#		if {_this::*} contains "MC|BSign":
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#
+#		if {_this::*} contains "MC|BEdit":
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#					
+#		if {_this::*} contains "REGISTER":
+#			make console execute command "advancedban:kick %player% Hackclients &cverboten."	
+#			kick player because "{@Clientcheck1}%nl%{@Clientcheck2}%nl%{@Clientcheck3}%nl%{@Clientcheck4}%nl%{@Clientcheck5}%nl%{@Clientcheck6}%nl%{@Clientcheck7}%nl%{@Clientcheck8}%nl%{@Clientcheck9}%nl%{@Clientcheck10}%nl%{@Clientcheck11}%nl%{@Clientcheck12}%nl%{@Clientcheck13}%nl%{@Clientcheck14}Hackclients sind &cverboten%nl%{@Clientcheck15}%nl%{@Clientcheck16}%nl%{@Clientcheck17}%nl%{@Clientcheck18}%nl%{@Clientcheck19}%nl%{@Clientcheck20}%nl%{@Clientcheck1}"

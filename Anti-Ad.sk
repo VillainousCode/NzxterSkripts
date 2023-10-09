@@ -1,0 +1,20 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	CancelMessage: true 
+	DontAdHereMsg: &7Bitte keine &cWerbung &7machen. Das &9Team &7wurde informiert
+	StaffWarnMsg: &f%player% &7wollte &cWerbung &7machen! &cMessage: &7%message%
+	DomainsToCheckFor: "(.)" or "(,)" or ".gg" or "www." or " . " or " , " or ".net" or ".com" or ".cf" or ".co" or ".us" or ".uk" or ".ws" or ".tk" or ".ml" or ".org" or ".to" or "(dot)" or ".pw" or ".it" or ".tech" or ".edu" or ".de" or ".tl" or ".nl" or ".be" or ".me" or ".info" or ".ly" or ".onion" or ".bit" or ".pl" or ".gl" or ".tv" or ".gs" or ".nz" or ".myserver" or ".club" or ".space" or ".design" or ".rent" or ".bid" or ".trade" or ".webcam" or ".press" or ".io" or ".ca" or ".college" or ".host" or ".es" or ".yoga" or ".financial" or ".flights" or ".guitars" or ".xyz" or ".dj" or ".is" or ".hub" or ".server" or ".webcam" or ".ninja" or ".financial" or ".ca" or ".eu" or ".esy" or ".google" or ".us" or ",de" or ",net" or ",com" or ",eu" or ",tk" or ",us" or "http://" or "https://" or "Join Now" or "[.]" or "skymaus" or "skymanta" or "skyrage" or "skyhight" or "skyhype" or "skydream" or "skyslayer" or "entegaming" or "skyrod" or "skyliro" or "spaßkasten" or "pluginmc" or "claymc" or "skyaura" or "skyrazix" or "skydust" or "skytanic" or "skyliro" or "skyflayz" or "skytanic" or "skysucht" or "skyjungle" or "skylit" or "skybiest" or "plorax" or "pxlfun" or "citymc"
+
+on chat:
+	if player doesn't have permission "server.team":
+		replace all "nzxter.tk" in message with "nzxter'de"
+		replace all "," in message with "'"		
+		if message contains {@DomainsToCheckFor}:
+			loop all players:
+				if loop-player has permission "server.team":
+					send "{@Prefix} {@StaffWarnMsg}" to loop-player
+				if {@CancelMessage} is true:
+					cancel the event
+			send "{@Prefix} {@DontAdHereMsg}" to player
+			make server execute command "tempmute %player% 30d Werbung ist bei uns &cverboten"
+			stop

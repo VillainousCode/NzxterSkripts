@@ -1,0 +1,50 @@
+options:
+	Prefix: &8&l【&e&lRucksack&8&l】&8&l▶&7
+
+command /rucksack:
+	permission: server.diamond
+	aliases: /rs, /backpack, /bag
+	trigger:
+		
+		play "block_piston_extend" to player with volume 1 and pitch 1.0
+		
+		open virtual chest inventory with size 6 named "&6&lR&eucksack &8&l┃ &7Menu" to player
+	
+		loop {rucksack::%player%::*}:
+			add loop-value to current inventory of player
+		set {rucksackstore::%player%} to true
+		stop
+		
+command /rucksackinvsee [<offline player>]:
+	permission: server.mod
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/rucksackinvsee &f<Spieler>"
+			stop
+		if {rucksackstore::%argument%} is true:
+			send "{@Prefix} Der Spieler schaut in seinen Rucksack, bitte warte!"
+			stop
+		else:
+			set {rucksackastore::%player%} to argument
+			set {rucksackadstore::%player%} to true
+			open virtual chest inventory with size 6 named "&6&lR&eucksack &8&l┃ &7Menu" to player
+			loop {rucksack::%argument%::*}:
+				add loop-value to current inventory of player
+			stop
+
+		
+on inventory open:
+	{rucksackstore::%player%} is true:
+		clear {rucksack::%player%::*}
+		loop 55 times:
+			if name of player's current inventory is "&6&lR&eucksack &8&l┃ &7Menu":
+				set {rucksack::%player%::%loop-number - 1%} to slot "%loop-number - 1%" parsed as an integer of current inventory of player
+		set {rucksackstore::%player%} to false
+		stop
+	{rucksackadstore::%player%} is true:
+		clear {rucksack::%{rucksackastore::%player%}%::*}
+		loop 55 times:
+			if name of player's current inventory is "&6&lR&eucksack &8&l┃ &7Menu":
+				set {rucksack::%{rucksackastore::%player%}%::%loop-number - 1%} to slot "%loop-number - 1%" parsed as an integer of current inventory of player
+		set {rucksackadstore::%player%} to false
+		clear {rucksackastore::%player%}

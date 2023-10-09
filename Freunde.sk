@@ -1,0 +1,87 @@
+options:
+	Prefix: &8&l【&e&lFreunde&8&l】&8&l▶&7
+	Icon: ●
+	IconColor: &8
+
+on quit:
+	delete {friendsrequest::%player%}
+	
+command /f [<text>] [<player>] [<text>]:
+	aliases: /freunde, /freund, /friend
+	trigger:
+		if arg-1 is not set:
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lFREUNDE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &8▪ &6/f &eadd &f<Spieler> &8&l» &7Adde einen Freund"
+			send " &8▪ &6/f &eremove &f<Spieler> &8&l» &7Lösche deinen Freund"
+			send " &8▪ &6/f &eja &f<Spieler> &8&l» &7Nehme die Freundschaftsanfrage an"
+			send " &8▪ &6/f &enein &f<Spieler> &8&l» &7Lehne die Freundschaftsanfrage ab"
+			send " &8▪ &6/f &elist &f<Spieler> &8&l» &7Zeige alle Freunde"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lFREUNDE &8)&6&m--&e&m--&7&m--&8&m--"
+			stop
+		
+		if arg 1 is "add":
+			loop {friendslist::%player%::*}:
+				if arg 2 is loop-value:
+					send "{@Prefix} &7Du bist schon mit &f%arg 2% &7befreundet"
+					stop
+			if arg 2 is player:
+				send "{@Prefix} &7Du kannst dir selber keine Anfrage stellen"
+				stop
+			set {friendsrequest::%arg 2%} to player
+			set {friendsrequest::%player%} to arg 2
+			send "{@Prefix} &7Du hast &f%arg 2% &7eine Anfrage gestellt"
+			send "{@Prefix} &7Du hast von &f%player% &7eine &6&lFN &7bekommen" to arg 2
+			send "{@Prefix} &7Benutze &6/f ja %player%&7 oder &6/f nein %player%" to arg 2
+		if arg 1 is "ja":
+			if {friendsrequest::%player%} is arg 2:
+				if {friendsrequest::%arg 2%} is player:
+					set {friendsrequest::%player%} to 0
+					set {friendsrequest::%arg 2%} to 0
+					add player to {friendslist::%arg 2%::*}
+					add arg 2 to {friendslist::%player%::*}
+					send "{@Prefix} &7Du bist nun mit &f%arg 2% &7befreundet"
+					send "{@Prefix} &7Du bist nun mit &f%player% &7befreundet" to arg 2
+		if arg 1 is "nein":	
+			if {friendsrequest::%player%} is arg 2:
+				if {friendsrequest::%arg 2%} is player:
+					set {friendsrequest::%player%} to 0
+					set {friendsrequest::%arg 2%} to 0
+					send "{@Prefix} &7Du hast die Anfrage von &f%arg 2% &cabgelehnt"
+					send "{@Prefix} &f%player% hat deine Anfrage abgelehnt" to arg 2
+					
+		if arg 1 is "list":
+			play "block_note_pling" to player with volume 1 and pitch 1.0
+			
+			set {_friend} to 0
+			
+			open virtual chest inventory with size 6 named "&6&lF&ereunde &8&l┃ &7Menu" to player
+			
+			loop 55 times:			
+				make a gui slot {_slot} of player with gray glass pane named "&7" to do nothing
+				add 1 to {_slot}
+			
+			loop {friendslist::%player%::*}:
+				if loop-value is online:
+					make a gui slot {_friend} of player with loop-value's skull named "%loop-value's prefix% %loop-value%" with lore "{@IconColor}{@Icon} &eONLINE &7auf &4%loop-value's world%" to do nothing
+					add 1 to {_friend}
+				if loop-value is offline:
+					make a gui slot {_friend} of player with wither skeleton head named "%loop-value's prefix% %loop-value%" with lore "{@IconColor}{@Icon} &cOFFLINE" to do nothing
+					add 1 to {_friend}
+					
+		if arg 1 is "remove":
+			loop {friendslist::%player%::*}:
+				if arg 3 is loop-value:
+					remove arg 3 from {friendslist::%player%::*}
+					send "{@Prefix} &7 &7Du bist nun nicht mehr mit &f%arg 3% &7befreundet"
+			loop {friendslist::%arg 3%::*}:
+				if player is loop-value:
+					remove player from {friendslist::%arg 3%::*}
+			loop {friendslist::%player%::*}:
+				if arg 2 is loop-value:
+					remove arg 2 from {friendslist::%player%::*}
+					send "{@Prefix} &7 &7Du bist nun nicht mehr mit &f%arg 2% &7befreundet"
+			loop {friendslist::%arg 2%::*}:
+				if player is loop-value:
+					remove player from {friendslist::%arg 2%::*}

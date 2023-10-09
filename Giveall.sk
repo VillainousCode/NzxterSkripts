@@ -1,0 +1,38 @@
+options:
+	Prefix: &8&l【&e&lEvent&8&l】&8&l▶&7
+	Title: &8&l【&e&lEvent&8&l】
+
+
+
+
+
+
+
+command /giveall:
+	permission: server.admin
+	trigger:
+		if player's tool is not air:
+			set {_item} to player's tool
+			set {_itemtyp} to type of held item of player
+			set {_itemammount} to amount of held item of player
+			loop all players:
+				if loop-player is not in world "1Hit" or "Fastbridgen" or "GunFFA" or "CB-Creative" or "Bauen":
+					send loop-player title "{@Title}" with subtitle "&7Du hast &f&l%{_itemammount}%&ex &6&l%{_itemtyp}% &7erhalten" for 2 seconds
+					#launch "BALL" firework at loop-player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+					play "entity_player_levelup" to loop-player
+					give {_item} to loop-player	
+					
+		else:
+			send "{@Prefix} Halte das Item, welches du den &fSpielern &7geben möchtest, in deiner Hand."
+
+			
+			
+
+		
+command /giveitem [<item>]:
+	permission: server.admin
+	trigger:
+		give arg-1 to all players
+		send players title "{@Title}" with subtitle "&7Du hast &e%arg-1% bekommen" for 2 seconds
+		play "entity_player_levelup" to players
+		stop

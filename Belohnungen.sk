@@ -1,0 +1,68 @@
+﻿options:
+	Prefix: &8&l【&e&lBelohnungen&8&l】
+
+on right click on entity:
+	if name of event-entity is "&6&lB&eonis":
+		cancel event
+		play "block_chest_open" to player with volume 1 and pitch 1.0
+		
+		open virtual brewing inventory with size 1 named "&6&lB&eonis &8&l┃ &7Menu" to player	
+			
+		make a gui slot 0 of player with iron ingot named "&8&l➢ &a&lStündlicher Bonus" with lore "|| &8&l» &bDiamant &8&l● &8(&b2&8)|| &8&l» &8Steaks &8&l● &8(&810&8)|| &8&l» &eGeld &8&l● &8(&e500$&8)|| &8&l» &dEXP Bottels &8&l● &8(&e10&8)|| &8&l» &aBasis Schlüssel &8&l● &8(&e1&8)||  ||  &fKlicke um denn Bonus zu bekommen" to run:
+			set {_wait} to difference between now and {stundenbonus::%player%}
+			if {_wait} is less than 1 hour:
+				send player title "{@Prefix}" with subtitle "&7Bitte warte noch &c%difference between 1 hour and {_wait}%" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+			set {stundenbonus::%player%} to now
+			give player 2 diamonds
+			give player 10 steaks
+			add 500 to player's account
+			give player 10 bottle o' enchanting
+			make server execute command "crate givekey %player% Basis 1"
+			play "entity_player_levelup" to player
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			stop				
+
+		make a gui slot 1 of player with chest minecart named "&8&l➢ &6&lPremium Bonus" with lore "|| &8&l» &bDiamanten &8&l● &8(&b8&8)|| &8&l» &8Steaks &8&l● &8(&864&8)|| &8&l» &eGeld &8&l● &8(&e5000$&8)|| &8&l» &dEXP Bottels &8&l● &8(&e40&8)|| &8&l» &9Epischer Schlüssel &8&l● &8(&91&8)||  ||  &fKlicke um denn Bonus zu bekommen" to run:
+			if player has permission "server.gold":
+				set {_wait} to difference between now and {premiumbonus::%player%}
+				if {_wait} is less than 24 hours:
+					send player title "{@Prefix}" with subtitle "&7Bitte warte noch &c%difference between 24 hours and {_wait}%" for 2 seconds
+					play "entity_bat_takeoff" to player
+					stop
+				set {premiumbonus::%player%} to now
+				give player 8 diamonds
+				give player 64 steaks
+				add 5000 to player's account
+				give player 40 bottle o' enchanting
+				make server execute command "crate givekey %player% Epischen 1"
+				play "entity_player_levelup" to player 
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				stop
+			else:
+				send player title "{@Prefix}" with subtitle "&7Du brauchst &6&lGold &7Rang" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+			
+		make a gui slot 2 of player with gold ingot named "&8&l➢ &b&lTäglicher Bonus" with lore "|| &8&l» &bDiamanten &8&l● &8(&b5&8)|| &8&l» &8Steaks &8&l● &8(&820&8)|| &8&l» &eGeld &8&l● &8(&e2000$&8)|| &8&l» &dEXP Bottels &8&l● &8(&e32&8)|| &8&l» &cLegendärer Schlüssel &8&l● &8(&c1&8)||  ||  &fKlicke um denn Bonus zu bekommen" to run:
+			set {_wait} to difference between now and {tagesbonus::%player%}
+			if {_wait} is less than 24 hours:
+				send player title "{@Prefix}" with subtitle "&7Bitte warte noch &c%difference between 24 hours and {_wait}%" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+			set {tagesbonus::%player%} to now
+			give player 5 diamonds
+			give player 20 steaks
+			add 2000 to player's account
+			give player 10 bottle o' enchanting
+			make server execute command "crate givekey %player% Legendären 1"
+			play "entity_player_levelup" to player
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			stop
+			
+
+				
+		make a gui slot 3 of player with sign item named "&8&l➢ &e&lBonis" with lore "|| &8&l» &7Hier kannst Du dir|| &8&l» &7deine &e&lBelohnungen &7abholen" to run:
+			play "entity_bat_takeoff" to player
+			stop

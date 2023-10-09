@@ -1,0 +1,45 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /build:
+	aliases: /bau, /bauen,
+	permission: server.builder
+	trigger:
+		if {build::%player%} is 1:
+			set {build::%player%} to 0
+			send "{@Prefix} Dein Baumodus wurde &cdeaktiviert"
+			stop
+			
+		if {build::%player%} is 0:
+			set {build::%player%} to 1
+			send "{@Prefix} Dein Baumodus wurde &aaktiviert"
+			stop
+			
+		if {build::%player%} is not set:
+			set {build::%player%} to 0
+			send "{@Prefix} Dein Baumodus wurde &cdeaktiviert"
+			stop
+			
+			
+on break:
+	if player is in world "Spawn":
+		if {build::%player%} is 1:
+			stop
+		else:
+			cancel event
+
+on place:
+	if player is in world "Spawn":
+		if {build::%player%} is 1:
+			stop
+		else:
+			cancel event
+		
+on join:
+	if player has permission "server.builder":
+		set {build::%player%} to 0
+		send "{@Prefix} Dein Baumodus wurde &cdeaktiviert"
+		stop
+		
+on quit:
+	delete {build::%player%}

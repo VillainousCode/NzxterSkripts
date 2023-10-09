@@ -1,0 +1,18 @@
+options:
+	Prefix: &8&l【&e&lAD&8&l】&8&l▶&7
+	
+	#%elapsed time%
+	
+command /ad:
+	cooldown: 10 seconds
+	cooldown message: {@Prefix} Bitte warte noch &c%remaining time%
+	aliases: /werbung,
+	trigger:
+		broadcast " " 
+		broadcast "{@Prefix} Schau doch mal bei meinem &e&lShop &7vorbei" 
+		broadcast "&e&l/tpa &f&l%player%  &7oder &e&l/p h &f&l%player%" 
+		broadcast " " 
+		stop
+		
+on quit:
+	delete {display::%player%}

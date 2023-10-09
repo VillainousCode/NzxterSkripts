@@ -1,0 +1,134 @@
+﻿on chat:
+	replace all "penis" or "pimmel" or "schwanz" in message with "&7Ich habe einen kleinen .|."
+	
+	replace all "muschi" or "vagina" or "fotze" or "möse" in message with "&7Ich bin kein Mädchen"
+	
+	replace all "fuck you" or "ficken" or "fick" or "wichser" or "wixxer" in message with "&7Ich bin zu jung dafür"
+	
+	replace all "titten" or "möpse" in message with "&7Ich habe flachland"
+	
+	replace all "gedownloaded" or "gedownloadet" or "leak" in message with "&7selbstgeschrieben"
+	
+	replace all "crasht" or "crashen" in message with "&7kaputt"
+	
+	replace all "nigger" or "nigga" or "niggers" or "neger" in message with "&7Ich bin nicht schwarz"
+	
+	replace all "nutte" or "schlampe" or "hure" in message with "&7Ich bin schon geil"
+	
+	replace all "sucht ihr noch devs" or "sucht ihr auch devs" or "sucht ihr dev" or "sucht ihr developer" or "sucht ihr noch developer" or "Kann man sich als Dev bewerben" or "braucht ihr noch developer" in message with "&7Wir suchen keine Devs?!"
+	
+	replace all "skyguy" in message with "&7Skygay"
+	
+	replace all "kann ich admin" or "darf ich admin" or "kann ich owner" or "darf ich owner" in message with "&7kann ich kick haben"
+
+on chat:
+	if player doesn't have permission "server.team":
+		if message contains "%%":
+			cancel event
+		if message contains "\n":
+			cancel event
+	
+on chat:
+	replace all "(musik)" in the message with "♫"
+	replace all "(nuclear)" in the message with "☢"
+	replace all "(yan)" in the message with "☯"
+	replace all "(:D)" in the message with "ツ"
+	replace all "(n)" in the message with "✘"
+	replace all "(j)" in the message with "✔"
+	replace all "(tm)" in the message with "™"
+	replace all "(sun)" in the message with "☀"
+	replace all "(spieler)" in the message with "웃"
+	replace all "(could)" in the message with "☁"
+	replace all ":)" in message with "☺"
+	replace all ":(" in message with "☹"
+	replace all "<3" in message with "&c❤&7"
+	replace all "(-_*)" in message with "ツ"
+	replace all "(diamond)" in message with "♢"
+	replace all "(tele)" in message with "☎"
+	replace all "(plane)" in message with "✈"
+	replace all "(musik1)" in message with "♪♫♫♪"
+	replace all "(peace)" in message with "☮"
+	replace all "(schnee)" in message with "☃"
+	replace all "(umbrella)" in message with "☂"
+	replace all "(umbrella2)" in message with "☔"
+	replace all "(ja)" in message with "✔"
+	replace all "(nein)" in message with "✖"
+	replace all "(achtung)" in message with "⚠"
+	replace all "(rechts)" in message with "==>"
+	replace all "(links)" in message with "<=="
+	replace all "(1)" in message with "➊"
+	replace all "(2)" in message with "➋"
+	replace all "(3)" in message with "➌"
+	replace all "(4)" in message with "➍"
+	replace all "(5)" in message with "➎"
+	replace all "(6)" in message with "➏"
+	replace all "(7)" in message with "➐"
+	replace all "(8)" in message with "➑"
+	replace all "(9)" in message with "➒"
+	replace all "(10)" in message with "➓"
+	replace all "(q)" in message with "ⓠ"
+	replace all "(w)" in message with "ⓦ"
+	replace all "(e)" in message with "ⓔ"
+	replace all "(zwei)" in message with "✌"
+	replace all "(stern)" in message with "★"
+	replace all "(pion)" in message with "♙"
+	replace all "(queen)" in message with "♕"
+	replace all "(könig)" in message with "♔"
+	replace all "(turm)" in message with "♖"
+	replace all "(blume)" in message with "✿"
+	replace all "(infiniti)" in message with "∞"
+	replace all "(blitz)" in message with "ϟ"
+	replace all "(cup)" in message with "❅"
+	replace all "(pfeil)" in message with "➳"
+	replace all "(junge)" in message with "♂"
+	replace all "(mädchen)" in message with "♀"
+	replace all "(death)" in message with "☠"
+	replace all "(uhr)" in message with "⌚"
+	replace all "(scissor)" in message with "✄"
+	replace all "(mail)" in message with "✉"
+	replace all "(pencil)" in message with "✎"
+	replace all "(zeit)" in message with "⌛"
+	replace all "(herz)" in message with "ღ"
+	replace all "(0_0)" in message with "◉◡◉"
+	replace all "(:>)" in message with "ಠ⌣ಠ"
+	replace all "(-_-)" in message with "(¬_¬)"
+	replace all ":,(" in message with "ಥ_ಥ"
+	replace all "(YinYang)" in message with "♋"
+	replace all "(musik2)" in the message with "♫"
+	replace all "(musik3)" in the message with "♪"
+	replace all "(correct)" in the message with "✔"
+	replace all "(incorrect)" in the message with "✘"
+	
+on chat:
+	if player has permission "server.team":
+		replace all ":)" in message with "☺"
+		replace all ":(" in message with "☹"
+		replace all ":-)" in message with "☻"
+		replace all ":v" with "㋡" in message
+		replace all ":3" with "㋡" in message
+		replace all "<3" in message with "❣❤❣"
+		replace all "(sun)" in message with "☼"
+		replace all "(star)" in message with "✰"
+		replace all "(snow)" in message with "❆"
+		replace all "(cloud)" in message with "☁"
+		replace all "(peace)" in message with "☮"
+		replace all "(music)" in message with "♫♪"
+		replace all "(plane)" in message with "✈"
+		replace all "(crown)" in message with "♛"
+		replace all "(skull)" in message with "☠"
+		replace all "*left*" in message with "⇦"
+		replace all "<-" in message with "⇦"
+		replace all "*right*" in message with "⇨"
+		replace all "->" in message with "⇨"
+		replace all "*up*" in message with "⬆"
+		replace all "*down*" in message with "⬇"
+		replace all "*check*" in message with "✔"
+		replace all "*x*" in message with "✖"
+		replace all "*smileyface*" in message with "☻"
+		replace all "*mail*" in message with "✉"
+		replace all "*caution*" in message with "⚠"
+		replace all "*diamond*" in message with "✦"
+		replace all "*dot*" in message with "●"
+		replace all "*middle1*" in message with "╭∩╮(-_-)╭∩╮"
+		replace all "*middle2*" in message with "凸(-_-)凸"
+		replace all "@lenny" with "( ͡° ͜ʖ ͡°)" in message

@@ -1,0 +1,261 @@
+options:
+	Prefix: &8&l【&e&lLuckyblocks&8&l】&8&l▶&7
+
+on break of sponge:	
+	if "&fLuckyblock" is name of player's tool:
+		cancel event
+		set event-block to air
+		show 500 "SMOKE_NORMAL" particles at event-block for player	
+		#play "entity_enderdragon_fireball_explode" to player
+		play "block_anvil_land" to player
+		
+		set {_Random} to a random integer between 1 and 49
+		
+		if {_Random} is 1:
+			give 1 gold sword of sharpness 6 to player
+			send "{@Prefix} &6Luck &7Goldschwert!" to player
+			stop
+		if {_Random} is 2:
+			give 1 gold chestplate of protection 5 to player
+			send "{@Prefix} &6Luck &7Rüstung!" to player
+			stop
+		if {_Random} is 3:
+			give 15 stone to player
+			send "{@Prefix} &6Luck &7Steine!" to player
+			stop
+		if {_Random} is 4:
+			give 4 carrot to player
+			send "{@Prefix} &6Luck &7Karotten!" to player
+			stop
+		if {_Random} is 5:
+			give 2 ender pearl to player
+			send "{@Prefix} &6Luck &7EnderPearl!" to player
+			stop
+		if {_Random} is 6:
+			give 1 stone sword of knockback 1 to player
+			send "{@Prefix} &6Luck &7Knockyschwert!" to player
+			stop
+		if {_Random} is 7:
+			poison the player for 30 seconds
+			send "{@Prefix} &6Unluck &7Gift!" to player
+			stop
+		if {_Random} is 8:
+			ignite the player for 10 seconds
+			send "{@Prefix} &6Unluck &7Ignite!" to player
+			stop
+		if {_Random} is 9:
+			send "{@Prefix} &6Unluck &7Blitzschlag!" to player
+			strike lightning at the player
+			wait 1 second
+			strike lightning at the player
+			wait 1 second
+			strike lightning at the player
+			wait 1 second
+			strike lightning at the player
+			stop
+		if {_Random} is 10:
+			give 1 emerald block to player
+			send "{@Prefix} &6Luck &7Emerald!" to player
+			stop
+		if {_Random} is 11:
+			apply blindness 5 to player for 10 seconds
+			send "{@Prefix} &6Unluck &7Blindheit!" to player
+			stop
+		if {_Random} is 12:
+			send "{@Prefix} &6Unluck &7Schub!" to player
+			push player upwards at speed 1
+			wait 1 second
+			push player forwards at speed 1
+			wait 1 second
+			push player westwards at speed 1
+			wait 1 second
+			push player southwards at speed 1
+			wait 1 second
+			push player upwards at speed 1
+			wait 1 second
+			push player forwards at speed 1
+			wait 1 second
+			push player westwards at speed 1
+			wait 1 second
+			push player southwards at speed 1
+			stop
+		if {_Random} is 13:
+			give 64 bottle o' enchanting to player
+			send "{@Prefix} &6Luck &7EXP!" to player
+			stop
+		if {_Random} is 14:
+			give 32 steaks to player
+			send "{@Prefix} &6Luck &7Fleisch!" to player
+			stop
+		if {_Random} is 15:
+			give 1 gold boots of protection 5 to player
+			send "{@Prefix} &6Luck &7Schuhe!" to player
+			stop
+		if {_Random} is 16:
+			spawn 10 sheep at the event-block 
+			send "{@Prefix} &6Luck &7Schafarmee!" to player
+			stop
+		if {_Random} is 17:
+			spawn 5 zombies at the event-block		
+			send "{@Prefix} &6Unluck &7Zombiearmee!" to player
+			stop
+		if {_Random} is 18:
+			give 1 stone sword of knockback 1 to player
+			send "{@Prefix} &6Luck &7Knockyschwert!" to player
+			stop
+		if {_Random} is 19:
+			give 1 gold leggings of protection 5 to player
+			send "{@Prefix} &6Luck &7Hose!" to player
+			stop
+		if {_Random} is 20:
+			give 1 gold helmet of protection 5 to player
+			send "{@Prefix} &6Luck &7Helm!" to player
+			stop
+		if {_Random} is 21:
+			add 5000 to player's account
+			send "{@Prefix} &6Luck &7Geld 5K!" to player
+			stop
+		if {_Random} is 22:
+			spawn 1 sheep at the event-block
+			set name of last spawned sheep to "jeb_"
+			send "{@Prefix} &6Luck &7Buntes Schaf!" to player
+			stop
+		if {_Random} is 23:
+			spawn 1 pig at the event-block
+			set name of last spawned pig to "Dinnerbone"
+			send "{@Prefix} &6Luck &7Umge. Schwein!" to player
+			stop
+		if {_Random} is 24:		
+			give 1 sponge named "&fLuckyblock" to player
+			send "{@Prefix} &6Luck &7Luckyblock!" to player
+			stop
+		if {_Random} is 25:
+			send "{@Prefix} &6Unluck &7Witch!" to player
+			spawn 1 witch at the event-block
+			set name of last spawned witch to "Dr. Tray's Mom"
+			wait 2 seconds
+			spawn 15 bat at the event-block
+			stop
+		if {_Random} is 26:
+			send "{@Prefix} &6Unluck &7Fliegenedes Ich!" to player
+			spawn 1 bat at event-location
+			make the event-entity ride last spawned entity
+			apply invisibility 1 to the last spawned bat for 9999 minutes
+			stop
+		if {_Random} is 27:
+			poison the player for 30 seconds
+			apply blindness 5 to player for 20 seconds
+			ignite the player for 10 seconds
+			apply nausea 1 to player for 5 seconds
+			send "{@Prefix} &6Unluck &7Effecte!" to player
+			stop
+		if {_Random} is 28:
+			give 1 book of protection 11 named "&fSinnlosesbuch" to player
+			send "{@Prefix} &6Unluck &7Sinnloses Buch!" to player
+			stop
+		if {_Random} is 29:
+			loop all players:
+				give 1 sponge named "&fLuckyblock" to loop-player
+				send "{@Prefix} &6Luck &6Lucky &7für alle!" to loop-player
+				stop
+		if {_Random} is 30:
+			send "{@Prefix} &6Luck &7Fliegen 1 Min!" to player
+			set player's flight mode to true
+			wait 1 minute
+			set player's flight mode to false
+			stop
+		if {_Random} is 31:
+			give 1 beacon to player
+			send "{@Prefix} &6Luck &7Beacon!" to player
+			stop
+		if {_Random} is 32:
+			give 1 mob spawner to player
+			send "{@Prefix} &6Luck &7Spawner!" to player
+			stop
+		if {_Random} is 33:
+			give 2 diamond block to player
+			send "{@Prefix} &6Luck &7Diablock!" to player
+			stop
+		if {_Random} is 34:
+			drop 64 xp bottles at the event-location
+			send "{@Prefix} &6Luck &7Erfahrugsflaschen!" to player
+			stop
+		if {_Random} is 35:
+			send "{@Prefix} &6Unluck &7Luftschlag!" to player
+			spawn a falling tnt 10 meters above the player
+			wait 2 seconds
+			create a safe explosion of force 4 at the player
+			create a safe explosion of force 2 at the player
+			create a safe explosion of force 3 at the player
+			kill the player
+			stop
+		if {_Random} is 36:
+			make server execute command "crate givekey %player% Legendären 1"
+			send "{@Prefix} &6Luck &7Legend Key!" to player
+			stop
+		if {_Random} is 37:
+			give 16 book to player
+			send "{@Prefix} &6Luck &7Bücher!" to player
+			stop
+		if {_Random} is 38:
+			give 2 sponge named "&fLuckyblock" to player
+			send "{@Prefix} &6Luck &72 Luckyblöcke!" to player
+			stop
+		if {_Random} is 39:
+			give 2 name tag to player
+			send "{@Prefix} &6Luck &72Nametags!" to player
+			stop
+		if {_Random} is 40:
+			give 32 quartz block to player
+			send "{@Prefix} &6Luck &7Halber Stack Quartz!" to player
+			stop
+		if {_Random} is 41:
+			give 1 bedrock to player
+			send "{@Prefix} &6Luck &7Grundstein!" to player
+			stop
+		if {_Random} is 42:
+			give 2 piston to player
+			give 2 redstone dust to player
+			give 2 oak door to player
+			give 2 iron door to player
+			give 2 dispenser to player
+			give 2 dropper to player
+			send "{@Prefix} &6Luck &7Redstonekit!" to player
+			stop
+		if {_Random} is 43:
+			spawn 10 spider at the event-block 
+			spawn 10 cave spider at the event-block
+			drop 1 wooden sword at the event-location
+			apply blindness 1 to player for 10 seconds
+			send "{@Prefix} &6Unluck &7Spinnen Ihhhh!" to player
+			stop
+		if {_Random} is 44:
+			drop 1 sword at the event-location
+			drop 1 pickaxe at the event-location
+			drop 1 shovel at the event-location
+			drop 1 axe at the event-location
+			drop 1 hoe at the event-location
+			send "{@Prefix} &6Luck &7Werkzeug!" to player
+			stop
+		if {_Random} is 45:
+			spawn 1 iron golem at the event-block 
+			send "{@Prefix} &6Luck &7Eisengolem!" to player
+			stop
+		if {_Random} is 46:
+			spawn an ender crystal
+			send "{@Prefix} &6Luck &7Enderkristall!" to player
+			stop
+		if {_Random} is 47:
+			spawn an giant
+			send "{@Prefix} &6Unluck &7Giant!" to player
+			stop
+		if {_Random} is 48:
+			loop all items in player's inventory:
+				if loop-item is steak:
+					remove all loop-item from player 
+					send "{@Prefix} &6Unluck &7Steaks weg" to player
+					stop
+		if {_Random} is 49:
+			apply mining fatigue 1 to player for 5 seconds
+			send "{@Prefix} &6Unluck &7Abbaulähmung!" to player
+			stop				

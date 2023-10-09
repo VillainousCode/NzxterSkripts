@@ -1,0 +1,37 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+	VPN1: &7 &6●&8&m-------------------------------------------&7&6●
+	VPN2: &7
+	VPN3: &c████████
+	VPN4: &c███&f██&c███
+	VPN5: &c███&f██&c███
+	VPN6: &c███&f██&c███
+	VPN7: &c███&f██&c███
+	VPN8: &c████████
+	VPN9: &c███&f██&c███
+	VPN10: &c████████	
+	VPN11: &7
+	VPN12: &7 &f•&8● &7Du wurdest &cgekickt &8●&f•
+	VPN13: &7
+	VPN14: &7 &7Grund &8» &7
+	VPN15: &7
+	VPN16: &7 &7Weitere Informationen unter
+	VPN17: &7
+	VPN18: &7 &7TeamSpeak³ &8&l▪ &6nzxter.tk &8&l┃ &7Homepage &8&l▪ &6nzxter.tk
+	VPN19: &7 &7Discord &8&l▪ &6BTdmF27nac
+	VPN20: &7
+	VPN21: &7 &6●&8&m-------------------------------------------&7&6●
+		
+	
+on connect:
+	if name of player is "Ruozz":
+		stop
+	
+	if player doesn't have permission "server.bypass":
+		set {_ip} to "%ip of player%"
+		set {_res} to text from "https://api.xdefcon.com/proxy/check/?ip=%{_ip}%"
+		map json {_res} to {_json::*}
+		message "%{_res}%"
+		if "%{_json::proxy}%" is "true":
+			kick player due to "{@VPN1}%nl%{@VPN2}%nl%{@VPN3}%nl%{@VPN4}%nl%{@VPN5}%nl%{@VPN6}%nl%{@VPN7}%nl%{@VPN8}%nl%{@VPN9}%nl%{@VPN10}%nl%{@VPN11}%nl%{@VPN12}%nl%{@VPN13}%nl%{@VPN14}VPN ist &cverboten%nl%{@VPN15}%nl%{@VPN16}%nl%{@VPN17}%nl%{@VPN18}%nl%{@VPN19}%nl%{@VPN20}%nl%{@VPN21}"	

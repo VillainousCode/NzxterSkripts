@@ -1,0 +1,30 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /serverinfo:
+	aliases: /server, /servers
+	trigger:
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lSERVER &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &8▪ &7Datenbanken &8(&a&l✔&8)"
+		send " "
+		send " &8▪ &7Total Memory &8&l» &e%total memory% &cB"
+		send " &8▪ &7Max Memory &8&l» &e%max memory% &cB"
+		send " &8▪ &7Free Memory &8&l» &e%free memory% &cB"
+		send " &8▪ &7Usage Memory &8&l» &e%max memory - free memory% &cB"
+		send " "
+		send " &8▪ &7Bungee/Spigot &8&l» &eCustom Paper Fork (MC: 1.12.X)"
+		send " "
+		send " &8▪ &7TPS &8&l» &e%tps% &8/ &c20~"
+		send " "
+		send " &8▪ &7UUID &8&l» &e%player's uuid%"
+		send " &8▪ &7IP &8&l» &e%ip of player%"
+		send " &8▪ &7Name &8&l» &e%player%"
+		send " &8▪ &7Rang &8&l» &e%colored player's prefix%"
+		send " &8▪ &7Ping &8&l» &e%player's ping%"	
+		send " &8▪ &7Geld &8&l» &e%player's balance%"	
+		send " &8▪ &7Exp &8&l» &e%player's level%"	
+		send " &8▪ &7Leben &8&l» &e%player's health * 2%"		
+		send " &8▪ &7Hunger &8&l» &e%player's hunger * 2%"				
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lSERVER &8)&6&m--&e&m--&7&m--&8&m--"

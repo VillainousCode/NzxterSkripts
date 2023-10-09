@@ -1,0 +1,71 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /afk [<text>]:
+	trigger:
+		if {afk::%player%} is true:
+			set {afk::%player%} to false
+			delete holo object "%player%::afk"
+			if player has permission "server.team":
+				broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nicht mehr &cAFK"
+			stop
+		else:
+			if argument 1 is not set:
+				set {afk::%player%} to true
+				if player has permission "server.team":
+					broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nun &cAFK"
+				send player title "&7Du bist nun" with subtitle "&c&lAFK!" for 5 seconds
+				create holo object "&7----- &6&lAFK &7-----" with id "%player%::afk" at location 3.5 meters above player
+				stop
+			
+on any move:
+	if {afk::%player%} is true:
+		set {afk::%player%} to false
+		send player title "&7Willkommen" with subtitle "&7Zurück" for 5 seconds
+		if player has permission "server.team":
+			broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nicht mehr &cAFK"
+		delete holo object "%player%::afk"
+
+on quit:
+	if {afk::%player%} is true:
+		set {afk::%player%} to false
+		send player title "&7Willkommen" with subtitle "&7Zurück" for 5 seconds
+		if player has permission "server.team":
+			broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nicht mehr &cAFK"
+		delete holo object "%player%::afk"
+
+on respawn:
+	if {afk::%player%} is true:
+		set {afk::%player%} to false
+		send player title "&7Willkommen" with subtitle "&7Zurück" for 5 seconds
+		if player has permission "server.team":
+			broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nicht mehr &cAFK"
+		delete holo object "%player%::afk"
+
+on death:
+	if {afk::%player%} is true:
+		set {afk::%player%} to false
+		send player title "&7Willkommen" with subtitle "&7Zurück" for 5 seconds
+		if player has permission "server.team":
+			broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nicht mehr &cAFK"
+		delete holo object "%player%::afk"
+
+on break:
+	if {afk::%player%} is true:
+		set {afk::%player%} to false
+		send player title "&7Willkommen" with subtitle "&7Zurück" for 5 seconds
+		if player has permission "server.team":
+			broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nicht mehr &cAFK"
+		delete holo object "%player%::afk"
+		
+on chat:
+	if {afk::%player%} is true:
+		set {afk::%player%} to false
+		send player title "&7Willkommen" with subtitle "&7Zurück" for 5 seconds
+		if player has permission "server.team":
+			broadcast "{@Prefix} %colored player's prefix% &f%player% &7ist nicht mehr &cAFK"
+		delete holo object "%player%::afk"
+		
+
+on quit:
+	delete {afk::%player%}

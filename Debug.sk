@@ -1,0 +1,5 @@
+every 5 seconds:
+	loop all players:
+		create bossbar titled "&bFishing Contest1" and id "%loop-player%" for loop-player with progress 100 with colors blue
+		wait 3 seconds
+		remove bossbar "%loop-player%"

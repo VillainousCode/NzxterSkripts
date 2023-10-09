@@ -1,0 +1,170 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+variables:
+	{erzefarm} = 0.0
+	{erzefarmplace} = 0
+	{erzefarmbreak} = 0
+	
+	{netherfarm} = 0.0
+	{netherfarmplace} = 0
+	{netherfarmbreak} = 0
+	
+	{holzfarm} = 0.0
+	{holzfarmplace} = 0
+	{holzfarmbreak} = 0
+	
+	{sandfarm} = 0.0
+	{sandfarmplace} = 0
+	{sandfarmbreak} = 0
+
+command /reset:
+	permission: server.team
+	trigger:
+		play "entity_firework_twinkle_far" to player
+		
+		set {_mitte} to 0
+
+		set {_orange::*} to 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43, and 44
+		set {_gitter::*} to 2, 6, 10, 16, 18, 26, 28, 34, 38, and 42
+		
+		open virtual chest inventory with size 5 named "&6&lF&earmwelt &8&l┃ &7Menu" to player
+		
+		loop 45 times:			
+			make a gui slot {_mitte} of player with gray glass pane named "&7" to do nothing			
+			add 1 to {_mitte}
+				
+		make a gui slot {_orange::*} of player with orange glass pane or red glass pane or yellow glass pane named "&7" to do nothing		
+		make a gui slot {_gitter::*} of player with glowing bars named "&7" to do nothing
+			
+		make a gui slot 13 of player with diamond ore named "&8&lErzefarm &7resetten" to run: 
+			make player execute command "mrl reset erzefarm"
+			set {erzefarm} to 0.0
+		
+		make a gui slot 21 of player with axe named "&a&lHolzfarm &7resetten" to run:
+			make player execute command "mrl reset holzfarm"
+			set {holzfarm} to 0.0
+		
+		make a gui slot 23 of player with glowstone named "&5&lNetherfarm &7resetten" to run:
+			make player execute command "mrl reset netherfarm"
+			set {netherfarm} to 0.0
+		
+		make a gui slot 31 of player with sand named "&e&lSandfarm &7resetten" to run:
+			make player execute command "mrl reset sandfarm"
+			set {sandfarm} to 0.0
+
+
+
+every 10 second in world "Farmwelt":
+	if {erzefarm::sign::*} is set:
+		loop {erzefarm::sign::*}:
+			set {_loc} to loop-value
+			set line 1 of block at {_loc} to "&8-= &b&lErzefarm &8=-"
+			set line 2 of block at {_loc} to "&7Abgebaut: &6%{erzefarm}% %%"
+			set line 3 of block at {_loc} to "&7Zerstörte: &c%{erzefarmbreak}%"
+			set line 4 of block at {_loc} to "&7Plazierte: &a%{erzefarmplace}%"
+			
+	if {netherfarm::sign::*} is set:
+		loop {netherfarm::sign::*}:
+			set {_loc} to loop-value
+			set line 1 of block at {_loc} to "&8-= &5&lNetherfarm &8=-"
+			set line 2 of block at {_loc} to "&7Abgebaut: &6%{netherfarm}% %%"
+			set line 3 of block at {_loc} to "&7Zerstörte: &c%{netherfarmbreak}%"
+			set line 4 of block at {_loc} to "&7Plazierte: &a%{netherfarmplace}%"
+			
+	if {holzfarm::sign::*} is set:
+		loop {holzfarm::sign::*}:
+			set {_loc} to loop-value
+			set line 1 of block at {_loc} to "&8-= &a&lHolzfarm &8=-"
+			set line 2 of block at {_loc} to "&7Abgebaut: &6%{holzfarm}% %%"
+			set line 3 of block at {_loc} to "&7Zerstörte: &c%{holzfarmbreak}%"
+			set line 4 of block at {_loc} to "&7Plazierte: &a%{holzfarmplace}%"
+			
+	if {sandfarm::sign::*} is set:
+		loop {sandfarm::sign::*}:
+			set {_loc} to loop-value
+			set line 1 of block at {_loc} to "&8-= &e&lSandfarm &8=-"
+			set line 2 of block at {_loc} to "&7Abgebaut: &6%{sandfarm}% %%"
+			set line 3 of block at {_loc} to "&7Zerstörte: &c%{sandfarmbreak}%"
+			set line 4 of block at {_loc} to "&7Plazierte: &a%{sandfarmplace}%"
+		
+
+on sign change:
+	if name of player is "MHF_TikTok" or "NzxterMC":
+		if line 1 of block is "erzefarm":
+			set line 1 of block to "&8-= &b&lErzefarm &8=-"
+			set line 2 of block to "&7Abgebaut: &6%{erzefarm}% %%"
+			set line 3 of block to "&7Zerstörte: &c%{erzefarmbreak}%"
+			set line 4 of block to "&7Plazierte: &a%{erzefarmplace}%"
+			play "block_note_pling" to player 
+			add location of target block to {erzefarm::sign::*}
+			
+		if line 1 of block is "netherfarm":
+			set line 1 of block to "&8-= &5&lNetherfarm &8=-"
+			set line 2 of block to "&7Abgebaut: &6%{netherfarm}% %%"
+			set line 3 of block to "&7Zerstörte: &c%{netherfarmbreak}%"
+			set line 4 of block to "&7Plazierte: &a%{netherfarmplace}%"
+			play "block_note_pling" to player 
+			add location of target block to {netherfarm::sign::*}
+			
+		if line 1 of block is "holzfarm":
+			set line 1 of block to "&8-= &a&lHolzfarm &8=-"
+			set line 2 of block to "&7Abgebaut: &6%{holzfarm}% %%"
+			set line 3 of block to "&7Zerstörte: &c%{holzfarmbreak}%"
+			set line 4 of block to "&7Plazierte: &a%{holzfarmplace}%"
+			play "block_note_pling" to player 
+			add location of target block to {holzfarm::sign::*}
+			
+		if line 1 of block is "sandfarm":
+			set line 1 of block to "&8-= &e&lSandfarm &8=-"
+			set line 2 of block to "&7Abgebaut: &6%{sandfarm}% %%"
+			set line 3 of block to "&7Zerstörte: &c%{sandfarmbreak}%"
+			set line 4 of block to "&7Plazierte: &a%{sandfarmplace}%"
+			play "block_note_pling" to player 
+			add location of target block to {sandfarm::sign::*}
+	
+on break:
+	if player is in world "Farmwelt":
+		if "%region at player%" contains "erzefarm":
+			add 0.1 to {erzefarm}
+			add 1 to {erzefarmbreak}
+		
+		if "%region at player%" contains "netherfarm":
+			add 0.1 to {netherfarm}	
+			add 1 to {netherfarmbreak}			
+		
+		if "%region at player%" contains "holzfarm":
+			add 0.1 to {holzfarm}	
+			add 1 to {holzfarmbreak}			
+		
+		if "%region at player%" contains "sandfarm":
+			add 0.1 to {sandfarm}
+			add 1 to {sandfarmbreak}
+			
+on place:
+	if player is in world "Farmwelt":
+		if "%region at player%" contains "erzefarm":
+			remove 0.1 from {erzefarm}	
+			add 1 to {erzefarmplace}			
+		
+		if "%region at player%" contains "netherfarm":
+			remove 0.1 from {netherfarm}	
+			add 1 to {netherfarmplace}			
+		
+		if "%region at player%" contains "holzfarm":
+			remove 0.1 from {holzfarm}		
+			add 1 to {holzfarmplace}			
+		
+		if "%region at player%" contains "sandfarm":
+			remove 0.1 from {sandfarm}
+			add 1 to {sandfarmplace}
+
+every 20 minutes:
+	play "entity_player_levelup" to players
+	broadcast " "
+	broadcast "{@Prefix} Die &aFarmwelt &7wurde &cresettet"
+	broadcast " "
+	set {erzefarm} to 0.0
+	set {netherfarm} to 0.0
+	set {holzfarm} to 0.0
+	set {sandfarm} to 0.0

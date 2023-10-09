@@ -1,0 +1,224 @@
+on death of skeleton:
+	clear drops
+	chance of 5%:
+		drop skeleton head at victim
+		stop
+	chance of 40%:
+		drop 2 bone at attacker
+	chance of 50%:
+		drop 2 coal at victim
+		
+on death of wither skeleton:
+	clear drops
+	chance of 5%:
+		drop wither skeleton head at victim
+		stop
+	chance of 40%:
+		drop 2 bone at attacker
+	chance of 50%:
+		drop 2 coal at victim
+		
+on death of creeper:
+	clear drops
+	chance of 5%:
+		drop creeper head at victim
+		stop
+	chance of 40%:
+		drop 2 sand at attacker
+	chance of 50%:
+		drop 2 coal at victim
+		
+on death of zombie:
+	clear drops
+	chance of 5%:
+		drop zombie head at victim
+		stop
+	chance of 40%:
+		drop 2 leather at attacker
+	chance of 50%:
+		drop 1 iron ingot at victim
+		
+on death of cow:
+	clear drops
+	chance of 10%:
+		drop milk at victim
+		stop
+	chance of 40%:
+		drop 2 leather at attacker
+	chance of 50%:
+		drop 1 steak at victim
+		
+on death of squid:
+	clear drops
+	remove xp from drops
+	chance of 80%:
+		drop 1 black dye at victim
+		stop
+	chance of 10%:
+		drop 1 dye at victim
+	
+
+		
+on death of a player:
+	chance of 10%:
+		drop victim's skull at victim		
+		
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+on death of witch or creeper or blaze or zombie pigman or magma cube or giant:
+	chance of 0.1%:
+		drop wood sword of sharpness 7 at victim
+		stop
+
+	chance of 0.1%:
+		drop iron sword of sharpness 7 at victim
+
+	chance of 0.1%:
+		drop gold sword of sharpness 10 at victim
+
+	chance of 0.1%:
+		drop diamond sword of sharpness 6 at victim
+
+	chance of 0.1%:
+		drop diamond sword of sharpness 12 at victim	
+
+	chance of 0.1%:
+		drop leather chestplate of protection 6 at victim		
+		
+	chance of 0.1%:
+		drop chain chestplate of protection 8 at victim
+	
+	chance of 0.1%:
+		drop iron chestplate of protection 11 at victim	
+		
+	chance of 0.1%:
+		drop gold chestplate of protection 9 at victim
+		
+	chance of 0.1%:
+		drop diamond chestplate of protection 12 at victim
+		
+	chance of 0.1%:
+		drop leather boots of protection 4 at victim
+		
+	chance of 0.1%:
+		drop chain boots of protection 5 at victim
+
+	chance of 0.1%:
+		drop iron boots of protection 9 at victim
+		
+	chance of 0.1%:
+		drop gold boots of protection 8 at victim
+		
+	chance of 0.1%:
+		drop diamond boots of protection 10 at victim
+		
+	chance of 0.1%:
+		drop leather leggings of protection 7 at victim
+		
+	chance of 0.1%:
+		drop chain leggings of protection 5 at victim
+
+	chance of 0.1%:
+		drop iron leggings of protection 9 at victim
+		
+	chance of 0.1%:
+		drop gold leggings of protection 5 at victim
+		
+	chance of 0.1%:
+		drop diamond leggings of protection 6 at victim
+		
+	chance of 0.1%:
+		drop leather helmet of protection 4 at victim
+		
+	chance of 0.1%:
+		drop chain helmet of protection 10 at victim
+
+	chance of 0.1%:
+		drop iron helmet of protection 7 at victim
+		
+	chance of 0.1%:
+		drop gold helmet of protection 8 at victim
+		
+	chance of 0.1%:
+		drop diamond helmet of protection 5 at victim
+		
+		
+
+
+
+
+
+
+
+
+		
+on break of bookshelf:
+	cancel event
+	set block to air
+	drop bookshelf at event-block
+
+on break of ender chest:
+	cancel event
+	set block to air
+	drop ender chest at event-block
+
+on break of mob spawner:
+	chance of 50%:
+		cancel event
+		set block to air
+		drop mob spawner at event-block
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+on break of cobblestone:
+	chance of 0.5%:
+		drop 1 gold ingot
+		stop
+		
+	chance of 0.5%:
+		drop 1 iron ingot
+		stop
+		
+	chance of 0.5%:
+		drop 1 diamond
+		stop	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+on break of any ore:
+
+	chance of 0.5%:
+		drop 1 diamond
+		stop	
+		
+	chance of 2%:
+		give 1 xp to the player
+		stop
+		
+	chance of 3%:
+		drop 1 dirt
+		stop

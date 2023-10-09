@@ -1,0 +1,20 @@
+on first join:
+	wait 3.5 seconds
+	play "block_glass_break" to player with volume 1 and pitch 1.0		
+		
+	open virtual brewing inventory with size 1 named "&6&lD&eatenschutz &8&l┃ &7Menu" to player
+					
+	make a gui slot 0 of player with bars named "&7" to run:	
+		play "entity_bat_takeoff" to player	
+
+	make a gui slot 1 of player with green dye named "&8&l➢ &a&lAnnehmen" with lore "||  &7Klicke um zu &aspielen" to run:			
+		close player's inventory
+		play "entity_bat_takeoff" to player
+			
+	make a gui slot 2 of player with bars named "&7" to run:	
+		play "entity_bat_takeoff" to player				
+			
+	make a gui slot 3 of player with sign item named "&8&l➢ &e&lDatenschutz" with lore "|| &8&l» &7Bei uns ist &aDatenschutz/Sicherheit &7sehr wichtig|| &8&l» &7Deshalb speichern wir z.B. Deine &aIP &7ab || &8&l» &7Wir geben deine &aDaten &7an niemanden sonst weiter || || &fBei schließen dieses Fensters stimmst Du diesem zu" to run:
+		play "entity_bat_takeoff" to player
+		stop
+		

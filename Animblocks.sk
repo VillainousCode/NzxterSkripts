@@ -1,0 +1,159 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+	Block1: workbench
+	Block2: furnace
+
+command /block [<text>] [<text>]:
+	permission : *
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/block setzen/start/stop"
+			stop
+		
+		if arg 1 is "start":
+			set {blockanimation::start.stop} to true
+			send "{@Prefix} Block &egestartet"
+			
+		else if arg 1 is "stop":
+			delete {blockanimation::start.stop}
+			send "{@Prefix} Block &cgestoppt"
+			
+		else if arg-1 is "setzen":
+			set {block::*} to location of player
+			send "{@Prefix} Block &egesetzt"
+		
+		
+every 0.8 seconds:
+	if {blockanimation::start.stop} is true:
+		set {_Random} to a random integer between 1 and 10
+		loop {block::*}:
+			if {_Random} is 1:
+				set block at loop-value to light green glass block
+
+			if {_Random} is 2:
+				set block at loop-value to cyan glass block
+
+			if {_Random} is 3:
+				set block at loop-value to yellow glass block
+
+			if {_Random} is 4:
+				set block at loop-value to blue glass block
+
+			if {_Random} is 5:
+				set block at loop-value to green glass block
+
+			if {_Random} is 6:
+				set block at loop-value to red glass block
+
+			if {_Random} is 7:
+				set block at loop-value to pink glass block
+
+			if {_Random} is 8:
+				set block at loop-value to light gray glass block
+
+			if {_Random} is 9:
+				set block at loop-value to orange glass block
+				
+			if {_Random} is 10:
+				set block at loop-value to brown glass block
+		
+		
+		
+		
+		
+		
+
+command /clay [<text>] [<text>]:
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/clay setzen/start/stop"
+			stop	
+	
+		if arg 1 is "start":
+			set {clayanimation::start.stop} to true
+			send "{@Prefix} Clay &egestartet"
+			stop
+			
+		else if arg 1 is "stop":
+			set {clayanimation::start.stop} to false
+			send "{@Prefix} Clay &cgestoppt"
+			stop
+		
+		else if arg-1 is "setzen":
+			if arg-2 is "1":			
+				send "{@Prefix} Clay &e1 gesetzt"
+				set {clayblock::1} to location of player
+				stop
+			
+			if arg-2 is "2":			
+				send "{@Prefix} Clay &e2 gesetzt"
+				set {clayblock::2} to location of player
+				stop
+			
+			if arg-2 is "3":			
+				send "{@Prefix} Clay &e3 gesetzt"
+				set {clayblock::3} to location of player
+				stop
+				
+			if arg-2 is "4":			
+				send "{@Prefix} Clay &e4 gesetzt"
+				set {clayblock::4} to location of player
+				stop
+
+			if arg-2 is "5":			
+				send "{@Prefix} Clay &e5 gesetzt"
+				set {clayblock::5} to location of player
+				stop
+
+			if arg-2 is "6":			
+				send "{@Prefix} Clay &e6 gesetzt"
+				set {clayblock::6} to location of player
+				stop
+				
+			if arg-2 is "7":			
+				send "{@Prefix} Clay &e7 gesetzt"
+				set {clayblock::7} to location of player
+				stop
+				
+			if arg-2 is "8":			
+				send "{@Prefix} Clay &e8 gesetzt"
+				set {clayblock::8} to location of player
+				stop
+				
+				
+
+every 0.8 seconds:
+	if {clayanimation::start.stop} is true:
+		set block at location at {clayblock::1} to {@Block1}
+		wait 1 tick
+		set block at location at {clayblock::2} to {@Block1}
+		wait 1 tick
+		set block at location at {clayblock::3} to {@Block1}	
+		wait 1 tick
+		set block at location at {clayblock::4} to {@Block1}
+		wait 1 tick
+		set block at location at {clayblock::5} to {@Block1}	
+		wait 1 tick
+		set block at location at {clayblock::6} to {@Block1}	
+		wait 1 tick
+		set block at location at {clayblock::7} to {@Block1}
+		wait 1 tick
+		set block at location at {clayblock::8} to {@Block1}	
+		wait 1 tick
+		set block at location at {clayblock::1} to {@Block2}
+		wait 1 tick
+		set block at location at {clayblock::2} to {@Block2}
+		wait 1 tick
+		set block at location at {clayblock::3} to {@Block2}	
+		wait 1 tick
+		set block at location at {clayblock::4} to {@Block2}
+		wait 1 tick
+		set block at location at {clayblock::5} to {@Block2}	
+		wait 1 tick
+		set block at location at {clayblock::6} to {@Block2}
+		wait 1 tick
+		set block at location at {clayblock::7} to {@Block2}	
+		wait 1 tick
+		set block at location at {clayblock::8} to {@Block2}
+		stop		

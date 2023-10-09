@@ -1,0 +1,27 @@
+﻿options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /geben [<text>] [<player>] [<integer>]:
+	permission: server.admin
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/geben &f<Text> <Spieler> <Zahl>"
+			stop
+
+		else if arg-1 is "cookies":
+			if arg-2 is set:
+				add arg-3 to {Cookies::%arg-2%}
+				send "{@Prefix} &7Du hast &f%arg-2% &e%arg-3% &6Cookies &7gegeben!"
+				stop
+
+		else if arg-1 is "taler":
+			if arg-2 is set:
+				add arg-3 to {Taler::%arg-2%}
+				send "{@Prefix} &7Du hast &f%arg-2% &e%arg-3% &aTaler &7gegeben!"
+				stop
+				
+		else if arg-1 is "zeit":
+			if arg-2 is set:
+				add arg-3 to {Spielzeit::Stunden::%arg-2%}
+				send "{@Prefix} &7Du hast &f%arg-2% &e%arg-3% &bZeit &7gegeben!"
+				stop

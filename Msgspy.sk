@@ -1,0 +1,56 @@
+﻿variables:
+	{msgspy::%player%} = false
+	
+options:
+	Prefix: &8&l【&c&lMsgspy&8&l】&8&l▶&7
+
+on command:
+	loop all players:
+		if {msgspy::%loop-player%} is true:
+			command is set:
+				if command is not "msg" or "r" or "scs":
+					stop
+				else:
+					arguments are not set:
+						send "{@Prefix} &f%name of player%: &9/%command%" to loop-player
+					arguments are set:
+						send "{@Prefix} &f%name of player%: &9/%command% &7%arguments%" to loop-player
+						
+command /socialspy [<text>] [<player>]:
+	aliases: /msgspy,
+	permission: server.team
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/msgspy an/aus"
+			stop
+			
+		if arg 1 is "an":
+			if arg 2 is set:
+				set {msgspy::%arg-2%} to true
+				send "{@Prefix} MSGSPY für &f%arg-2% &aaktiviert"
+				send "{@Prefix} hat den MSGSPY für dich &aaktiviert" to arg-2
+			if arg 2 is not set:
+				set {msgspy::%player%} to true
+				send "{@Prefix} MSGSPY &aaktiviert&7"
+		if arg 1 is "aus":
+			if arg 2 is set:
+				set {msgspy::%arg-2%} to false
+				send "{@Prefix} MSGSPY für &f%arg-2% &cdeaktiviert."
+				send "{@Prefix} &f%player% &7hat den MSGSPY für dich &cdeaktiviert." to arg-2
+			if arg 2 is not set:
+				set {msgspy::%player%} to false
+				send "{@Prefix} MSGSPY &cdeaktiviert."
+				
+on quit:
+	if {msgspy::%player%} is true:
+		if player doesn't have permission "server.team":
+			delete {msgspy::%player%}
+	else:
+		stop
+		
+on kick:
+	if {msgspy::%player%} is true:
+		if player doesn't have permission "server.team":
+			delete {msgspy::%player%}
+	else:
+		stop

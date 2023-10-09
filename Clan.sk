@@ -1,0 +1,1624 @@
+variables:
+	{clan::%player%.in} = "&eClanlos"
+
+options:
+	Prefix: &8&l【&e&lClan&8&l】&8&l▶&7
+	
+on join:
+	wait 1 tick
+	{clan::%{clan::%player%.in}%.owner} is player:
+		{clan::%{clan::%player%.in}%.presres} is not set:
+			set {clan::%{clan::%player%.in}%.prestige} to 0
+			set {clan::%{clan::%player%.in}%.prestige.pay} to 1000000
+			set {clan::%{clan::%player%.in}%.presres} to true
+
+#on join:
+#	{clan::%player%.in} is set:
+#		make console execute command "ne suffix %name of player% &8┃ &7%{clan::%player%.in}%"
+
+	
+command /setleader [<text>] [<player>]:
+	trigger:
+		player is "Clan":
+			arg-1 is not set:
+				send "&e/setleader <Clan> <Spieler>"
+				stop
+			if {clan::%arg-1%.owner} is not set:
+				send "{@Prefix} &cDieser Clan existiert nicht!"
+				stop
+			if {clan::%arg player%.created} is true:
+				send "{@Prefix} &cDer Spieler ist schon ein Leader.!"
+				stop
+			set {clan::%arg-1%.owner} to arg player
+			set {clan::%arg-2%.status} to true
+			set {clan::%arg-2%.in} to arg-1
+			set {clan::%arg-1%.Taler} to 0
+			broadcast "{@Prefix} Spieler &f%arg player% &7wurde zum neuen Leader des Clans &e%arg-1% &7ernannt!"
+			stop
+	
+command /clan [<text>] [<text>] [<text>] [<text>]:
+	aliases: /club, /guild, /guilde, /gilde
+	trigger:
+		if arg-1 is not set:
+			make player execute command "/clan 1"
+			stop
+			
+		arg-1 is "1":	
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &8▪ &e/clan liste &8&l» &7Zeigt alle Clans ab Level 4"
+			send " &8▪ &e/clan erstellen &f<Clan-Name> &8&l» &7Erstellt einen Clan &8(&a1500 Taler&8)"
+			send " &8▪ &e/clan einladen &f<Spieler> &8&l» &7Lädt Spieler in dein Clan"
+			send " &8▪ &e/clan verlassen &8&l» &7Verlässt deinen Momentanigen Clan"
+			send " &8▪ &e/clan kasse einzahlen &f<Taler> &8&l» &7Spendet dem Clan Taler!"
+			send " &8▪ &e/clan info &8&l» &7Zeigt Infos über deinen Clan!"
+			send " &8▪ &e/clan kasse &8&l» &7Zeigt Infos über deine Clankasse!"
+			send " &8▪ &e/clan promote &f<Spieler> &8&l» &7Promote einen Clanmitglied!"
+			send " &8▪ &e/clan demote &f<Spieler> &8&l» &7Demote ein Clanmitglied!"
+			send " &8▪ &e/clan 2 &8&l» &cSeite 2"
+			send " "		
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+			stop			
+			
+			
+		arg-1 is "2":	
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "		
+			send " &8▪ &e/clan base setzen &8&l» &7Setzt die Base vom Clan."
+			send " &8▪ &e/clan base &8&l» &7Das bringt dich zur Clanbase!"
+			send " &8▪ &e/clan auflösen &8&l» &7Der Clan wird gelöst."
+			send " &8▪ &e/clan motto &f<Motto> &8&l» &7Das setzt das Motto des Clans."
+			send " &8▪ &e/clan kicken &f<name> &8&l» &7Kickt Spieler vom Clan!"
+			send " &8▪ &e/clan prestige &f<name> &8&l» &7Zeige deinen Clanprestige!"
+			send " &8▪ &e/clan ranks &8&l» &7Bearbeite die Clanränge!"
+			send " &8▪ &e/Taler &8&l» &7Zeigt deine momentanigen Taler!"
+			send " &8▪ &e/cspawn &f<Base/Spawn> &8&l» &7Setze deinen Spawn!"
+			send " "		
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+			stop
+			
+
+		arg-1 is "ranks":
+			{clan::%player%.in} is not set:
+				send "{@Prefix} Du bist kein Mitglied eines Clans!"
+				stop
+				
+			arg-2 is not set:
+				{rank1.name.%{clan::%player%.in}%} is not set:
+					set {rank1.name.%{clan::%player%.in}%} to "&eRang 1"
+				{rank2.name.%{clan::%player%.in}%} is not set:
+					set {rank2.name.%{clan::%player%.in}%} to "&eRang 2"
+				{rank3.name.%{clan::%player%.in}%} is not set:
+					set {rank3.name.%{clan::%player%.in}%} to "&eRang 3"
+				{rank4.name.%{clan::%player%.in}%} is not set:
+					set {rank4.name.%{clan::%player%.in}%} to "&eRang 4"
+				{rank5.name.%{clan::%player%.in}%} is not set:
+					set {rank5.name.%{clan::%player%.in}%} to "&eRang 5"
+				{rank6.name.%{clan::%player%.in}%} is not set:
+					set {rank6.name.%{clan::%player%.in}%} to "&eRang 6"
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send "&7Rang 1: &r%colored {rank1.name.%{clan::%player%.in}%}%"
+				send "&7Rang 2: &r%colored {rank2.name.%{clan::%player%.in}%}%"
+				send "&7Rang 3: &r%colored {rank3.name.%{clan::%player%.in}%}%"
+				send "&7Rang 4: &r%colored {rank4.name.%{clan::%player%.in}%}%"
+				send "&7Rang 5: &r%colored {rank5.name.%{clan::%player%.in}%}%"
+				send "&7Rang 6: &r%colored {rank6.name.%{clan::%player%.in}%}%"
+				send ""
+				send "&7Bearbeite die Namen mit &e/clan ranks &f<1/2/3> <Name>"
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				
+				if {clan::%{clan::%player%.in}%.owner} is player:
+					send "&7Dein Rang: &cLEITER"
+					stop
+				if {clan::rank.%{clan::%player%.in}%.%player%} is "1":
+					send "&7Dein Rang: %colored {rank1.name.%{clan::%player%.in}%}%"
+					stop
+				if {clan::rank.%{clan::%player%.in}%.%player%} is "2":
+					send "&7Dein Rang: %colored {rank2.name.%{clan::%player%.in}%}%"
+					stop
+				if {clan::rank.%{clan::%player%.in}%.%player%} is "3":
+					send "&7Dein Rang: %colored {rank3.name.%{clan::%player%.in}%}%"
+					stop
+				if {clan::rank.%{clan::%player%.in}%.%player%} is "4":
+					send "&7Dein Rang: %colored {rank4.name.%{clan::%player%.in}%}%"
+					stop
+				if {clan::rank.%{clan::%player%.in}%.%player%} is "5":
+					send "&7Dein Rang: %colored {rank5.name.%{clan::%player%.in}%}%"
+					stop
+				if {clan::rank.%{clan::%player%.in}%.%player%} is "6":
+					send "&7Dein Rang: %colored {rank6.name.%{clan::%player%.in}%}%"
+					stop
+					
+					
+					
+			arg-2 is not "1" or "2" or "3" or "4" or "5" or "6":
+				make player execute command "/clan ranks"
+				stop
+				
+			arg-2 is "1":
+				arg-3 is not set:
+					send "{@Prefix} Gebe den Namen des Spielers ein."
+					stop
+				else:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						set {rank1.name.%{clan::%player%.in}%} to "%arg-3%"
+						send "{@Prefix} &eRang 1 nennt sich nun: %{rank1.name.%{clan::%player%.in}%}%"
+						stop
+					send "{@Prefix} Du musst der Besitzer des Clans sein."
+					stop
+					
+			arg-2 is "2":
+				arg-3 is not set:
+					send "{@Prefix} Gebe den Namen des Spielers ein."
+					stop
+				else:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						set {rank2.name.%{clan::%player%.in}%} to "%arg-3%"
+						send "{@Prefix} Rang 2 nennt sich nun: %{rank2.name.%{clan::%player%.in}%}%"
+						stop
+					send "{@Prefix} Du musst der Besitzer des Clans sein."
+					stop
+					
+			arg-2 is "3":
+				arg-3 is not set:
+					send "{@Prefix} Gebe den Namen des Spielers ein."
+					stop
+				else:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						set {rank3.name.%{clan::%player%.in}%} to "%arg-3%"
+						send "{@Prefix} Rang 3 nennt sich nun: %{rank3.name.%{clan::%player%.in}%}%"
+						stop
+					send "{@Prefix} Du musst der Besitzer des Clans sein."
+					stop
+					
+			arg-2 is "4":
+				arg-3 is not set:
+					send "{@Prefix} Gebe den Namen des Spielers ein."
+					stop
+				else:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						set {rank4.name.%{clan::%player%.in}%} to "%arg-3%"
+						send "{@Prefix} Rang 4 nennt sich nun: %{rank4.name.%{clan::%player%.in}%}%"
+						stop
+					send "{@Prefix} Du musst der Besitzer des Clans sein."
+					stop
+					
+			arg-2 is "5":
+				arg-3 is not set:
+					send "{@Prefix} Gebe den Namen des Spielers ein."
+					stop
+				else:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						set {rank5.name.%{clan::%player%.in}%} to "%arg-3%"
+						send "{@Prefix} Rang 5 nennt sich nun: %{rank5.name.%{clan::%player%.in}%}%"
+						stop
+					send "{@Prefix} Du musst der Besitzer des Clans sein."
+					stop
+					
+			arg-2 is "6":
+				arg-3 is not set:
+					send "{@Prefix} Gebe den Namen des Spielers ein."
+					stop
+				else:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						set {rank6.name.%{clan::%player%.in}%} to "%arg-3%"
+						send "{@Prefix} &eRang 7 nennt sich nun: %{rank6.name.%{clan::%player%.in}%}%"
+						stop
+					send "{@Prefix} Du musst der Besitzer des Clans sein."
+					stop
+					
+					
+					
+					
+		arg-1 is "promote":
+			arg-2 is not set:
+				send "{@Prefix} Bitte gib den Namen des Mitglieds an!"
+				stop
+			else:
+				arg-2 is "%player%":
+					send "{@Prefix} Du kannst dich nicht promoten du Schlingel :)"
+					stop
+				arg-3 is not set:
+					send "{@Prefix} Bitte gib den Rang an welchen du verteilen möchtest!"
+					stop
+				arg-3 is not "1", "2", "3", "4", "5" or "7":
+					send "{@Prefix} Du kannst einen Rang zwischen 1 und 7 wählen!"
+					stop
+				arg-3 is "1", "2", "3", "4", "5" or "7":
+					loop all players:
+						loop-player is arg-2:
+							{clan::%player%.in} is {clan::%loop-player%.in}:
+								{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is not set:
+									set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to 1
+								{clan::%{clan::%player%.in}%.owner} is player:
+									send "%{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%"
+									{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is "6":
+										set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to arg-3
+										send "{@Prefix} Du hast den Spieler %arg-2% befördert!"
+										send "{@Prefix} Du wurdest befördert! Du bist nun Rang %{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%" to loop-player
+										stop
+									{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is "5":
+										set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to arg-3
+										send "{@Prefix} Du hast den Spieler %arg-2% befördert!"
+										send "{@Prefix} Du wurdest befördert! Du bist nun Rang %{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%" to loop-player
+										stop
+									{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is "4":
+										set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to arg-3
+										send "{@Prefix} Du hast den Spieler %arg-2% befördert!"
+										send "{@Prefix} Du wurdest befördert! Du bist nun Rang %{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%" to loop-player
+										stop
+									{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is "3":
+										set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to arg-3
+										send "{@Prefix} Du hast den Spieler %arg-2% befördert!"
+										send "{@Prefix} Du wurdest befördert! Du bist nun Rang %{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%" to loop-player
+										stop
+									{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is "2":
+										set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to arg-3
+										send "{@Prefix} Du hast den Spieler %arg-2% befördert!"
+										send "{@Prefix} Du wurdest befördert! Du bist nun Rang %{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%" to loop-player
+										stop
+									{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is "1":
+										set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to arg-3
+										send "{@Prefix} Du hast den Spieler %arg-2% befördert!"
+										send "{@Prefix} Du wurdest befördert! Du bist nun Rang %{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%" to loop-player
+										stop
+									send "{@Prefix} Der Spieler kann nur maximal Rang 7 sein."
+									stop
+								send "{@Prefix} Du bist nicht der Besitzer des Clans."
+								stop
+							send "{@Prefix} Der Spieler ist nicht in deinem Clan!"
+							stop
+							
+							
+							
+							
+		arg-1 is "demote":
+			arg-2 is not set:
+				send "{@Prefix} Bitte gib den Namen des Mitglieds an!"
+				stop
+				
+			else:
+				arg-2 is "%player%":
+					send "{@Prefix} Du kannst dich nicht demoten du Schlingel :)"
+					stop
+				loop all players:
+					loop-player is arg-2:
+						{clan::%player%.in} is {clan::%loop-player%.in}:
+							{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is not set:
+								set {clan::rank.%{clan::%loop-player%.in}%.%loop-player%} to 1
+							{clan::%{clan::%player%.in}%.owner} is player:
+								{clan::rank.%{clan::%loop-player%.in}%.%loop-player%} is more than 1:
+									remove 1 from {clan::rank.%{clan::%loop-player%.in}%.%loop-player%}
+									send "{@Prefix} Du hast den Spieler %arg-2% degradiert!"
+									send "{@Prefix} Du wurdest degradiert! Du bist nun Rang %{clan::rank.%{clan::%loop-player%.in}%.%loop-player%}%" to loop-player
+									stop
+								send "{@Prefix} Der Spieler kann nur minimal Rang 1 sein."
+								stop
+							send "{@Prefix} Du bist nicht der Besitzer des Clans."
+							stop
+						send "{@Prefix} Der Spieler ist nicht in deinem Clan!"
+						stop
+						
+						
+						
+						
+						
+						
+		arg-1 is "prestige":
+			arg-2 is not set:
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send "&7Das Clanprestige macht deinem Clan mehr macht."
+				send "&7Je höher das Prestige ist, desto mehr Macht besitzt ihr!"
+				send "&7Das Prestige kann durch die Clankasse erweitert werden."
+				send ""
+				send "&e/clan prestige info &8&l» Zeige die Info für deinen Clan!"
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+				
+				
+				
+				
+				
+				
+			arg-2 is "info":
+				arg-3 is not set:
+					{clan::%player%.in} is not set:
+						send "{@Prefix} Du bist in keinem Clan!"
+						stop
+					{clan::%{clan::%player%.in}%.prestige} is not set:
+						set {clan::%{clan::%player%.in}%.prestige} to 0
+						set {clan::%{clan::%player%.in}%.prestige.pay} to 1000000
+						send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						send ""
+					{clan::%{clan::%player%.in}%.prestige} is more than or equal to 25:
+						set {clan::%{clan::%player%.in}%.prestige} to 25
+						set {clan::%{clan::%player%.in}%.prestige.pay} to 0
+					send " "
+					send "&7Das jetzige Clanprestige: &7%{clan::%{clan::%player%.in}%.prestige}%"
+					send "&7Kosten für Erweiterung: &7%{clan::%{clan::%player%.in}%.prestige.pay}%"
+					send "&e/clan prestige kaufen &8&l» Erweitere dein Clanprestige!"
+					send ""
+					send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					stop
+					
+				arg-3 is set:
+					{clan::%arg-3%.owner} is set:
+						{clan::%{clan::%arg-3%.in}%.prestige} is not set:
+							set {clan::%{clan::%arg-3%.in}%.prestige} to 0
+							set {clan::%{clan::%arg-3%.in}%.prestige.pay} to 1000000
+						{clan::%{clan::%arg-3%.in}%.prestige} is more than or equal to 25:
+							set {clan::%{clan::%arg-3%.in}%.prestige} to 25
+							set {clan::%{clan::%arg-3%.in}%.prestige.pay} to 0
+						send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						send " "
+						send "&e%arg-3%'s Clanprestige: &f%{clan::%arg-3%.prestige}%"
+						send ""
+						send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						stop
+					send "{@Prefix} Dieser Clan existiert nicht!"
+					stop
+					
+					
+					
+					
+			arg-2 is "kaufen":
+				{clan::%{clan::%player%.in}%.owner} is player:
+					{clan::%{clan::%player%.in}%.Taler} is more than or equal to {clan::%{clan::%player%.in}%.prestige.pay}:
+						{clan::%{clan::%player%.in}%.prestige} is less than 25:
+							remove {clan::%{clan::%player%.in}%.prestige.pay} from {clan::%{clan::%player%.in}%.Taler}
+							add 1000000 to {clan::%{clan::%player%.in}%.prestige.pay}
+							add 1 to {clan::%{clan::%player%.in}%.prestige}
+							send "{@Prefix} &eDu hast deinen Clan-Prestige um 1 erweitert!"
+							wait 1 second
+							broadcast " "
+							broadcast "{@Prefix} &eClan &f%{clan::%player%.in}% &7ist nun im Prestige ##&f%{clan::%{clan::%player%.in}%.prestige}%&7!"
+							broadcast "{@Prefix} Die Macht des Clans ist gewachsen!"
+							broadcast " "
+							stop
+						send "{@Prefix} Dein Clan verfügt über das höchste Prestigelevel!"
+						stop
+					send "{@Prefix} Dein Clan verfügt nicht genügend &eTaler!"
+					stop
+				send "{@Prefix} Du bist nicht der Besitzer des Clans."
+				stop
+				
+				
+				
+				
+	
+				
+				
+				
+				
+				
+				
+		arg-1 is "kasse":
+			{clan::%{clan::%player%.in}%.Taler} is not set:
+				set {clan::%{clan::%player%.in}%.Taler} to 0
+			arg-2 is not set:
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send " &eTaler &7deines &eClans: &e%{clan::%{clan::%player%.in}%.Taler}%"
+				send " " 
+				send " &e/clan kasse einzahlen &f<Taler>"
+				send " "
+				send " &7Zahle &eTaler &7in die &eClankasse &7ein!"
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+			arg-2 is "einzahlen":
+				arg-3 is not set:
+					send "{@Prefix} &e/clan kasse einzahlen &f<Betrag>"
+					stop
+				make server execute command "ckeb %player% %arg-3%"
+				stop
+				
+				
+				
+				
+				
+				
+		if arg-1 is "hilfe":
+			make player execute command "/clan"
+			stop
+			
+			
+			
+			
+			
+			
+		if arg-1 is "info":
+			if arg-2 is not set:
+				if {clan::%player%.status} is true:
+					send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					send ""
+					send "&7Level des Clans: &e%{clan::%{clan::%player%.in}%.level}%"
+					send "&7Taler des Clans: &e%{clan::%{clan::%player%.in}%.Taler}%"
+					send "&7Leiter des Clans: &f%{clan::%{clan::%player%.in}%.owner}%"
+					send "&7Spieler des Clans: &f%{clan::%{clan::%player%.in}%.Members}%&7/&7%{clan::%{clan::%player%.in}%.slots}%"
+					send "&7Slots des Clans: &c%{clan::%{clan::%player%.in}%.slots}%"
+					if {clan::%{clan::%player%.in}%.Motto} is set:
+						send "&eClanmotto: &7%{clan::%{clan::%player%.in}%.Motto}%"
+					send " "
+					send "&eClanlevel Infos: &e/clan info level"
+					send "&eClanslots Infos: &7bei &e/clan info slots"
+					send "&eClansluser Infos: &7bei &e/clan info user"
+					send ""
+					send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					stop
+				else:
+					send "{@Prefix} Du bist kein Mitglied eines Clans!"
+					stop
+					
+					
+					
+					
+					
+					
+			if arg-2 is "level":
+				make player execute command "/clan info levels"
+				stop
+				
+			if arg-2 is "user":
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send "&7%{clan::%{clan::%player%.in}%.players::*}%"
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"	
+				stop
+				
+				
+			if arg-2 is "slots":
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send "&7Um mehr Mitglieder zu bekommen, muss der Leiter"
+				send "&eClanslots kaufen."
+				send "&7Kaufe Slots: &e/clan kaufen slots &f<slotzahl>"
+				send "&7Ein Slot kostet &e20 &7Taler."
+				send "&eClanTaler: &7%{clan::%{clan::%player%.in}%.Taler}%"
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+				
+				
+				
+				
+				
+				
+				
+			if arg-2 is "levels":
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send "&7Dein Clan ist level: &e%{clan::%{clan::%player%.in}%.level}%"
+				send "&7Für Clan-Level &72 &7benötigt man &7500 Taler."
+				send "&7Für Clan-Level &73 &7benötigt man &71500 Taler."
+				send " "
+				send "&7Für Clan-Level &74 &7benötigt man &74000 Taler."
+				send "&7Für Clan-Level &75 &7benötigt man &710000 Taler."
+				send " "
+				send "&7Für Clan-Level &76 &7benötigt man &725000 Taler."
+				send "&7Für Clan-Level &77 &7benötigt man &770000 Taler."
+				send " "
+				send "&7Für Clan-Level &78 &7benötigt man &7100000 Taler."
+				send "&7Für Clan-Level &77 &7benötigt man &7150000 Taler."
+				send " "
+				send "&7Für Clan-Level &710 &7benötigt man &7300000 Taler."
+				send "&eClan-Level 10 ist das Maximum der Level."
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+	
+				
+			if arg-2 isn't "levels","slots" or "level":
+				if {clan::%arg-2%.owner} is set:
+					send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					send ""
+					send "&7Level vom Clan: &e%{clan::%arg-2%.level}%"
+					send "&7Taler vom Clan: &e%{clan::%arg-2%.Taler}%"
+					send "&7Leiter vom Clan: &f%{clan::%arg-2%.owner}%"
+					send "&7Spieler im Clan: &f%{clan::%arg-2%.Members}%&6/&4%{clan::%arg-2%.slots}%"
+					send "&7Dieser Clan besitzt &c%{clan::%arg-2%.slots}% &7Slots."
+					if {clan::%arg-2%.Motto} is set:
+						send "&eClanmotto: &7%{clan::%arg-2%.Motto}%"
+					send "&7Infos zum Clanlevel bei &e/clan info level"
+					send "&7Infos zu den Clan-Slots bei &e/clan info slots"
+					send ""
+					send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					stop
+				else:
+					send "{@Prefix} &cDieser Clan existiert nicht!"
+					stop
+					
+					
+					
+					
+		if arg-1 isn't "hilfe","liste","erstellen","ranks","promote","demote","einladen","jddin","equipment","verlassen","info","Taler","auflösen","kaufen","motto","kicken","DebugUndSo", "base" or "2" or "1" or "kasse":
+			send "{@Prefix} &7Unbekannter Befehl!"
+			send "{@Prefix} &7Gib ein &e'/clan hilfe' &7für Hilfe!"
+			stop
+			
+			
+			
+			
+
+
+
+
+
+
+
+		if arg-1 is "kicken":		
+			if arg-2 is set:
+				if {clan::%player%.status} is true:
+					if {clan::rank.%{clan::%player%.in}%.%player%} is 7:
+						{clan::%arg-2%.in} is {clan::%player%.in}:
+							make server execute command "/clankicken %arg-2% %name of player%"
+							make server execute command "/clankickene %arg-2% %name of player%"
+							stop
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						{clan::%arg-2%.in} is {clan::%player%.in}:
+							make server execute command "/clankicken %arg-2% %name of player%"
+							make server execute command "/clankickene %arg-2% %name of player%"
+							stop
+					else:
+						send "{@Prefix} Du musst der Besitzer des Clans sein."
+						stop
+				else:
+					send "{@Prefix} Du bist kein Mitglied eines Clans."
+					stop
+			else:
+				send "{@Prefix} Bitte gib einen Spielernamen an."
+				send "{@Prefix} &e/clan kicken &f<Spielername>"
+				stop	
+				
+				
+				
+				
+				
+				
+		if arg-1 is "motto":
+			if arg-2 is set:
+				if {clan::%player%.status} is true:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						make server execute command "Clanmottosetzen %{clan::%player%.in}% %arg-2%"
+						send "{@Prefix} Du hast das Clan-Motto gesetzt!"
+						send "{@Prefix} Es lautet: &e%arg-2%"
+						stop
+					else:
+						send "{@Prefix} Du musst der Leiter des Clan sein!"
+						stop
+				else:
+					send "{@Prefix} Du musst der Leiter des Clan sein!"
+					stop
+			else:
+				send "{@Prefix} Bitte gib ein Motto an!"
+				send "{@Prefix} &e/clan motto &f<Motto>"
+				stop
+				
+				
+				
+				
+				
+				
+		if arg-1 is "base":
+			if arg-2 is "setzen":
+				if {clan::%player%.status} is true:
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						set {clan::%{clan::%player%.in}%.base} to location of the player
+						loop all players:
+							if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+								send "{@Prefix} &7Die Base dieses Clans wurde gesetzt!" to loop-player
+								send "{@Prefix} &7Benutze: &e/clan base" to loop-player
+						wait 1 tick
+						send "{@Prefix} Du hast die Base deines Clans gesetzt!" to player
+						stop
+					else:
+						send "{@Prefix} Du musst der Besitzer des Clans sein."
+						stop
+				else:
+					send "{@Prefix} Du musst der Besitzer des Clans sein."
+					stop
+					
+
+				
+			if arg-2 is not set:
+				if {clan::%player%.status} is true:
+					if {clan::%{clan::%player%.in}%.base} is set:
+						teleport the player to {clan::%{clan::%player%.in}%.base}
+						send "{@Prefix} Du wurdest teleportiert!"
+						stop
+					else:
+						send "{@Prefix} Dein Clan besitzt keine Base!"
+						stop
+				else:
+					send "{@Prefix} Du bist kein Mitglied eines Clans!"
+					stop
+					
+			if arg-2 is not "setzen":
+				send "{@Prefix} Setze die Base des Clans: &e/clan base setzen"
+				send "{@Prefix} Teleportiere dich zur Base: &e/clan base"
+				stop					
+					
+					
+					
+					
+		if arg-1 is "kaufen":
+			if {clan::%player%.status} is true:
+				if arg-2 is not set:
+					make player execute command "/clan kaufen liste"
+					stop
+					
+				if arg-2 is "liste":
+					send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					send ""
+					send "&7Derzeitiger Level: &e%{clan::%{clan::%player%.in}%.level}%"
+					send " "
+					send "&7Folgende Features kannst du erwerben:"
+					send "&7Slots &c(20 Taler pro Slot)"
+					send "&7Stärke &c(100 Taler alle 5 Minuten)"
+					send "&7Speed &c(100 Taler alle 5 Minuten)"
+					send "&7Sprungkraft &c(100 Taler alle 5 Minuten)"
+					send "&7Benutze: &e/clan kaufen slots &f<Anzahl>"
+					send "&7Benutze: &e/clan kaufen Stärke"
+					send "&7Benutze: &e/clan kaufen Speed"
+					send "&7Benutze: &e/clan kaufen Sprungkraft"
+					send ""
+					send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					stop
+					
+				if arg-2 is "Stärke":
+					if {clan::rank.%{clan::%player%.in}%.%player%} is 7:
+						if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 100:
+							loop all players:
+								if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+									apply strength to loop-player for 5 minutes
+									send "{@Prefix} Der Leiter hat &7'Stärke' &eerworben!" to loop-player
+									send "{@Prefix} Jedes Mitglied erhält Stärke 2!" to loop-player
+							remove 100 from {clan::%{clan::%player%.in}%.Taler}
+							stop
+						else:
+							send "{@Prefix} Der Clan besitzt zu wenig Taler."
+							stop
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 100:
+							loop all players:
+								if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+									apply strength to loop-player for 5 minutes
+									send "{@Prefix} Der Leiter hat &7'Stärke' &eerworben!" to loop-player
+									send "{@Prefix} Jedes Mitglied erhält Stärke 2!" to loop-player
+							remove 100 from {clan::%{clan::%player%.in}%.Taler}
+							stop
+						else:
+							send "{@Prefix} Der Clan besitzt zu wenig Taler."
+							stop
+					else:
+						send "{@Prefix} Du musst der Leiter dieses Clan sein!"
+						stop
+						
+				if arg-2 is "Speed":
+					if {clan::rank.%{clan::%player%.in}%.%player%} is 7:
+						if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 100:
+							loop all players:
+								if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+									apply speed to loop-player for 5 minutes
+									send "{@Prefix} Der Leiter hat &7'Speed' &eerworben!" to loop-player
+									send "{@Prefix} Jedes Mitglied erhält Speed 2!" to loop-player
+							remove 100 from {clan::%{clan::%player%.in}%.Taler}
+							stop
+						else:
+							send "{@Prefix} Der Clan besitzt zu wenig Taler."
+							stop
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 100:
+							loop all players:
+								if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+									apply speed to loop-player for 5 minutes
+									send "{@Prefix} Der Leiter hat &7'Speed' &eerworben!" to loop-player
+									send "{@Prefix} Jedes Mitglied erhält Speed 2!" to loop-player
+							remove 100 from {clan::%{clan::%player%.in}%.Taler}
+							stop
+						else:
+							send "{@Prefix} Der Clan besitzt zu wenig Taler."
+							stop
+					else:
+						send "{@Prefix} Du musst der Leiter dieses Clan sein!"
+						stop
+						
+				if arg-2 is "Sprungkraft":
+					if {clan::rank.%{clan::%player%.in}%.%player%} is 7:
+						if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 100:
+							loop all players:
+								if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+									apply jump to loop-player for 5 minutes
+									send "{@Prefix} Der Leiter hat &7'Sprungkraft' &eerworben!" to loop-player
+									send "{@Prefix} Jedes Mitglied erhält Sprungkraft!" to loop-player
+							remove 100 from {clan::%{clan::%player%.in}%.Taler}
+							stop
+						else:
+							send "{@Prefix} Der Clan besitzt zu wenig Taler."
+							stop
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 100:
+							loop all players:
+								if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+									apply jump to loop-player for 5 minutes
+									send "{@Prefix} Der Leiter hat &7'Sprungkraft' &eerworben!" to loop-player
+									send "{@Prefix} Jedes Mitglied erhält Sprungkraft!" to loop-player
+							remove 100 from {clan::%{clan::%player%.in}%.Taler}
+							stop
+						else:
+							send "{@Prefix} Der Clan besitzt zu wenig Taler."
+							stop
+					else:
+						send "{@Prefix} Du musst der Leiter dieses Clan sein!"
+						stop
+						
+				if arg-2 is "Slots":
+					if {clan::%{clan::%player%.in}%.owner} is player:
+						if arg-3 is set:
+							make server execute command "/clanslotsbuy %arg-3% %name of player%"
+							if arg-3 is "1":
+								if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 20:
+									add 1 to {clan::%{clan::%player%.in}%.Slots}
+									remove 20 from {clan::%{clan::%player%.in}%.Taler}
+									loop all players:
+										if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+											send "{@Prefix} Der Leiter hat &7%arg-3% &7Slots gekauft!" to loop-player
+											send "{@Prefix} Jetzige Slots: &7%{clan::%{clan::%player%.in}%.Slots}%" to loop-player
+								else:
+									send "{@Prefix} Der Clan hat zu wenig Taler!"
+									stop
+							if arg-3 is "2":
+								if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 40:
+									loop {clan::%{clan::%player%.in}%.players::*}:
+										add 2 to {clan::%{clan::%player%.in}%.Slots}
+										remove 40 from {clan::%{clan::%player%.in}%.Taler}
+										send "{@Prefix} &7Du hast &7%arg-3% &7Slots erworben!"
+										send "{@Prefix} &7Jetzige Slota: &7%{clan::%{clan::%player%.in}%.Slots}%"
+										stop
+								else:
+									send "{@Prefix} Der Clan hat zu wenig Taler!"
+									stop
+							if arg-3 is "3":
+								if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 70:
+									loop {clan::%{clan::%player%.in}%.players::*}:
+										add 3 to {clan::%{clan::%player%.in}%.Slots}
+										remove 70 from {clan::%{clan::%player%.in}%.Taler}
+										send "{@Prefix} Du hast &7%arg-3% &7Slots erworben!"
+										send "{@Prefix} Jetzige Slots: &7%{clan::%{clan::%player%.in}%.Slots}%"
+										stop
+							if arg-3 is "4":
+								if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 80:
+									loop {clan::%{clan::%player%.in}%.players::*}:
+										add 4 to {clan::%{clan::%player%.in}%.Slots}
+										remove 80 from {clan::%{clan::%player%.in}%.Taler}
+										send "{@Prefix} Du hast &7%arg-3% &7Slots erworben!"
+										send "{@Prefix} Jetzige Slots: &7%{clan::%{clan::%player%.in}%.Slots}%"
+										stop
+								else:
+									send "{@Prefix} Der Clan hat zu wenig Taler!"
+									stop
+							if arg-3 is "5":
+								if {clan::%{clan::%player%.in}%.Taler} is greater than or equal to 100:
+									loop {clan::%{clan::%player%.in}%.players::*}:
+										add 5 to {clan::%{clan::%player%.in}%.Slots}
+										remove 100 from {clan::%{clan::%player%.in}%.Taler}
+										send "{@Prefix} Du hast &7%arg-3% &7Slots erworben!"
+										send "{@Prefix} Jetzige Slots: &7%{clan::%{clan::%player%.in}%.Slots}%"
+										stop
+								else:
+									send "{@Prefix} Der Clan hat zu wenig Taler!"
+									stop
+							else:
+								send "{@Prefix} Du kannst maximal 5 Slots gleichzeitig kaufen!"
+						else:
+							send "{@Prefix} Bitte gib an wie viele Slots du kaufen willst!"
+							send "{@Prefix} &e/clan kaufen slots &f<Anzahl>"
+							stop
+					else:
+						send "{@Prefix} Du musst der Besitzer des Clans sein."
+						stop
+			else:
+				send "{@Prefix} Du bist kein Mitglied eines Clans!"
+				stop
+				
+				
+				
+				
+				
+		if arg-1 is "liste":
+			if arg-2 is not set:
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send "&7Hier werden alle Clans ab Level 4 gelistet:"
+				send ""
+				loop {clan::list::*}:
+					if {clan::%loop-value%.level} is greater than 1:
+						if "%{clan::%loop-value%.level}%" is "10":
+							send "&c| &eClan: &e%loop-value% &8&l» &7Leiter: &f%{clan::%loop-value%.owner}% &8&l» &7Level: &7%{clan::%loop-value%.level}% &8&l»"
+				loop {clan::list::*}:
+					if {clan::%loop-value%.level} is greater than 1:
+						if "%{clan::%loop-value%.level}%" is "7":
+							send "&c| &eClan: &e%loop-value% &8&l» &7Leiter: &f%{clan::%loop-value%.owner}% &8&l» &7Level:&7 %{clan::%loop-value%.level}% &8&l»"
+				loop {clan::list::*}:
+					if {clan::%loop-value%.level} is greater than 1:
+						if "%{clan::%loop-value%.level}%" is "8":
+							send "&c| &eClan: &e%loop-value% &8&l» &7Leiter: &f%{clan::%loop-value%.owner}% &8&l» &7Level: &7%{clan::%loop-value%.level}% &8&l»"
+				loop {clan::list::*}:
+					if {clan::%loop-value%.level} is greater than 1:
+						if "%{clan::%loop-value%.level}%" is "b":
+							send "&c| &eClan: &e%loop-value% &8&l» &7Leiter: &f%{clan::%loop-value%.owner}% &8&l» &7Level: &7%{clan::%loop-value%.level}% &8&l»"
+				loop {clan::list::*}:
+					if {clan::%loop-value%.level} is greater than 1:
+						if "%{clan::%loop-value%.level}%" is "7":
+							send "&c| &eClan: &e%loop-value% &8&l» &7Leiter: &f%{clan::%loop-value%.owner}% &8&l» &7Level: &7%{clan::%loop-value%.level}% &8&l»"
+				loop {clan::list::*}:
+					if {clan::%loop-value%.level} is greater than 1:
+						if "%{clan::%loop-value%.level}%" is "5":
+							send "&c| &eClan: &e%loop-value% &8&l» &7Leiter: &f%{clan::%loop-value%.owner}% &8&l» &7Level: &7%{clan::%loop-value%.level}% &8&l»"
+				loop {clan::list::*}:
+					if {clan::%loop-value%.level} is greater than 1:
+						if "%{clan::%loop-value%.level}%" is "4":
+							send "&c| &eClan: &e%loop-value% &8&l» &7Leiter: &f%{clan::%loop-value%.owner}% &8&l» &7Level: &7%{clan::%loop-value%.level}% &8&l»"
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+			else:
+				make server execute command "/clan liste"
+				stop
+				
+				
+				
+				
+		if arg-1 is "Taler":
+			if {clan::%player%.status} is true:
+				if arg-2 is not set:
+					send "{@Prefix} Benutze &e/clan Taler einzahlen &f<Anzahl>"
+					stop
+				if arg-3 is not set:
+					send "{@Prefix} Benutze &e/clan Taler einzahlen &f<Anzahl>"
+					stop
+					stop
+				make server execute command "/clanspendee %{clan::%player%.in}% %arg-3% %name of player%"
+				stop
+			else:
+				send "{@Prefix} Du bist kein Mitglied eines Clans!"
+				stop
+
+
+
+				
+		if arg-1 is "erstellen":
+			if {clan::%arg-2%.owner} is set:
+				send "{@Prefix} Dieser Clan existiert schon!"
+				stop
+				
+			if {clan::%player%.created} is true:
+				send "{@Prefix} Du besitzt schon einen Clan!"
+				stop
+				
+			if {clan::%player%.status} is true:
+				send "{@Prefix} &u bist schon in einem Clan!"
+				stop
+				
+			if arg-2 is not set:
+				send "{@Prefix} Bitte gib einen Clan-Namen an!"
+				stop		
+			
+			if {clan::%player%.tag} is not set:
+				if length of arg-3 is higher than 3:
+					send "{@Prefix} Der &e&lClantag &7ist zu lang. Er darf maximal &e&l3 Zeichen &7betragen!"
+					stop
+				
+			if {Taler::%player%} is greater than or equal to 1500:
+				if length of arg-2 is higher than 4:
+					send "{@Prefix} Der Clanname ist zu lang!"
+					send "{@Prefix} Er darf maximal 4 Zeichen betragen!"
+					stop
+					
+				add arg-2 to {clan::list::*}
+				set {clan::%player%.created} to true                                      # - Check ob spieler schon einen Clan besitzt.
+				set {clan::%arg-2%.owner} to name of player                               # - Setzt den Owner vom Clan fest.
+				set {clan::%player%.status} to true                                       # - Checkt, beim Einladen ob eingeladener Spieler schon in einem Clan ist.
+				set {clan::%player%.in} to arg-2
+				set {clan::%arg-2%.Taler} to 0
+				set {clan::%arg-2%.slots} to 20
+				set {clan::%arg-2%.Members} to 1
+				set {clan::%arg-2%.level} to 1
+				set {clan::%arg-2%.tag} to arg-3
+				
+				add player to {clan::%{clan::%player%.in}%.players::*}
+				remove 1500 from {Taler::%player%}
+				send "{@Prefix} &eClan &e%arg-2% &7erstellt!"
+				wait 10 ticks
+				broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				broadcast ""
+				broadcast "&7Der &e&lClan &e&l%arg-2% &7wurde von &f%player% &7erstellt!"
+				broadcast ""
+				broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				loop all players:
+					if loop-player has permission "server.admin":
+						send "{@Prefix} &cVerbotener Name? &e/forcedelete &f<Spieler>" to loop-player
+			else:
+				send "{@Prefix} Du besitzt nicht genügend &e&lTaler!"
+				stop
+							
+				
+				
+				
+		if arg-1 is "auflösen":
+			if {clan::%player%.status} is true:
+				if {clan::%player%.created} is not true:
+					send "{@Prefix} Du bist kein Leiter eines Clans!"
+					stop
+				if {clan::%player%.created} is not set:
+					send "{@Prefix} Du bist kein Leiter eines Clans!"
+					stop
+				if {clan::%{clan::%player%.in}%.owner} is not set:
+					send "{@Prefix} Du bist nicht der Leiter dieses Clans!"
+					stop
+				if {clan::%{clan::%player%.in}%.owner} is not player:
+					send "{@Prefix} Du bist nicht der Leiter dieses Clans!"
+					stop
+				if {clan::%{clan::%player%.in}%.owner} is not name of player:
+					send "{@Prefix} Du bist nicht der Leiter dieses Clans!"
+					stop
+				if {clan::%player%.deleted} is true:
+					send "{@Prefix} Du bist in keinem Clan mehr!"
+					stop
+				set {clan::%player%.delete} to true
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				send ""
+				send "&7Tippe '&e/auflösen &eJa&7' um den Clan aufzulösen."
+				send "&7Tippe '&e/auflösen &cNein&7' um abzubrechen."
+				send ""
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+				stop
+			else:
+				send "{@Prefix} Du musst &cLeiter &7eines &e&lClans &7sein!"
+				stop
+				
+				
+				
+				
+				
+		if arg-1 is "einladen":
+			if arg-2 is not set:
+				send "{@Prefix} Bitte gib einen Spieler an!"
+				send "{@Prefix} &e/clan einladen &f<Spieler>"
+				stop
+			else:
+				if {clan::rank.%{clan::%player%.in}%.%player%} is 7:
+					if {clan::%player%.status} is not true:
+						send "{@Prefix} Du bist kein Mitglied eines Clans!"
+						stop
+					else:
+						make server execute command "/claneinladen %arg-2% %{clan::%player%.in}% %name of player%"
+						stop
+				if {clan::%{clan::%player%.in}%.owner} is player:
+					if {clan::%player%.status} is not true:
+						send "{@Prefix} Du bist kein Mitglied eines Clans!"
+						stop
+					else:
+						make server execute command "/claneinladen %arg-2% %{clan::%player%.in}% %name of player%"
+						stop
+				send "{@Prefix} Du bist nicht der Besitzer des Clans."
+				stop
+				
+				
+				
+				
+		if arg-1 is "jddin":
+			add player to {clan::%arg-2%.players::*}
+			send "{@Prefix} Du bist dem &e&lClan &e&l%arg-2% &7beigetreten!"
+			
+			
+			
+			
+			
+		if arg-1 is "verlassen":
+			if {clan::%player%.status} is true:
+				if {clan::%{clan::%player%.in}%.owner} is player:
+					send "{@Prefix} Du kannst deinen eigenen Clan nicht verlassen."
+					send "{@Prefix} Benutze &e/clan auflösen"
+					stop
+				else:
+					remove player from {clan::%{clan::%player%.in}%.players::*}
+					remove 1 from {clan::%{clan::%player%.in}%.Members}
+					wait a tick
+					delete {clan::%player%.status}
+					delete {clan::%player%.in}
+					delete {clan::%player%.created}
+					send "{@Prefix} Du hast den Clan verlassen." to player
+					stop
+			else:
+				send "{@Prefix} Du bist kein Mitglied eines Clans!"
+				stop
+				
+				
+				
+				
+				
+				
+		if arg-1 is "debug":
+			loop all players:
+				delete {clan::%{clan::%loop-player%.in}%.owner}
+				delete {clan::%loop-player%.status}
+				delete {clan::%loop-player%.created}
+				delete {clan::%loop-player%.in}
+				delete {clan::%loop-player%.invited}
+				delete {clan::%loop-player%.input}
+				delete {clan::%loop-player%.inviter}
+			delete {clan::list::*}
+			delete {clan::%{clan::%player%.in}%.owner}
+			delete {clan::%player%.created}
+			delete {clan::%player%.status}
+			delete {clan::%player%.in}
+			delete {clan::%player%.invited}
+			delete {clan::%player%.input}
+			delete {clan::%player%.inviter}
+			send "Debugged"
+			stop
+
+
+			
+command /clankicken <player> <player>: 	# arg-1 = gekickte - arg-2 = spieler
+	executable by: console
+	trigger:
+		remove 1 from {clan::%{clan::%arg-2%.in}%.Members}
+		wait a tick
+		delete {clan::%arg-1%.status}
+		delete {clan::%arg-1%.in}
+		delete {clan::%arg-1%.created}
+		send "{@Prefix} Du wurdest aus deinem Clan gekickt." to arg-1
+		stop
+		
+command /clankickene <offline player> <player>: 	# arg-1 = gekickte - arg-2 = spieler
+	executable by: console
+	trigger:
+		delete {clan::%arg-1%.status}
+		delete {clan::%arg-1%.in}
+		delete {clan::%arg-1%.created}
+		send "{@Prefix} Der Spieler wurde erfolgreich gekickt." to arg-2
+		stop
+
+
+		
+command /claneinladen <player> <text> <player>:
+	executable by: console
+	trigger:
+		if {clan::rank.%{clan::%arg-3%.in}%.%arg-3%} is 7:
+			if {clan::%name of arg-1%.status} is true:
+				send "{@Prefix} &cDieser Spieler ist bereits in einem Clan!" to arg-3
+				delete {clan::%arg-1%.invited}
+				delete {clan::%arg-1%.input}
+				delete {clan::%arg-1%.inviter}
+				stop
+			if "%{clan::%{clan::%arg-3%.in}%.Members}%" is "%{clan::%{clan::%arg-3%.in}%.Slots}%":
+				send "{@Prefix} &cDer Clan besitzt zu wenig Slots!" to arg-3
+				stop
+			if {clan::%{clan::%arg-3%.in}%.Members} is greater than {clan::%{clan::%arg-3%.in}%.Slots}:
+				send "{@Prefix} &cDer Clan besitzt zu wenig Slots!" to arg-3
+				stop
+			if arg-1 is arg-3:
+				send "{@Prefix} &cDu kannst dich nicht selber einladen!" to arg-3
+				delete {clan::%arg-1%.invited}
+				delete {clan::%arg-1%.input}
+				delete {clan::%arg-1%.inviter}
+				stop
+			if {clan::%arg-3%.status} is not set:
+				send "{@Prefix} &cDu bist kein Mitglied eines Clans!" to arg-3
+				stop
+			if {clan::%arg-3%.status} is not true:
+				send "{@Prefix} &cDu bist kein Mitglied eines Clans!" to arg-3
+				stop
+			set {clan::%arg-1%.invited} to {clan::%arg-3%.in}
+			set {clan::%arg-1%.inviter} to player
+			set {clan::%arg-1%.input} to true
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--" to arg-1
+			send "" to arg-1
+			send "&f%name of arg-3% &7hat dich eingeladen in den Clan &e%arg-2% eingeladen." to arg-1
+			send "&7Tippe &e'/beitreten ja' &7oder &e'/beitreten nein'" to arg-1
+			send "&e'/beitreten ja' &8&l» Trete dem Clan bei!" to arg-1
+			send "&e'/beitreten nein' &8&l» Lehne die Einladung ab!" to arg-1
+			send "" to arg-1
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--" to arg-1
+			send "{@Prefix} Die Einladung wurde versendet." to arg-3
+			Stop
+			
+		if {clan::%{clan::%arg-3%.in}%.owner} is arg-3:
+			if {clan::%name of arg-1%.status} is true:
+				send "{@Prefix} Dieser Spieler ist bereits in einem Clan!" to arg-3
+				delete {clan::%arg-1%.invited}
+				delete {clan::%arg-1%.input}
+				delete {clan::%arg-1%.inviter}
+				stop
+			if "%{clan::%{clan::%arg-3%.in}%.Members}%" is "%{clan::%{clan::%arg-3%.in}%.Slots}%":
+				send "{@Prefix} Der Clan besitzt zu wenig Slots!" to arg-3
+				stop
+			if {clan::%{clan::%arg-3%.in}%.Members} is greater than {clan::%{clan::%arg-3%.in}%.Slots}:
+				send "{@Prefix} Der Clan besitzt zu wenig Slots!" to arg-3
+				stop
+			if arg-1 is arg-3:
+				send "{@Prefix} Du kannst dich nicht selber einladen!" to arg-3
+				delete {clan::%arg-1%.invited}
+				delete {clan::%arg-1%.input}
+				delete {clan::%arg-1%.inviter}
+				stop
+			if {clan::%arg-3%.status} is not set:
+				send "{@Prefix} Du bist kein Mitglied eines Clans!" to arg-3
+				stop
+			if {clan::%arg-3%.status} is not true:
+				send "{@Prefix} Du bist kein Mitglied eines Clans!" to arg-3
+				stop
+			set {clan::%arg-1%.invited} to {clan::%arg-3%.in}
+			set {clan::%arg-1%.inviter} to player
+			set {clan::%arg-1%.input} to true
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--" to arg-1
+			send "" to arg-1
+			send "&f%name of arg-3% &7hat dich eingeladen in den Clan &e%arg-2% eingeladen." to arg-1
+			send "&7Tippe &e'/beitreten ja' &7oder &e'/beitreten nein'" to arg-1
+			send "&e'/beitreten ja' &8&l» &7Trete dem Clan bei!" to arg-1
+			send "&e'/beitreten nein' &8&l» &7Lehne die Einladung ab!" to arg-1
+			send "" to arg-1
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--" to arg-1
+			send "{@Prefix} Die Einladung wurde versendet." to arg-3
+			Stop
+		send "{@Prefix} Du bist nicht der Leiter dieses Clans!" to arg-3
+		stop
+	
+
+
+
+
+	
+command /clanslotsbuy <integer> <player>:
+	executable by: console
+	trigger:
+		if arg-1 is greater than 5:
+			send "{@Prefix} Du kannst nur 5 Slots auf einmal kaufen!" to arg-2
+			send "{@Prefix} Gib ein &e/clan slots kaufen 5" to arg-2
+			stop
+		if arg-1 is less than 1:
+			send "{@Prefix} Du musst mindestens 1 Slot angeben!" to arg-2
+			stop
+
+
+
+			
+command /clanmottosetzen <text> <text>:
+	executable by: console
+	trigger:
+		set {clan::%arg-1%.Motto} to arg-2
+		stop
+
+
+
+
+		
+command /clanspende <text> <integer> <player>:
+	executable by: console
+	trigger:
+		if {Taler::%arg-3%} is greater than or equal to arg-2:
+			if arg-2 is less than 1:
+				send "{@Prefix} Du kannst nicht weniger als einen Taler einzahlen!" to arg-3
+				stop
+			else:
+				remove arg-2 from {Taler::%arg-3%}
+				add arg-2 to {clan::%{clan::%arg-3%.in}%.Taler}
+				loop all players:
+					if "%{clan::%loop-player%.in}%" is "%{clan::%arg-3%.in}%":
+						send "&7%name of arg-3% &ehat soeben &7%arg-2% &eTaler in euren Clan eingezahlt!" to loop-player
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 477:
+				
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "1":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 2 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 2
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 1477:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "2":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 3 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 3
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 3777:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "3":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 4 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 4
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 7777:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "4":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 5 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 5
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 24777:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "5":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 7 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 7
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 57777:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "7":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level b erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to "b"
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 77777:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "b":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 8 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 8
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 147777:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "8":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 7 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 7
+						
+				if {clan::%{clan::%arg-3%.in}%.Taler} is greater than 277777:
+					if "%{clan::%{clan::%arg-3%.in}%.level}%" is "7":
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &7%{clan::%arg-3%.in}% &7hat Level 10 erreicht!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						set {clan::%{clan::%arg-3%.in}%.level} to 10
+						
+				send "{@Prefix} &e%arg-2% Taler eingezahlt." to arg-3
+				stop
+				
+		if {Taler::%arg-3%} is less than arg-2:
+			send "{@Prefix} Du besitzt nicht genügend Taler!" to arg-3
+			stop
+
+
+			
+command /beitreten [<text>]:
+	trigger:
+		if {clan::%player%.input} is true:
+			if arg-1 is not "Ja" or "Nein":
+				send "&7Tippe &e'/beitreten &eJa' um beizutreten."
+				send "&7Tippe &e'/beitreten &cNein' um nicht beizutreten."
+				stop
+			else:
+			
+				if arg-1 is "Ja":
+					Wait a tick
+					make player execute command "/clan jddin %{clan::%player%.invited}%"
+					send "{@Prefix} &f%player% hat die Einladung angenommen!" to {clan::%player%.inviter}
+					set {clan::%player%.status} to true
+					set {clan::%player%.in} to {clan::%player%.invited}
+					add 1 to {clan::%{clan::%player%.in}%.Members}
+					set {clan::rank.%{clan::%player%.in}%.%player%} to "1"
+					
+				if arg-1 is "Nein":
+					wait a tick
+					send "{@Prefix} Du hast die Einladung abgelehnt."
+					delete {clan::%player%.delete}
+					stop
+				delete {clan::%player%.invited}
+				delete {clan::%player%.input}
+				delete {clan::%player%.inviter}
+
+command /c [<text>]:
+	trigger:
+		if {clan::%player%.status} is true:
+			{clan::rank.%{clan::%player%.in}%.%player%} is not set:
+				set {clan::rank.%{clan::%player%.in}%.%player%} to "1"
+				
+			arg-1 is not set:
+				send "{@Prefix} Bitte gib eine Nachricht ein!"
+				stop
+				
+			loop all players:
+				if {clan::%loop-player%.in} is {clan::%player%.in}:
+					{clan::%{clan::%player%.in}%.owner} is player:
+						send "&7%{clan::%player%.in}% &8&l» &cLEADER &8&l» &f%name of player%&7: &e%arg%" to loop-player
+					else:
+						{clan::rank.%{clan::%player%.in}%.%player%} is "1":
+							send "&7%{clan::%player%.in}% &8&l» %colored {rank1.name.%{clan::%player%.in}%}% &8&l» &7%name of player%&7: &e%arg%" to loop-player
+						{clan::rank.%{clan::%player%.in}%.%player%} is "2":
+							send "&7%{clan::%player%.in}% &8&l» %colored {rank2.name.%{clan::%player%.in}%}% &8&l» &7%name of player%&7: &e%arg%" to loop-player
+						{clan::rank.%{clan::%player%.in}%.%player%} is "3":
+							send "&7%{clan::%player%.in}% &8&l» %colored {rank3.name.%{clan::%player%.in}%}% &8&l» &7%name of player%&7: &e%arg%" to loop-player
+						{clan::rank.%{clan::%player%.in}%.%player%} is "4":
+							send "&7%{clan::%player%.in}% &8&l» %colored {rank4.name.%{clan::%player%.in}%}% &8&l» &7%name of player%&7: &e%arg%" to loop-player
+						{clan::rank.%{clan::%player%.in}%.%player%} is "5":
+							send "&7%{clan::%player%.in}% &8&l» %colored {rank5.name.%{clan::%player%.in}%}% &8&l» &7%name of player%&7: &e%arg%" to loop-player
+						{clan::rank.%{clan::%player%.in}%.%player%} is "7":
+							send "&7%{clan::%player%.in}% &8&l» %colored {rank6.name.%{clan::%player%.in}%}% &8&l» &7%name of player%&7: &e%arg%" to loop-player
+
+			log "%{clan::%player%.in}% %name of player%: %arg%" to "Clanlogs/chat.log"
+			stop
+		else:
+			send "{@Prefix} Du bist kein Mitglied eines Clans!"
+			stop
+
+	
+command /auflösen [<text>]:
+	trigger:
+		if {clan::%player%.delete} is true:
+			if arg-1 is not "Ja" or "Nein":
+				send "{@Prefix} Tippe &e'Ja' &7um deinen Clan aufzulösen!"
+				send "{@Prefix} Tippe &c'Nein' &7um den Clan nicht aufzulösen!"
+				stop
+				
+			else:
+				if arg-1 is "Ja":
+					if {clan::%player%.delete} is not set:
+						stop
+					else:
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+						broadcast ""
+						broadcast "&7Der Clan &e%{clan::%player%.in}% &7wurde aufgelöst!"
+						broadcast ""
+						broadcast "          &8&m--&7&m--&e&m--&6&m--&8( &6&lCLAN &8)&6&m--&e&m--&7&m--&8&m--"
+					
+						
+						remove {clan::%player%.in} from {clan::list::*}
+						delete {clan::%player%.created}
+						delete {clan::%player%.tag}
+						delete {clan::%{clan::%player%.in}%.Motto}
+						delete {%{clan::%player%.in}%.Equip::*}
+						delete {clan::%{clan::%player%.in}%.Taler}
+						delete {rank6.name.%{clan::%player%.in}%}
+						delete {rank5.name.%{clan::%player%.in}%}
+						delete {rank4.name.%{clan::%player%.in}%}
+						delete {rank3.name.%{clan::%player%.in}%}
+						delete {rank2.name.%{clan::%player%.in}%}
+						delete {rank1.name.%{clan::%player%.in}%}
+						set {clan::%{clan::%player%.in}%.prestige} to 0
+						set {clan::%{clan::%player%.in}%.prestige.pay} to 1000000
+						loop all players:
+							if "%{clan::%loop-player%.in}%" is "%{clan::%player%.in}%":
+								delete {clan::%loop-player%.status}
+								delete {clan::%loop-player%.created}
+								delete {clan::%loop-player%.invited}
+								delete {clan::%loop-player%.input}
+								delete {clan::%loop-player%.inviter}
+						delete {clan::list::%{clan::%player%.in}%}
+						delete {clan::%{clan::%player%.in}%.players::*}
+						delete {clan::%player%.invited}
+						delete {clan::%{clan::%player%.in}%.Members}
+						delete {clan::%player%.input}
+						loop {clan::list::*}:
+							if loop-value is {clan::%player%.in}:
+								delete {clan::list::%loop-index%}
+								exit loop
+						delete {clan::%player%.inviter}
+						delete {clan::%player%.status}
+						delete {clan::%player%.created}
+						delete {clan::%{clan::%player%.in}%.Taler}
+						delete {clan::%{clan::%player%.in}%.slots}
+						delete {clan::%{clan::%player%.in}%.Members}
+						delete {clan::%{clan::%player%.in}%.level}
+						delete {clan::%{clan::%player%.in}%.owner}
+						loop {clan::%{clan::%player%.in}%.players::*}:
+							delete {clan::%loop-value%.in}
+						delete {clan::%player%.in}
+						delete {clan::%{clan::%player%.in}%.players::*}
+						delete {clan::%player%.delete}
+						send "{@Prefix} &cDer Clan wurde aufgelöst."
+						stop
+						
+				if arg-1 is "Nein":
+					wait a tick
+					send "{@Prefix} Der Clan wurde nicht aufgelöst."
+					delete {clan::%player%.delete}
+					stop
+	
+	
+command /ckeb [<player>] [<integer>]:
+	executable by: console
+	trigger:
+		{clan::%arg player%.in} is set:
+			arg-2 is less than 1:
+				send "{@Prefix} Du musst &cmind. &71 &eTaler &7einzahlen!" to arg player
+				stop
+			set {_taler} to "%arg-2%" parsed as number
+			if {_taler} is a number:
+				if {_taler} is bigger than 0:
+					if {Taler::%arg player%} is bigger than {_taler}-0.01:
+						remove {_taler} from {Taler::%arg player%}
+						add {_taler} to {clan::%{clan::%arg player%.in}%.Taler}
+						send "{@Prefix} Du hast &e%{_taler}% &eTaler &7in die Clankasse eingezahlt." to arg player
+						loop all players:
+							{clan::%loop-player%.in} is {clan::%arg player%.in}:
+								send "{@Prefix} &f%arg player% &7hat &e%{_taler}% &eTaler &7in die Clankasse eingezahlt." to loop-player
+								stop
+						stop
+					send "{@Prefix} Du hast nicht genügend &eTaler!" to arg player
+					stop
+				send "{@Prefix} Du bist kein Mitglied eines Clans!" to arg player
+				stop
+		
+		
+
+		
+command /forcedelete [<player>]:
+	permission: server.admin
+	trigger:
+		arg-1 is not set:
+			send "{@Prefix} &e/forcedelete &f<Spieler>"
+			stop
+		make arg player execute command "/clan auflösen"
+		wait 1 second
+		make arg player execute command "/auflösen Ja"
+		send "{@Prefix} Der Clan wurde aufgelöst."
+		stop
+		
+		
+		
+		
+		
+on inventory close:
+	{inv.clan.use.%player%} is true:
+		clear {%{clan::%player%.in}%.Equip::*}
+		loop all items in player's current inventory:
+			add loop-item to {%{clan::%player%.in}%.Equip::*}
+			
+		send "{@Prefix} Das Equipment wurde &egespeichert."
+		set {inv.clan.use.%player%} to false
+
+
+
+		
+on inventory close:
+	{inv.status.%player%} is true:
+		wait 1 tick
+		clear player's inventory
+		loop {inv.%player%::*}:
+			add loop-value to player's inventory
+		wait 1 second
+		set player's helmet to {h.%player%}
+		set player's chestplate to {c.%player%}
+		set player's leggings to {l.%player%}
+		set player's boots to {s.%player%}
+		clear {inv.%player%::*}
+		set {inv.status.%player%} to false
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+command /talergeben [<player>] [<text>]:
+	trigger:
+		if arg-1 is set:
+			if arg-2 is set:
+				if arg-1 is online:
+					if arg-1 is not player:
+						set {_taler} to "%arg-2%" parsed as number
+						if {_taler} is a number:
+							if {_taler} is bigger than 0:
+								if {Taler::%player%} is bigger than {_taler}-0.01:
+									remove {_taler} from {Taler::%player%}
+									add {_taler} to {Taler::%arg-1%}
+									send "{@Prefix} Du hast &f%arg-1% &7erfolgreich &e%{_taler}% Taler &7überwiesen"
+									send "{@Prefix} Der Spieler &f%player% &7hat dir &e%{_taler}% Taler &7überwiesen" to arg-1
+								else:
+									send "{@Prefix} Du hast &cnicht genügend &eTaler!"
+							else:
+								send "{@Prefix} Du kannst &ckeinen Minus-Betrag &7angeben!"
+						else:
+							send "{@Prefix} Dein angegebender &eTaler-Betrag ist &ckeine Nummer!"
+					else:
+						send "{@Prefix} Du kannst dir &eTaler &cnicht selbst überweisen!"
+				else:
+					send "{@Prefix} Der &fSpieler &7ist &cnicht online!"
+			else:	
+				send "{@Prefix} Bitte gebe eine Anzahl &7an &eTaler &7an!"
+		else:
+			send "{@Prefix} &e/talergeben &f<Spieler> &f<Taler>"
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+variables:
+	{Taler::%player%} = 0
+
+	
+	
+	
+	
+every 23 minutes:
+	loop all players:
+		set {_random} to a random integer between 10 and 100
+		add {_random} to {Taler::%loop-player%}
+#		send loop-player title "&f&l+ &e&l10 Taler" for 2 seconds
+#		play "entity_player_levelup" to loop-player
+		stop					
+
+
+		
+command /resettaler:
+	permission: *
+	trigger:
+		set {Taler::%player%} to 0
+		send "{@Prefix} &7Deine &eTaler &7wurden &cresettet."
+		stop
+
+
+
+		
+command /taler [<offlineplayer>]:
+	aliases: /coin, /coins,
+	trigger:
+		play "entity_player_levelup" to player
+		if arg-1's uuid is not set:
+			if {Taler::%player%} is not set:
+				set {Taler::%player%} to 0
+				send "{@Prefix} &7Derzeit besitzt du &7%{Taler::%player%}% &eTaler."
+				send "{@Prefix} &7Sie sind dafür um einen &eClan &7aufzumachen"
+				stop
+			else:
+				send "{@Prefix} &7Derzeit besitzt du &7%{Taler::%player%}% &eTaler."
+				send "{@Prefix} &7Sie sind dafür um einen &eClan &7aufzumachen"
+				stop
+		else:
+			if {Taler.%arg-1%} is not set:
+				set {Taler.%arg-1%} to 0
+				send "{@Prefix} &f%name of arg-1% besitzt &7%{Taler::%arg-1%}% &eTaler."
+				send "{@Prefix} &7Sie sind dafür um einen &eClan &7aufzumachen"
+				stop
+			else:
+				send "{@Prefix} &f%name of arg-1% &7besitzt &7%{Taler::%arg-1%}% &eTaler."
+				send "{@Prefix} &7Sie sind dafür um einen &eClan &7aufzumachen"
+				stop

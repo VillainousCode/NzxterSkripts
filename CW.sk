@@ -1,0 +1,63 @@
+﻿options:
+	Prefix: &8&l【&c&lCW&8&l】&8&l▶&7
+
+variables:
+	{cw::%player%} = false
+
+on command:
+	if command sender is not console:
+		loop all players:
+			if {cw::%loop-player%} is true:
+				command is set:
+					if command is "login","register","randomtp","sk","baltop","warp","go","home","ec","shop","ah","gs","spawn","hub","p","is","list","glist","l","time","taler","ts","bewerben","discord","forum","link","unlink","vote","rs","rucksack","ad","ph","updates","update","ping","kit","swarp","regeln","rand","pi","erfolg","cookies","craft","wb","online","plot","help","hilfe","job","jobs","sethome","delhome","workbench","tc","marry","gbc","bc","cc","gcc","werbung","tpa","tpaccept","holo","playtime","money","yess","noo","glow","leuchten","talergeben","spenden","near","heiraten","advancedban:ban","yt","bewerbung","pay","dc","island","leave","item","ränge","lobby","clan","warps","armor","beitreten","youtuber","top10","stats","tpdeny","rüstung","invsee","nether","back","c","farmwelt","holochat","vorteile","homes","backpack","support","ranginfo","ptime","info","dev","müll","abfall","vergessen","trash","pet","tiere","pets","tier","plugman","r","msg","mvtp","end","onlinetime","ontime","erfolge","spende","particles","partikel","effekte","effekt","trail","effect","effecte","particle","bank","haus","houses","befehle","jobsxp","house","farmwelt","end","freebuild","nether","prison","frost","steam","flower","frieden","friede","friedens","fastbuild","gefängnis","holz","frozen","h","handeln","topkills","top","topbalances","team","club","guild","guilde","gilde","ddos","ddosen","farmwelt","farmworld","freebuidl","freibauen","nether","unterwelt","end","endwelt","gefaengnis","prison","holz","wood","frost","frozen","afk","troll","name","labymod","api","laby","friend","bankkonto","essentials:kit","cookie","kekse","advancedban:ban","advancedban:tempban","simsay","fakeplayer" or "sign":
+						stop
+					else:
+						arguments are not set:
+							set {_command} to "%command%"
+							replace all "<none>" with "&c&l&oCONSOLE" in {_command}
+							send "{@Prefix} &f%name of player%: &9/%command%" to loop-player
+						arguments are set:
+							set {_command} to "%the command%"
+							replace all "<none>" with "&c&l&oCONSOLE" in {_command}
+							send "{@Prefix} &f%name of player%: &9/%command% &7%arguments%" to loop-player
+						
+						
+						
+command /commandwatcher [<text>] [<player>]:
+	aliases: /cw,
+	permission: server.admin
+	trigger:
+		if arg-1 is not set:
+			send "{@Prefix} &e/cw an/aus"
+			stop
+			
+		if arg 1 is "an":
+			if arg 2 is set:
+				set {cw::%arg-2%} to true
+				send "{@Prefix} Commandwatcher fuer &f%arg-2%  &aaktiviert."
+				send "{@Prefix} Der Spieler &f%player% &7hat den Commandwatcher fuer dich &aaktiviert!" to arg-2
+			if arg 2 is not set:
+				set {cw::%player%} to true
+				send "{@Prefix} Commandwatcher &aaktiviert!"
+		if arg 1 is "aus":
+			if arg 2 is set:
+				set {cw::%arg-2%} to false
+				send "{@Prefix} Commandwatcher fuer &f%arg-2%  &cdeaktiviert."
+				send "{@Prefix} Der Spieler &f%player% &7hat den Commandwatcher fuer dich &cdeaktiviert!" to arg-2
+			if arg 2 is not set:
+				set {cw::%player%} to false
+				send "{@Prefix} Commandwatcher &cdeaktiviert!"
+				
+on quit:
+	if {cw::%player%} is true:
+		if player doesn't have permission "server.team":
+			delete {cw::%player%}
+	else:
+		stop
+		
+on kick:
+	if {cw::%player%} is true:
+		if player doesn't have permission "server.team":
+			delete {cw::%player%}
+	else:
+		stop

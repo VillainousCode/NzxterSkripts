@@ -1,0 +1,209 @@
+command /claim [<text>] [<offline player>]:
+	trigger:
+		if arg 1 is "claim":
+			if {claim.%chunk at player%::owner} is not set:
+				send "&aChunk has been claimed!"
+				set {claim.%chunk at player%::owner} to "%player%"
+				stop
+			if {claim.%chunk at player%::owner} is set:
+				send "&cThis chunk has been claimed already!"
+				stop
+				
+		if arg 1 is "addplayer":
+			if {claim.%chunk at player%::owner} is not set:
+				send "&cThis chunk has not been claimed!"
+				stop
+			if {claim.%chunk at player%::owner} is set:
+				if {claim.%chunk at player%::owner} is not "%player%":
+					send "&cThis is not your chunk!"
+					stop
+				if {claim.%chunk at player%::owner} is "%player%":
+					if arg 2 is set:
+						add "%arg-2%" to {players.%chunk at player%::*}
+						send "&aYou have added %arg-2% &ato your chunk!"
+						send "&aYou have been added on a chunk of %player%" to arg-2
+					else:
+						send "&cEnter the player name of who you want to add on your chunk!"
+			
+		if arg 1 is "removeplayer":
+	
+			if {claim.%chunk at player%::owner} is not set:
+				send "&cThis chunk has not been claimed!"
+				stop
+			if {claim.%chunk at player%::owner} is set:
+				if {claim.%chunk at player%::owner} is not "%player%":
+					send "&cThis is not your chunk!"
+					stop
+				if {claim.%chunk at player%::owner} is "%player%":
+					if arg 2 is set:
+						remove arg 2 from {players.%chunk at player%::*}
+						send "&aYou have removed %arg-2% &afrom your chunk!"
+						send "&aYou have been remove of a chunk from %player%" to arg-2
+					else:
+						send "&cEnter the player name of who you want to add on your chunk!"
+			
+		if arg 1 is "info":
+			if {claim.%chunk at player%::owner} is not set:
+				send "&cThis chunk has not been claimed yet!"
+			else:
+				send "&aChunk owner: &2%{claim.%chunk at player%::owner}%"
+				send "&aChunk members:"
+				if {players.%chunk at player%::*} is set:
+					send "&2%{players.%chunk at player%::*}%"
+				else:
+					send "&2No one!"
+				send "&aFlags:"
+				if {listflags.%chunk at player%::*} is set:
+					send "&2%{listflags.%chunk at player%::*}%"
+				else:
+					send "&2No one!"
+				
+		if arg 1 is "unclaim":
+			if {claim.%chunk at player%::owner} is not set:
+				send "&cThis chunk has not been claimed!"
+				stop
+			if {claim.%chunk at player%::owner} is set:
+				if {claim.%chunk at player%::owner} is not "%player%":
+					if {players.%chunk at player%::*} contains "%player%":
+						send "&cOnly the chunk owner can do this!"
+					else:
+						send "&cThis is not your chunk!"
+						stop
+				if {claim.%chunk at player%::owner} is "%player%":
+					delete {claim.%chunk at player%::owner}
+					send "&aChunk has been unclaimed!"
+					stop
+					
+		if arg 1 is "admin":
+			if player has permission "claim.admin":
+				if {bypass.%player%.claim} is not set:
+					set action bar of player to " &6You have &aenabled &6your admin mode!"
+					wait 1 seconds
+					set action bar of player to " &6You have &aenabled &6your admin mode!"
+					wait 1 seconds
+					set {bypass.%player%.claim} to true
+					stop
+				else:
+					
+					delete {bypass.%player%.claim}
+					set action bar of player to " &6You have &cdisabled &6your admin mode!"
+					wait 1 seconds
+					set action bar of player to " &6You have &cdisabled &6your admin mode!"
+					wait 1 second
+					set action bar of player to " &6"
+					stop
+				
+
+		
+			
+		if arg 1 is not set:
+			send "&cCommand not found! Try /claim help"
+		
+		if arg 1 is "help":
+			send "&eClaim Plugin by TheBathDuck Version 2.5"
+			send ""
+			send "&a/claim claim &7- Claims a chunk"
+			send "&a/claim unclaim &7- Removes a claim"
+			send "&a/claim addplayer <Player> &7- Adds a player"
+			send "&a/claim removeplayer <player> &7- Removes a player!"
+			send "&a/claim info &7- Shows the chunk information!"
+			
+every 2 seconds:
+	loop all players:
+		if {bypass.%loop-player%.claim} is true:
+			set action bar of loop-player to " &6Your admin mode is still &aenabled&6!"
+		
+command /chunkflag [<text>] [<text>]:
+	trigger:
+		if arg 1 is "pvp":
+			if arg 2 is "false":
+				#PVP = OFF
+				if {claim.%chunk at player%::owner} is set:
+					if {claim.%chunk at player%::owner} is "%player%":
+						set {claimflag.%chunk at player%.pvp} to true
+						send "&aYou disabled PvP in your claim!"
+						add "PVP" to {listflags.%chunk at player%::*}
+					else:
+						send "&cOnly the owner of the chunk can do this!"
+				else:
+					send "&cThis chunk has not been claimed!"	
+			if arg 2 is "true":
+				#PVP = ON
+				if {claim.%chunk at player%::owner} is set:
+					if {claim.%chunk at player%::owner} is "%player%":
+						delete {claimflag.%chunk at player%.pvp}
+						send "&aYou enabled PvP in your claim!"
+						remove "PVP" from {listflags.%chunk at player%::*}
+					else:
+						send "&cOnly the owner of the chunk can do this!"
+				else:
+					send "&cThis chunk has not been claimed!"
+			if arg 2 is not set:
+				send "&cYou must need to enter TRUE or FALSE to let this work!"
+
+				
+on damage:
+	if attacker is a player:
+		if victim is a player:
+			if {claim.%chunk at victim%::owner} is set:
+				if {claimflag.%chunk at victim%.pvp} is true:
+					cancel event
+					set action bar of attacker to " &cPvP is disabled in this chunk! You cant hurt other players"
+					play sound "block.anvil.place" with volume 0.2 to the attacker	
+			
+on rightclick on a chest:	
+	if {claim.%chunk at player%::owner} is set:
+		if {claim.%chunk at player%::owner} is not "%player%":
+			if {players.%chunk at player%::*} contains "%player%":
+				stop
+			else:
+				if {bypass.%player%.claim} is true:
+					stop
+				else:
+					cancel event
+					set action bar of player to " &cYou cant do this! This chest belongs to %{claim.%chunk at player%::owner}%"
+					play sound "block.anvil.place" with volume 0.2 to the player
+					stop	
+				
+on rightclick on a door:	
+	if {claim.%chunk at player%::owner} is set:
+		if {claim.%chunk at player%::owner} is not "%player%":
+			if {players.%chunk at player%::*} contains "%player%":
+				stop
+			else:
+				if {bypass.%player%.claim} is true:
+					stop
+				else:
+					cancel event
+					set action bar of player to " &cYou cant do this! This door belongs to %{claim.%chunk at event-block%::owner}%"
+					play sound "block.anvil.place" with volume 0.2 to the player
+					stop
+			
+on break:
+	if {claim.%chunk at event-block%::owner} is set:
+		if {claim.%chunk at event-block%::owner} is not "%player%":
+			if {players.%chunk at player%::*} contains "%player%":
+				stop
+			else:
+				if {bypass.%player%.claim} is true:
+					stop
+				else:
+					cancel event
+					set action bar of player to " &cYou cant do this! This chunk belongs to %{claim.%chunk at event-block%::owner}%"
+					play sound "block.anvil.place" with volume 0.2 to the player
+					stop
+
+on place:
+	if {claim.%chunk at event-block%::owner} is set:
+		if {claim.%chunk at event-block%::owner} is not "%player%":
+			if {players.%chunk at player%::*} contains "%player%":
+				stop
+			else:
+				if {bypass.%player%.claim} is true:
+					stop
+				else:
+					cancel event
+					set action bar of player to " &cYou cant do this! This chunk belongs to %{claim.%chunk at player%::owner}%"
+					play sound "block.anvil.place" with volume 0.2 to the player
+					stop
+			

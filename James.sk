@@ -1,0 +1,259 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+
+
+
+command /james:
+	permission: *
+	trigger:
+		spawn 1 iron golem at location of player
+		set name of last spawned iron golem to "&6&lJ&eames"
+		stop
+	
+	
+	
+	
+	
+	
+	
+	
+on chat:
+	if player is in world "Spawn":
+
+		if message contains "James Kaffe":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Kaffe ist unterwegs" to all players in world
+			stop
+			
+		else if message contains "James wie gehts dir":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Mir geht es soweit ganz gut" to all players in world
+			stop
+			
+		else if message contains "James ist geil":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Das weis ich doch längst" to all players in world
+			stop
+			
+		else if message contains "James du stinkst":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Du doch auch" to all players in world
+			stop
+			
+		else if message contains "James du arsch":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Was man sagt ist man selber" to all players in world
+			stop
+			
+		else if message contains "James uhrzeit":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Wir haben &e%hour%:%minute%:%seconds%" to all players in world
+			stop
+			
+		else if message contains "James datum":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Wir haben den &e%day%.%month%.%year%" to all players in world
+			stop
+			
+		else if message contains "James ehrenmann":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Eher ##Ehrenmann %colored player's prefix% &f%player%" to all players in world
+			stop
+			
+		else if message contains "James op":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Was du OP als nächstes willst du noch Owner" to all players in world
+			stop
+			
+		else if message contains "James handynummer":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Meine Nummer ist &e+49 1805 4646" to all players in world
+			stop
+			
+		else if message contains "James fortnite":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Dir hat doch einer in den Kopf geschissen" to all players in world
+			stop
+			
+		else if message contains "James wie alt bist du":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Ich bin 80 Jahre jung" to all players in world
+			stop
+			
+		else if message contains "James haha" or "James xD":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Was gibts denn da zu lachen" to all players in world
+			stop
+			
+		else if message contains "James essen":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Kommt sofort Boss" to all players in world
+			stop
+			
+		else if message contains "James trinken":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Kommt sofort Boss" to all players in world
+			stop
+		
+		else if message contains "James bitte":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Computer sagt nein" to all players in world
+			stop
+			
+		else if message contains "James gomme":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Ist doch der Beste Server bitte was" to all players in world
+			stop
+			
+		else if message contains "James verstecken":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Bin ich dafür nicht etwas zu alt" to all players in world
+			stop
+			
+		else if message contains "James danke":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Ich bin dir stehst zu Diensten" to all players in world
+			stop
+			
+		else if message contains "James ist beste":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Vielen Dank §4§lNzx§c§lter'§7s Idee" to all players in world
+			stop
+			
+		else if message contains "James sei leise":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Dein Wunsch sei mir Befehl" to all players in world
+			stop
+			
+		else if message contains "James spam":
+			wait 1 second
+			loop 15 times:
+				send "&6&lJ&eames &8&l▶&7 Mach ich gerne" to player
+			stop
+			
+		else if message contains "James hilfe":
+			wait 1 second
+			make player execute command "help"
+			stop
+			
+			
+		else if message contains "James gamemode":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Frag doch mal mit einem bitte" to all players in world
+			stop
+			
+		else if message contains "James witz":
+			set {_Random} to a random integer between 1 and 5
+			if {_Random} is 1:
+				wait 1 second
+				send "&6&lJ&eames &8&l▶&7 Kommt ein Pferd in die Bar sagt haben sie Magariten" to all players in world
+				stop
+			if {_Random} is 2:
+				wait 1 second
+				send "&6&lJ&eames &8&l▶&7 Sagt ein Hai zum anderen Hai sagt der andere wo" to all players in world
+				stop
+			if {_Random} is 3:
+				wait 1 second
+				send "&6&lJ&eames &8&l▶&7 Der Witz vom Taucher gluck gluck weg war er" to all players in world
+				stop
+			if {_Random} is 4:
+				wait 1 second
+				send "&6&lJ&eames &8&l▶&7 Was ist weiß in Vogel Kaka auch Vogel Kaka" to all players in world
+				stop
+			if {_Random} is 5:
+				wait 1 second
+				send "&6&lJ&eames &8&l▶&7 Leider kenn ich keine guten Witze" to all players in world
+				stop
+			stop
+			
+		else if message contains "James":
+			wait 1 second
+			send "&6&lJ&eames &8&l▶&7 Ich bin James, dein &eButler" to all players in world
+			stop
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+on right click on entity:
+	if name of event-entity is "&6&lJ&eames":
+		cancel event
+		play "block_glass_break" to player with volume 1 and pitch 1.0		
+		
+		open virtual brewing inventory with size 1 named "&6&lH&eilfe &8&l┃ &7Menu" to player
+					
+		make a gui slot 0 of player with book and quill named "&8&l➢ &c&lRegeln" with lore "||  &8&l» &7Unsere &c&lRegeln" to run:
+			play "entity_bat_takeoff" to player
+			make player execute command "regeln"
+			stop
+		
+		make a gui slot 2 of player with feather named "&8&l➢ &6&lSupport" with lore "||  &8&l» &f%player% &7Du brauchst Support?||  &8&l» &7Komm in den &eTS &e/ts ||  &8&l» &7oder benutze doch &6&l/support" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+		make a gui slot 3 of player with sign item named "&8&l➢ &e&lHilfe" with lore "|| &8&l» &7Hol dir hier &e&lHilfe &7um|| &8&l» &7besser zurecht zukommen" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+		make a gui slot 1 of player with command block named "&8&l➢ &e&lBefehle" with lore "||  &8&l» &e/hub &e/warp &e/ts &e/web &e/vote &e/bank &e/levelreset||  &8&l» &e/discord &e/yt &e/glist &e/clan &e/heiraten &e/job ||  &8&l» &e/holochat &e/ec &e/time &e/regeln &e/updates &e/frieden||  &8&l» &e/system &e/shop &e/f &e/ping &e/frage &e/haus &e/swarp||  &8&l» &e/support &e/cookies &e/ptime &e/vergessen &e/abfall||  &8&l» &e/stats &e/top10 &e/online &e/gs &e/spenden &e/ah &e/bankkonto||  &8&l» &e/team &e/talergeben &e/item &e/baltop &e/is &e/link &e/ad &e/statsreset" to run:
+			play "entity_bat_takeoff" to player
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lHILFE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &8▪ &e/warp &8&l» &7Das &bWarpsystem"
+			send " &8▪ &e/hub &8&l» &7Zum mit &cDelay"
+			send " &8▪ &e/spawn &8&l» &7Zum &cSpawn"
+			send " &8▪ &e/ts &8&l» &7Die &aTeamSpeak IP"
+			send " &8▪ &e/bewerben &8&l» &7Die &6Voraussetzungen"
+			send " &8▪ &e/web &8&l» &7Unsere &fHomepage"
+			send " &8▪ &e/vote &8&l» &7Der &bVote Link"
+			send " &8▪ &e/discord &8&l» &7Der &9Discord Link"
+			send " &8▪ &e/yt &8&l» &7Die &6Youtuber Voraussetzungen"
+			send " &8▪ &e/glist &8&l» &7Alle &eOnline Spieler"
+			send " &8▪ &e/clan &8&l» &7Das &eClan System"
+			send " &8▪ &e/ehe &8&l» &7Das &cMarry System"
+			send " &8▪ &e/job &8&l» &7Deine &eJobs"
+			send " &8▪ &e/holo &8&l» &7Der &eHolo Chat"
+			send " &8▪ &e/baltop &8&l» &7Die &ereichesten Spieler"
+			send " &8▪ &e/shop &8&l» &7Der &6Blöcke Shop"
+			send " &8▪ &e/report &8&l» &7Das &cReport System"
+			send " &8▪ &e/f &8&l» &7Deine &eFreunde"
+			send " &8▪ &e/team &8&l» &7Das &9Team"
+			send " &8▪ &e/ping &8&l» &7Dein &ePing"
+			send " &8▪ &e/frage &8&l» &7Frage etwas das &9Team"
+			send " &8▪ &e/support &8&l» &7Die &9Support Anfrage"
+			send " &8▪ &e/cookies &8&l» &7Deine &6Cookies"
+			send " &8▪ &e/ptime &8&l» &7Stelle deine eigene &eZeit"
+			send " &8▪ &e/vergessen &8&l» &7Lösche den &cChat"
+			send " &8▪ &e/stats &8&l» &7Deine &eStats"
+			send " &8▪ &e/top10 &8&l» &7Die &cBesten PvP Spieler"
+			send " &8▪ &e/ec &8&l» &7Die &6Enderchest"
+			send " &8▪ &e/time &8&l» &7Deine &eOnlinezeit"
+			send " &8▪ &e/regeln &8&l» &7Das &cRegelwerk"
+			send " &8▪ &e/updates &8&l» &7Die &6Server Updates"
+			send " &8▪ &e/system &8&l» &7Der &bDeveloper"
+			send " &8▪ &e/online &8&l» &7Die &eOnline Spieler Liste"
+			send " &8▪ &e/gs &8&l» &7Das &6Plot Menü"
+			send " &8▪ &e/spenden &8&l» &7Die &cRänge"
+			send " &8▪ &e/ah &8&l» &7Die Auktion"
+			send " &8▪ &e/levelreset &8&l» &7Resette deine &6Level Stats"
+			send " &8▪ &e/talergeben &8&l» &7Verteile &eTaler"
+			send " &8▪ &e/item &8&l» &7Zeige dein &fItem"
+			send " &8▪ &e/link &8&l» &7Auf dem &eTeamSpeak Verifyn"
+			send " &8▪ &e/is &8&l» &7Das &6Insel Menü"
+			send " &8▪ &e/haus &8&l» &7Das &6Haus Menü"
+			send " &8▪ &e/bank &8&l» &7Das &eBank System"
+			send " &8▪ &e/frieden &8&l» &7Schliese mit jemandem &cFrieden"
+			send " &8▪ &e/ad &8&l» &7Mache Werbung für deinen &eShop"
+			send " &8▪ &e/bankkonto &8&l» &7Zeige dein &e&lBankkonto &7Stand"
+			send " &8▪ &e/statsreset &8&l» &7Resette deine &bPvP Stats"
+			send " &8▪ &e/swarp &8&l» &7Schaue dir &f&lSpieler &7Warps an"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lHILFE &8)&6&m--&e&m--&7&m--&8&m--"
+			stop
+		

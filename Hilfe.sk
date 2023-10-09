@@ -1,0 +1,84 @@
+on command:
+	if command is "help" or "bukkit:help" or "?" or "bukkit:?" or "spigot:help" or "spigot:?" or "news" or "info" or "hilfe" or "befehle":
+		cancel event
+		play "block_glass_break" to player with volume 1 and pitch 1.0		
+		
+		open virtual brewing inventory with size 1 named "&6&lH&eilfe &8&l┃ &7Menu" to player
+					
+		make a gui slot 0 of player with book named "&8&l➢ &c&lRegeln" with lore "||  &8&l» &7Unsere &c&lRegeln || || &fKlicke um mehr Infos zu erhalten" to run:
+			play "entity_bat_takeoff" to player
+			make player execute command "regeln"
+			stop
+		
+		make a gui slot 1 of player with feather named "&8&l➢ &6&lSupport" with lore "||  &8&l» &f%player% &7Du brauchst Support?||  &8&l» &7Komm in den &eTS &e&l/ts ||  &8&l» &7oder benutze doch &e&l/support" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+		make a gui slot 3 of player with sign item named "&8&l➢ &e&lHilfe" with lore "|| &8&l» &7Hol dir hier &e&lHilfe &7um|| &8&l» &7besser zurecht zukommen" to run:
+			play "entity_bat_takeoff" to player
+			stop
+			
+		make a gui slot 2 of player with command block named "&8&l➢ &e&lBefehle" with lore "||  &8&l» &e&l/hub &e&l/warp &e&l/ts &e&l/web &e&l/vote &e&l/bank &e&l/levelreset &e&l/name||  &8&l» &e&l/discord &e&l/yt &e&l/glist &e&l/clan &e&l/heiraten &e&l/job &e&l/erfolge||  &8&l» &e&l/holochat &e&l/ec &e&l/time &e&l/regeln &e&l/updates &e&l/frieden &e&l/server||  &8&l» &e&l/system &e&l/shop &e&l/f &e&l/ping &e&l/frage &e&l/haus &e&l/swarp||  &8&l» &e&l/support &e&l/cookies &e&l/ptime &e&l/vergessen &e&l/abfall||  &8&l» &e&l/online &e&l/gs &e&l/spenden &e&l/ah &e&l/bankkonto &e&l/exp||  &8&l» &e&l/team &e&l/talergeben &e&l/item &e&l/baltop &e&l/is &e&l/link &e&l/ad || || &fKlicke um mehr Infos zu erhalten" to run:
+			play "entity_bat_takeoff" to player
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lHILFE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &8▪ &e&l/warp &8&l» &7Das &bWarpsystem"
+			send " &8▪ &e&l/hub &8&l» &7Zum mit &cDelay"
+			send " &8▪ &e&l/spawn &8&l» &7Zum &cSpawn"
+			send " &8▪ &e&l/ts &8&l» &7Die &aTeamSpeak IP"
+			send " &8▪ &e&l/bewerben &8&l» &7Die &6Voraussetzungen"
+			send " &8▪ &e&l/web &8&l» &7Unsere &fHomepage"
+			send " &8▪ &e&l/vote &8&l» &7Der &bVote Link"
+			send " &8▪ &e&l/discord &8&l» &7Der &9Discord Link"
+			send " &8▪ &e&l/yt &8&l» &7Die &6Youtuber Voraussetzungen"
+			send " &8▪ &e&l/glist &8&l» &7Alle &eOnline Spieler"
+			send " &8▪ &e&l/clan &8&l» &7Das &eClan System"
+			send " &8▪ &e&l/ehe &8&l» &7Das &cMarry System"
+			send " &8▪ &e&l/job &8&l» &7Deine &eJobs"
+			send " &8▪ &e&l/holo &8&l» &7Der &eHolo Chat"
+			send " &8▪ &e&l/baltop &8&l» &7Die &ereichesten Spieler"
+			send " &8▪ &e&l/shop &8&l» &7Der &6Blöcke Shop"
+			send " &8▪ &e&l/report &8&l» &7Das &cReport System"
+			send " &8▪ &e&l/f &8&l» &7Deine &eFreunde"
+			send " &8▪ &e&l/team &8&l» &7Das &9Team"
+			send " &8▪ &e&l/ping &8&l» &7Dein &ePing"
+			send " &8▪ &e&l/frage &8&l» &7Frage etwas das &9Team"
+			send " &8▪ &e&l/support &8&l» &7Die &9Support Anfrage"
+			send " &8▪ &e&l/cookies &8&l» &7Deine &6Cookies"
+			send " &8▪ &e&l/ptime &8&l» &7Stelle deine eigene &eZeit"
+			send " &8▪ &e&l/vergessen &8&l» &7Lösche den &cChat"
+			send " &8▪ &e&l/ec &8&l» &7Die &6Enderchest"
+			send " &8▪ &e&l/time &8&l» &7Deine &eOnlinezeit"
+			send " &8▪ &e&l/regeln &8&l» &7Das &cRegelwerk"
+			send " &8▪ &e&l/updates &8&l» &7Die &6Server Updates"
+			send " &8▪ &e&l/system &8&l» &7Der &bDeveloper"
+			send " &8▪ &e&l/online &8&l» &7Die &eOnline Spieler Liste"
+			send " &8▪ &e&l/gs &8&l» &7Das &6Plot Menü"
+			send " &8▪ &e&l/spenden &8&l» &7Die &cRänge"
+			send " &8▪ &e&l/ah &8&l» &7Die Auktion"
+			send " &8▪ &e&l/levelreset &8&l» &7Resette deine &6Level Stats"
+			send " &8▪ &e&l/talergeben &8&l» &7Verteile &eTaler"
+			send " &8▪ &e&l/item &8&l» &7Zeige dein &fItem"
+			send " &8▪ &e&l/link &8&l» &7Auf dem &eTeamSpeak Verifyn"
+			send " &8▪ &e&l/is &8&l» &7Das &6Insel Menü"
+			send " &8▪ &e&l/haus &8&l» &7Das &6Haus Menü"
+			send " &8▪ &e&l/bank &8&l» &7Das &eBank System"
+			send " &8▪ &e&l/frieden &8&l» &7Schliese mit jemandem &cFrieden"
+			send " &8▪ &e&l/ad &8&l» &7Mache Werbung für deinen &eShop"
+			send " &8▪ &e&l/bankkonto &8&l» &7Zeige dein &eBankkonto &7Stand"
+			send " &8▪ &e&l/statsreset &8&l» &7Resette deine &bPvP Stats"
+			send " &8▪ &e&l/swarp &8&l» &7Schaue dir &f&lSpieler &7Warps an"
+			send " &8▪ &e&l/exp &8&l» &7Lasse dir dein &eLevel und Exp &7anzeigen"
+			send " &8▪ &e&l/erfolge &8&l» &7Schaue dir deine &eErfolge &7an"
+			send " &8▪ &e&l/server &8&l» &7Zeige dir die &6Server Leistung"
+			send " &8▪ &e&l/name &8&l» &7Schau dir die &fNamehistory &7an"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lHILFE &8)&6&m--&e&m--&7&m--&8&m--"
+			if player has permission "server.team":
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lHILFE/TEAM &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &8▪ &e&l/client &8&l» &7Checke Spieler auf Hacks"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lHILFE/TEAM &8)&6&m--&e&m--&7&m--&8&m--"
+			stop
+		

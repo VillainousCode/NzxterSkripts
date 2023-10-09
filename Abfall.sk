@@ -1,0 +1,6 @@
+command /trash:
+	aliases: /müll, /abfall
+	usage: /trash
+	trigger:
+		#play "block_anvil_fall" to player with volume 1 and pitch 1.0
+		open virtual chest inventory with size 5 named "&6&lA&ebfall &8&l┃ &7Menu" to player

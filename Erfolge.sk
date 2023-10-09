@@ -1,0 +1,914 @@
+options:
+	Prefix: &8&l【&e&lErfolg&8&l】&8&l▶&7
+
+command /erfolg [<offlineplayer>]:
+	aliases: /achievement, /errungenschaften, /errungenschaft, /erfolge, /quest
+	trigger:
+		if arg 1 is not set:
+			if {AchievementsList::%arg%::*} is not set:
+				play "block_note_pling" to player with volume 1 and pitch 1.0	
+
+				set {_erfolge} to 0
+
+				open virtual chest inventory with size 6 named "&6&lE&erfolge &8&l┃ &7Menu" to player				
+
+				loop 55 times:			
+					make a gui slot {_slot} of player with gray glass pane named "&7" to do nothing
+					add 1 to {_slot}				
+
+				loop {AchievementsList::%player%::*}:
+					make a gui slot {_erfolge} of player with green dye named "&8▪ &e%loop-value%" to do nothing
+					add 1 to {_erfolge}	
+			else:
+				send "{@Prefix} Du hast keine &eErrungenschaften."
+				
+		if arg 1 is set:
+			if {AchievementsList::%arg%::*} is set:
+				play "block_note_pling" to player with volume 1 and pitch 1.0	
+
+				set {_erfolge} to 0
+
+				open virtual chest inventory with size 6 named "&6&lE&erfolge &8&l┃ &f%arg%'s" to player				
+
+				loop 55 times:			
+					make a gui slot {_slot} of player with gray glass pane named "&7" to do nothing
+					add 1 to {_slot}				
+
+				loop {AchievementsList::%arg%::*}:
+					make a gui slot {_erfolge} of player with green dye named "&8▪ &e%loop-value%" to do nothing			
+					add 1 to {_erfolge}	
+			else:
+				send "{@Prefix} Dieser &fSpieler &7hat keine &eErrungenschaften."
+
+#GUTE WAHL		
+on first join:
+	wait 5 seconds
+	if {Achievements::GuteWahl::%player%} is not set:
+		set {Achievements::GuteWahl::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+#		broadcast " "
+#		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eGute Wahl"
+#		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+		send " " to player
+		send " &7Du hast den &6Erfolg &eGute Wahl! &eerrungen." to player
+		send " " to player
+		send " &7Dafür erhälst du:" to player
+		send "  &8» &eUnseren Dank" to player
+		send " " to player
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+		add "Gute Wahl" to {AchievementsList::%player%::*}
+		stop				
+				
+#FUCK!		
+on damage:
+	if damage cause is burning:
+		if victim is a player:
+			if {Achievements::FUCK::%victim%} is not set:
+				set {Achievements::FUCK::%victim%} to true
+				launch "BALL" firework at victim timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to victim
+				broadcast " "
+				broadcast "{@Prefix} &f%victim% &7errungen &8&l● &eFUCK"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to victim
+				send " " to victim
+				send " &7Du hast den &6Erfolg &eFUCK! &eerrungen." to victim
+				send " " to victim
+				send " &7Dafür erhälst du:" to victim
+				send "  &8» &eFeuerresistenz ( 60 Sekunden )" to victim
+				send " " to victim
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to victim
+				apply fire resistance to the victim for 60 seconds
+				add "FUCK!" to {AchievementsList::%victim%::*}
+				stop
+
+#Das erste Holz
+on break of log:
+	if {Achievements::DasErsteHolz::%player%} is not set:
+		add 1 to {AchievementsCounter::DasErsteHolz::%player%}
+		wait 1 tick
+		if {AchievementsCounter::DasErsteHolz::%player%} is 3:
+			if {Achievements::DasErsteHolz::%player%} is not set:
+				set {Achievements::DasErsteHolz::%player%} to true
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to player
+				broadcast " "
+				broadcast "{@Prefix} &f%player% &7errungen &8&l● &eDas erste Holz"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &7Du hast den &6Erfolg &eDas erste Holz &eerrungen."
+				send " "
+				send " &7Dafür erhälst du:"
+				send "  &8» &eDiamantene Axt ( Unverzaubert )"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				add a diamond axe to player's inventory
+				add "Das erste Holz" to {AchievementsList::%player%::*}
+				stop
+			
+#Amateur Schütze
+on shoot:
+	if shooter is a player:
+		if shooter's tool is bow:
+			if {Achievements::AmateurSchütze::%shooter%} is not set:
+				set {Achievements::AmateurSchütze::%shooter%} to true
+				launch "BALL" firework at shooter timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to shooter
+				broadcast " "
+				broadcast "{@Prefix} &f%shooter% &7errungen &8&l● &eAmateur Schütze"
+				broadcast " "
+				send  "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to shooter
+				send " " to shooter
+				send " &7Du hast den &6Erfolg &eAmateur Schütze &eerrungen." to shooter
+				send " " to shooter
+				send " &7Dafür erhälst du:" to shooter
+				send "  &8» &eStraeke 3 auf dem verwendeten Bogen" to shooter
+				send " " to shooter
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to shooter
+				enchant shooter's tool with power 3
+				add "Amateur Schütze" to {AchievementsList::%shooter%::*}
+				stop
+			
+#Kapitn
+on craft of boat:
+	if {Achievements::Kapitn::%player%} is not set:
+		set {Achievements::Kapitn::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eKapitn"
+		broadcast " "
+		message  "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eKapitn &eerrungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8»  &eHoelzernes Paddel"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		add a wooden shovel of unbreaking 1 named "&fHoelzernes Paddel" to player's inventory
+		add "Kapitn" to {AchievementsList::%player%::*}
+		stop
+		
+
+#Grenzbauer
+on place of cobblestone wall:
+	if {Achievements::Grenzbauer::%player%} is not set:
+		add 1 to {AchievementsCounter::Grenzbauer::%player%}
+		wait 1 tick
+		if {AchievementsCounter::Grenzbauer::%player%} is 5:
+			if {Achievements::Grenzbauer::%player%} is not set:
+				set {Achievements::Grenzbauer::%player%} to true
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to player
+				broadcast " "
+				broadcast "{@Prefix} &f%player% &7errungen &8&l● &eGrenzbauer"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &7Du hast den &6Erfolg &eGrenzbauer &eerrungen."
+				send " "
+				send " &7Dafür erhälst du:"
+				send "  &8» &e16 Bruchsteinmauern"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				add 16 of cobblestone wall to player's inventory
+				add "Grenzbauer" to {AchievementsList::%player%::*}
+				stop
+				
+#Gut Belesen
+on edit Book:
+	if {Achievements::GutBelesen::%player%} is not set:
+		set {Achievements::GutBelesen::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eGut Belesen"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eGut Belesen &eerrungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &e8 Federn"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		add 8 of feather to player's inventory
+		add "Gut Belesen" to {AchievementsList::%player%::*}
+		stop
+
+#Schlafenszeit		
+on bed enter:
+	if {Achievements::Schlafenszeit::%player%} is not set:
+		set {Achievements::Schlafenszeit::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eSchlafenszeit"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eSchlafenszeit &eerrungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &eBlindheit ( 5 Sekunden )"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		apply blindness to the player for 5 seconds
+		add "Schlafenszeit" to {AchievementsList::%player%::*}
+		stop
+
+#MissPiggy	
+on death:
+	if attacker is a player:
+		if victim is a pig:
+			if {Achievements::MissPiggy::%attacker%} is not set:
+				set {Achievements::MissPiggy::%attacker%} to true
+				launch "BALL" firework at attacker timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to attacker
+				broadcast " "
+				broadcast "{@Prefix} &f%attacker% &7errungen &8&l● &eMiss Piggy"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				send " " to attacker
+				send " &7Du hast den &6Erfolg &eMiss Piggy &eerrungen." to attacker
+				send " " to attacker
+				send " &7Dafür erhälst du:" to attacker
+				send "  &8» &eBeil" to attacker
+				send " " to attacker
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				add a iron axe of sharpness 1 named "&fBeil" to attacker's inventory
+				add "Miss Piggy" to {AchievementsList::%attacker%::*}
+				stop
+				
+#Expelliarmus
+on click:
+	if player is holding a stick:
+		if {Achievements::Expelliarmus::%player%} is not set:
+			set {Achievements::Expelliarmus::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			strike lightning at the player 
+			wait 3 ticks
+			strike lightning at the player
+			wait 0.5 seconds
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eExpelliarmus!"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eExpelliarmus! &eerrungen."
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eVegiftung ( 3 Sekunden )"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			apply poison to the player for 3 seconds
+			add "Expelliarmus!" to {AchievementsList::%player%::*}
+			stop
+
+#FürPeach			
+on craft of golden helmet:
+	if {Achievements::FürPeach::%player%} is not set:
+		set {Achievements::FürPeach::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eFür Peach"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eFür Peach &eerrungen."
+		send " "
+		send " &eStoryboard:"
+		send "&cMario &7bat dich darum, &ePeach &7diese Krone zu geben. Er selber war leider verhindert, weil er am Abend zuvor mit &eLuigi &7ordentlich einen gehoben hatte. Wie dem auch sei .. als du Peach die Krone gegenen hast, umarmte sie dich und gab dir einen dicken Kuss auf die Wange. &c&l<3 &7Du bist darauf hin sehr froehlich nach Hause gegangen und hast dir whrend TvTotal eine schoene Dose &eMonster Energy &egegoent. Ein wenig spter, bist du dann zurück an den Computer gegangen und hast wieder auf &6&lERFOLGE &7gespielt und die &eErrungenschaft &e' Für Peach '&e errungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &e3 Kekse"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		add 3 cookies to player's inventory
+		add "Für Peach" to {AchievementsList::%player%::*}
+		stop
+
+#Lumberjack		
+on craft of axe:
+	if {Achievements::Lumberjack::%player%} is not set:
+		set {Achievements::Lumberjack::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eLumberjack"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eLumberjack &eerrungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &eEile ( 2 Minuten )"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		apply haste to the player for 2 minutes
+		add "Lumberjack" to {AchievementsList::%player%::*}
+		stop
+
+#CreepersWTF		
+on death:
+	if attacker is a player:
+		if victim is a creeper:
+			if {Achievements::CreepersWTF::%attacker%} is not set:
+				set {Achievements::CreepersWTF::%attacker%} to true
+				launch "BALL" firework at attacker timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to attacker
+				broadcast " "
+				broadcast "{@Prefix} &f%attacker% &7errungen &8&l● &eCreepers, WTF"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				send " " to attacker
+				send " &7Du hast den &6Erfolg &eCreepers, WTF &eerrungen." to attacker
+				send " " to attacker
+				send " &7Dafür erhälst du:" to attacker
+				send "  &8» &e5 TnT" to attacker
+				send " " to attacker
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				add 5 of tnt to attacker's inventory
+				add "Creepers, WTF" to {AchievementsList::%attacker%::*}
+				stop
+
+
+#Nether				
+on world change:
+	if player is in world "Nether":
+		if {Achievements::Teufelchen::%player%} is not set:
+			set {Achievements::Teufelchen::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eTeufelchen"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			send " " to player
+			send " &7Du hast den &6Erfolg &eTeufelchen &eerrungen." to player
+			send " " to player
+			send " &eStoryboard:" to player
+			send "&7Hast du die Unterwelt, aka. den Nether, jemals so gesehen?" to player
+			send " " to player
+			send " &7Dafür erhälst du:" to player
+			send "  &8» &eNachtsicht ( 3 Minuten )" to player
+			send " " to player
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			apply night vision to the player for 3 minutes
+			add "Teufelchen" to {AchievementsList::%player%::*}
+			stop
+
+
+#FürDieUmwelt				
+on place of any sapling:
+	if {Achievements::FürDieUmwelt::%player%} is not set:
+		set {Achievements::FürDieUmwelt::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eFür die Umwelt"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eFür die Umwelt &eerrungen."
+		send " "
+		send " &eStoryboard:"
+		send "&eGreenPeace &7ist auf deine Tat aufmerksam geworden und hat dir 5000 EUR und den Titel &e' Heiliger Natürschützer auf dem besten Minecraft Server Block ' &eauf Lebenszeit gegeben. GreenPeace hofft instndig, dass du weiterhin die Natür schützen wirst."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &e5000 Guthaben"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		add 5000 to player's balance
+		add "Für die Umwelt" to {AchievementsList::%player%::*}
+		stop
+
+
+#IchHabeScheisePlatziert		
+on place of dirt:
+	if {Achievements::IchHabeScheisePlatziert::%player%} is not set:
+		set {Achievements::IchHabeScheisePlatziert::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eIch habe Scheiße platziert"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eIch habe Scheiße platziert &eerrungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &c3x Warme Scheiße"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		add 3 of dirt of unbreaking 10 named "&fWarmerkot" to player's inventory
+		add "Ich habe Dreck platziert" to {AchievementsList::%player%::*}
+		stop
+		
+#SlimesLOL		
+on death:
+	if attacker is a player:
+		if victim is a slime:
+			if {Achievements::SlimesLOL::%attacker%} is not set:
+				set {Achievements::SlimesLOL::%attacker%} to true
+				launch "BALL" firework at attacker timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to attacker
+				broadcast " "
+				broadcast "{@Prefix} &f%attacker% &7errungen &8&l● &eSlimes? LOL"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				send " " to attacker
+				send " &7Du hast den &6Erfolg &eSlimes? LOL &eerrungen." to attacker
+				send " " to attacker
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				add "Slimes? LOL" to {AchievementsList::%attacker%::*}
+				stop
+
+#Fausten
+on death:
+	if attacker is a player:
+		if attacker's tool is air:
+			if {Achievements::Fausten::%attacker%} is not set:
+				set {Achievements::Fausten::%attacker%} to true
+				launch "BALL" firework at attacker timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to attacker
+				broadcast " "
+				broadcast "{@Prefix} &f%attacker% &7errungen &8&l● &eFausten"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				send " " to attacker
+				send " &7Du hast den &6Erfolg &eFausten &eerrungen." to attacker
+				send " " to attacker
+				send " &eStoryboard" to attacker
+				send "&7Eine Studie der &fUniversity of Retxzn &7gab bekannt, dass nur noch 10%% aller Tiere mit der Hand getöten, da diese ein schlechtes Gewissen haben. Die übrigen 90%% metzeln alles mit Schwertern oder Boegen weg." to attacker
+				send " " to attacker
+				send " &7Dafür erhälst du:" to attacker
+				send "  &8» &eSteinaxt" to attacker
+				send " " to attacker
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				add a stone axe of sharpness 3 named "&fLagonator" to attacker's inventory
+				add "Fausten" to {AchievementsList::%attacker%::*}
+				stop
+
+on chat:	
+	if message contains "45840":
+		if {Achievements::45840::%player%} is not set:
+			set {Achievements::45840::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &e45840 Nz x te r"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &e45840 &eerrungen."
+			send " "
+			send " &eStoryboard:"
+			send "&eNz x te r Codes Server"
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eNzxter's Dank"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add "45840" to {AchievementsList::%player%::*}
+
+#IchMussMirMalDieHaendeWaschen				
+on break of dirt:
+	if player's tool is air:
+		if {Achievements::IchMussMirMalDieHaendeWaschen::%player%} is not set:
+			set {Achievements::IchMussMirMalDieHaendeWaschen::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eIch muss mir mal die Hände waschen"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eIch muss mir mal die Hände waschen &eerrungen."
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &e3 Wassereimer"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add 3 of water bucket to player's inventory
+			add "Ich muss mir mal die Haende waschen!" to {AchievementsList::%player%::*}
+			stop
+
+#ProfiLumberjack		
+on enchant:  
+	if event-item is axe:			
+		if {Achievements::ProfiLumberjack::%player%} is not set:
+			set {Achievements::ProfiLumberjack::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eProfiLumberjack"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eProfiLumberjack &eerrungen."
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &e16 Setzlinge"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add 16 of sapling to player's inventory
+			add "ProfiLumberjack" to {AchievementsList::%player%::*}
+			stop	
+
+#SniperVSSniper			
+on death of skeleton:
+	if attacker is a player:
+		if attacker's tool is bow:
+			if {Achievements::SniperVSSniper::%attacker%} is not set:
+				set {Achievements::SniperVSSniper::%attacker%} to true
+				launch "BALL" firework at attacker timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to attacker
+				broadcast " "
+				broadcast "{@Prefix} &f%attacker% &7errungen &8&l● &eSniper vs Sniper"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				send " " to attacker
+				send " &7Du hast den &6Erfolg &eSniper vs Sniper &eerrungen." to attacker
+				send " " to attacker
+				send " &7Dafür erhälst du:" to attacker
+				send "  &8» &eEtwas Munition für deinen Bogen" to attacker
+				send " " to attacker
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to attacker
+				add 16 of arrow to attacker's inventory
+				add "Sniper vs Sniper" to {AchievementsList::%attacker%::*}
+				stop	
+
+#EsWerdeLicht			
+on craft of glowstone:
+	if {Achievements::EsWerdeLicht::%player%} is not set:
+		set {Achievements::EsWerdeLicht::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eEs werde Licht"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eEs werde Licht &eerrungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &e16 Fackeln"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		add 16 of torch to player's inventory
+		add "Es werde Licht" to {AchievementsList::%player%::*}
+		stop
+
+#KannstDuSieVomAllAusSehen	
+on place:
+	if y-coordinate of player is bigger than 249:	
+		if {Achievements::KannstDuSieVomAllAusSehen::%player%} is not set:
+			set {Achievements::KannstDuSieVomAllAusSehen::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eKannst du sie vom All aus sehen?"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eKannst du sie vom All aus sehen? &eerrungen."
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eSprungkraft ( 3 Minuten )"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			apply jump to the player for 3 minutes
+			add "Kannst du sie vom All aus sehen?" to {AchievementsList::%player%::*}
+			stop
+
+#Stallbursche			
+on rightclick on cow:
+	if player is holding empty bucket:
+		if {Achievements::Stallbursche::%player%} is not set:
+			set {Achievements::Stallbursche::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eStallbursche"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			send " " to player
+			send " &eDu hast die Errun genschaft &eStallbursche &eerrungen." to player
+			send " " to player
+			send " &7Dafür erhälst du:" to player
+			send "  &8» &eEinen Sattel" to player
+			send " " to player
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			add a saddle to player's inventory
+			add "Stallbursche" to {AchievementsList::%player%::*}
+			stop
+			
+
+#Suchtgefahr		
+on right click on sign:
+	if line 1 of block is "&eCasino":		
+		line 4 of block is "&7(Rechtsklick)"
+		if {Achievements::Suchtgefahr::%player%} is not set:
+			set {Achievements::Suchtgefahr::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eSuchtgefahr"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			send " " to player
+			send " &7Du hast den &6Erfolg &eSuchtgefahr &eerrungen." to player
+			send " " to player
+			send " &7Dafür erhälst du:" to player
+			send "  &8» &eEile ( 5 Minuten )" to player
+			send " " to player
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			apply haste to the player for 5 minutes
+			add "Suchtgefahr" to {AchievementsList::%player%::*}
+
+#Easteregg	
+on right click on sign:
+	if line 1 of block is "&6EG-1" or "&6EG-2" or "&6EG-3" or "&6EG-4" or "&6EG-5" or "&6EG-6" or "&6EG-7" or "&6EG-8" or "&6EG-9" or "&6EG-10":		
+		line 4 of block is "&7(Rechtsklick)"
+		if {Achievements::Eastereggs::%player%} is not set:
+			set {Achievements::Eastereggs::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eDas Eier suchen beginnt"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			send " " to player
+			send " &7Du hast den &6Erfolg &eEasteregg &eerrungen." to player
+			send " " to player
+			send " &7Dafür erhälst du:" to player
+			send "  &8» &eSpeed ( 5 Minuten )" to player
+			send " " to player
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--" to player
+			apply speed to the player for 5 minutes
+			add "Easteregg" to {AchievementsList::%player%::*}				
+				
+#HansEntertainment			
+on chat:
+	if message contains "hans" or "getvance":
+		if {Achievements::HansEntertainment::%player%} is not set:
+			set {Achievements::HansEntertainment::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eHoch die Hände"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eHans Entertainment &eerrungen."
+			send " "
+			send " &eStoryboard:"
+			send "&eHoch die Hände, Wochenende! ... So mother******* god damn true!"
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eEine Schallplatte"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add a music disc to player's inventory
+			add "Hans Entertainment" to {AchievementsList::%player%::*}
+
+#GibsMirDoggy		
+on chat:	
+	if message contains "doggy":
+		if {Achievements::GibsMirDoggy::%player%} is not set:
+			set {Achievements::GibsMirDoggy::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eGibs mir Doggy"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eGibs Mir Doggy &eerrungen."
+			send " "
+			send " &eStoryboard:"
+			send "&eGibs mir Doggy, Ich will das du es machst!"
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eEinen Dildo"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add a blaze rod named "&fDildo" to player's inventory
+			add "Gibs Mir Doggy" to {AchievementsList::%player%::*}
+			
+#Wapbab		
+on chat:
+	if message contains "wapbab":
+		if {Achievements::WapBab::%player%} is not set:
+			set {Achievements::Wapbab::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eWap Bab"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eWap Bab &eerrungen."
+			send " "
+			send " &eStoryboard:"
+			send "&eWap Bab da di ba Wap dap Wap"
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eSchminke"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add a red dye named "&fSchminke" to player's inventory
+			add "Wap Bab" to {AchievementsList::%player%::*}
+				
+#KevinWillSpielenKommen	
+on chat:	
+	if message contains "kevin":
+		if {Achievements::KevinWillSpielenKommen::%player%} is not set:
+			set {Achievements::KevinWillSpielenKommen::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eKevin will spielen kommen"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eKevin will spielen kommen &eerrungen."
+			send " "
+			send " &eStoryboard:"
+			send "&eDarf der Kevin zum spielen raus kommen ? &cNEIN !"
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eSchneebälle"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add 16 snowball to player's inventory
+			add "Kevin will spielen kommen" to {AchievementsList::%player%::*}
+			
+#LordOfTheWeed
+on chat:	
+	if message contains "lotw" or "Lord of the Weed":
+		if {Achievements::LordOfTheWeed::%player%} is not set:
+			set {Achievements::LordOfTheWeed::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eIch geh einen Harzen"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eIch geh einen Harzen &eerrungen."
+			send " "
+			send " &eStoryboard:"
+			send "&eLord of the Weed die beste Synchro. Gaba Gandalf"
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &eWeed"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add 2 wheat named "&fWeed" to player's inventory
+			add "Ich geh einen Harzen" to {AchievementsList::%player%::*}
+			
+#IchHolMirEinenRang		
+on left click on orange glass block:
+	if {Achievements::IchHolMirEinenRang::%player%} is not set:
+		set {Achievements::IchHolMirEinenRang::%player%} to true
+		launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+		play "entity_player_levelup" to player
+		broadcast " "
+		broadcast "{@Prefix} &f%player% &7errungen &8&l● &eDas ist der Anfang"
+		broadcast " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		send " "
+		send " &7Du hast den &6Erfolg &eDas ist der Anfang &eerrungen."
+		send " "
+		send " &7Dafür erhälst du:"
+		send "  &8» &c1000 Cookies"
+		send " "
+		send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+		add 1000 to {Cookies::%player%}
+		add "Das ist der Anfang" to {AchievementsList::%player%::*}
+		stop
+
+#DerErsteRang		
+on right click on orange glass block:
+	if {Cookies::%player%} is greater than or equal to 50000:
+		if {Achievements::DerErsteRang::%player%} is not set:
+			set {Achievements::DerErsteRang::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eDer erste Rang"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eDer erste Rang &eerrungen."
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &c5000 Guthaben"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add 5000 to player's account
+			add "Der erste Rang" to {AchievementsList::%player%::*}
+			stop
+
+#CookieMeister			
+on left click on orange glass block:
+	if {Cookies::%player%} is greater than or equal to 500000:
+		if {Achievements::CookieMeister::%player%} is not set:
+			set {Achievements::CookieMeister::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eCookieclicker Meister"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eCookieclicker Meister &eerrungen."
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &cMeister Kopf"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			give event-player skull of "%player%" parsed as offline player named "&f%player% Cookieclicker Meister"
+			add "Cookieclicker Meister" to {AchievementsList::%player%::*}
+			stop
+			
+#Steinbaumeister
+on place of cobblestone:
+	if {Achievements::Steinbaumeister::%player%} is not set:
+		add 1 to {AchievementsCounter::Steinbaumeister::%player%}
+		wait 1 tick
+		if {AchievementsCounter::Steinbaumeister::%player%} is 500:
+			if {Achievements::Steinbaumeister::%player%} is not set:
+				set {Achievements::Steinbaumeister::%player%} to true
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to player
+				broadcast " "
+				broadcast "{@Prefix} &f%player% &7errungen &8&l● &eSteinbaumeister"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &7Du hast den &6Erfolg &eSteinbaumeister &eerrungen."
+				send " "
+				send " &7Dafür erhälst du:"
+				send "  &8» &e1 OP Pickaxe 1.0"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				add a diamond pickaxe of fortune 1 and unbreaking 4 and efficiency 7 to player's inventory
+				add "Steinbaumeister" to {AchievementsList::%player%::*}
+				stop
+				
+#Abbaumeister
+on break of stone:
+	if {Achievements::Abbaumeister::%player%} is not set:
+		add 1 to {AchievementsCounter::Abbaumeister::%player%}
+		wait 1 tick
+		if {AchievementsCounter::Abbaumeister::%player%} is 1000:
+			if {Achievements::Abbaumeister::%player%} is not set:
+				set {Achievements::Abbaumeister::%player%} to true
+				launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+				play "entity_player_levelup" to player
+				broadcast " "
+				broadcast "{@Prefix} &f%player% &7errungen &8&l● &eAbbaumeister"
+				broadcast " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				send " "
+				send " &7Du hast den &6Erfolg &eAbbaumeister &eerrungen."
+				send " "
+				send " &7Dafür erhälst du:"
+				send "  &8» &e1 OP Pickaxe 2.0"
+				send " "
+				send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+				add 1 diamond pickaxe of fortune 2 and unbreaking 5 and efficiency 7 to player's inventory
+				add "Abbaumeister" to {AchievementsList::%player%::*}
+				
+#DerErsteKill
+on death of a player:
+	victim is a player
+	attacker is a player
+	if {Achievements::DerErsteKill::%player%} is not set:
+		if {Achievements::DerErsteKill::%player%} is not set:
+			set {Achievements::DerErsteKill::%player%} to true
+			launch "BALL" firework at player timed 1 coloured "red", "BLUE", "YELLOW", "PINK", "white" and "red"
+			play "entity_player_levelup" to player
+			broadcast " "
+			broadcast "{@Prefix} &f%player% &7errungen &8&l● &eDer erste Kill"
+			broadcast " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &7Du hast den &6Erfolg &eDer erste Kill &eerrungen."
+			send " "
+			send " &7Dafür erhälst du:"
+			send "  &8» &e1 OP Apfel"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &6&lERFOLGE &8)&6&m--&e&m--&7&m--&8&m--"
+			add a golden apple to player's inventory
+			add "Der erste Kill" to {AchievementsList::%player%::*}
+			stop

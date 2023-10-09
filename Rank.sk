@@ -1,0 +1,139 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+	
+	Rank1: &7 &6●&8&m-------------------------------------------&7&6●
+	Rank2: &7
+	Rank3: &c████████
+	Rank4: &c███&f██&c███
+	Rank5: &c███&f██&c███
+	Rank6: &c███&f██&c███
+	Rank7: &c███&f██&c███
+	Rank8: &c████████
+	Rank9: &c███&f██&c███
+	Rank10: &c████████	
+	Rank11: &7
+	Rank12: &7 &f•&8● &7Du wurdest &cgekickt &8●&f•
+	Rank13: &7
+	Rank14: &7 &7Grund &8» &7
+	Rank15: &7
+	Rank16: &7 &7Weitere Informationen unter
+	Rank17: &7
+	Rank18: &7 &7TeamSpeak³ &8&l▪ &6nzxter.tk &8&l┃ &7Homepage &8&l▪ &6nzxter.tk
+	Rank19: &7 &7Discord &8&l▪ &6BTdmF27nac
+	Rank20: &7
+	Rank21: &7 &6●&8&m-------------------------------------------&7&6●
+
+command /rang [<offline player>] [<text>]:
+	aliases: /rank,
+	permission: server.admin
+	trigger:
+		if arg-1 or arg-2 is not set:
+			send "{@Prefix} &e/rang &f<Spieler> &8[&7S, I, G, D, E, L, R, ST, JPR, PR, B, Sup, M, A&8]"
+			stop
+			
+		else if arg-2 is "S":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &7&lSpieler"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &7&lSpieler%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "I":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &f&lIron"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &f&lIron%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "G":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &6&lGold"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &6&lGold%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "D":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &b&lDiamond"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &b&lDiamond%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "E":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &2&lEmerald"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &6&lEmerald%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "L":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &3&lLapis"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &3&lLapis%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "R":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &c&lRedstone"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &c&lRedstone%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "ST":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &d&lStammi"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &e&lStammi%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "JPR":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &5&lJrPromoter"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &5&lJrPromoter%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "PR":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &5&lPromoter"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &5&lPromoter%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "B":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &a&lBuilder"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &e&lBuilder%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "Sup":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &e&lSupporter"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &e&lSupporter%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "M":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &9&lModerator"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &9&lModerator%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		else if arg-2 is "A":
+			execute console command "pex user %arg-1% group set %arg-2%"
+			broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &c&lAdmin"
+			kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &c&lAdmin%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+			
+		if player has permission "server.tl":
+			if arg-2 is "SrB":
+				execute console command "pex user %arg-1% group set %arg-2%"
+				broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &a&lSrBuilder"
+				kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &c&lSrBuilder%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+
+				
+			else if arg-2 is "SrSup":
+				execute console command "pex user %arg-1% group set %arg-2%"
+				broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &e&lSrSup"
+				kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &e&lSrSup%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+
+				
+			else if arg-2 is "SrMod":
+				execute console command "pex user %arg-1% group set %arg-2%"
+				broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &9&lSrMod"
+				kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &9&lSrMod%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+
+				
+			else if arg-2 is "SrAdmin":
+				execute console command "pex user %arg-1% group set %arg-2%"
+				broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &c&lSrAdmin"
+				kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &c&lSrAdmin%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+
+			
+		if player has permission "server.co":
+			if arg-2 is "TL":
+				execute console command "pex user %arg-1% group set %arg-2%"
+				broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &4&lTeamleitung"
+				kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &4&lTeamleitung%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"
+
+				
+			else if arg-2 is "CO":
+				execute console command "pex user %arg-1% group set %arg-2%"
+				broadcast "{@Prefix} &f%arg-1% &7hat nun den &c&lRang &4&lCoInhaber"
+				kick arg-1 because "{@Rank1}%nl%{@Rank2}%nl%{@Rank3}%nl%{@Rank4}%nl%{@Rank5}%nl%{@Rank6}%nl%{@Rank7}%nl%{@Rank8}%nl%{@Rank9}%nl%{@Rank10}%nl%{@Rank11}%nl%{@Rank12}%nl%{@Rank13}%nl%{@Rank14}Dein Neuer Rang &4&lCoInhaber%nl%{@Rank15}%nl%{@Rank16}%nl%{@Rank17}%nl%{@Rank18}%nl%{@Rank19}%nl%{@Rank20}%nl%{@Rank21}"

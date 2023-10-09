@@ -1,0 +1,26 @@
+﻿options:
+	Prefix: &8&l【&e&lHolo&8&l】&8&l▶&7
+	Title: &8&l【&e&lHolo&8&l】
+	
+	top-prefix: &8[&e%{clan::%player%.in}%&8] &8» &f%player%
+	message-color: &7
+	display-time: 5
+	height: 4
+
+on command:
+	if command is "holochat" or "holograms" or "holo" or "homo":
+		cancel event
+		if {holochat::%player%::toggle} is true:
+			play "entity_player_levelup" to player
+			set {holochat::%player%::toggle} to false
+			send player title "{@Title}" with subtitle "&7Der &e&lHolochat &7ist &caus" for 2 seconds
+			stop
+		if {holochat::%player%::toggle} is not set:
+			set {holochat::%player%::toggle} to true
+		play "entity_player_levelup" to player
+		set {holochat::%player%::toggle} to true
+		send player title "{@Title}" with subtitle "&7Der &e&lHolochat &7ist &ean" for 2 seconds
+
+on chat:
+	if {holochat::%player%::toggle} is true:
+		bind hologram "{@top-prefix};{@message-color} %message%" to player for {@display-time} seconds offset by 0.0, {@height}.0, 0.0

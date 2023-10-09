@@ -1,0 +1,140 @@
+import:
+	net.labymod.serverapi.bukkit.event.LabyModPlayerJoinEvent
+	com.google.gson.JsonObject
+	com.google.gson.JsonArray
+	net.labymod.serverapi.bukkit.LabyModPlugin	
+# Hier werden alle nötigen Java Classes importiert (Benötigt LabyModAPI und Skript-mirror)	
+	
+
+options:
+	Prefix: &8&l【&e&lLabyMod&8&l】&8&l▶&7
+	# Legt den Prefix für den Test Command fest
+	
+function setSubtitle(player: player, uuid: text, value: string):
+	set {_array} to new JsonArray()
+	set {_subtitle} to new JsonObject()
+	{_subtitle}.addProperty( "uuid", {_uuid}.toString())
+	{_subtitle}.addProperty( "size", 0.8d )
+	{_subtitle}.addProperty( "value", {_value} )
+	{_array}.add({_subtitle})
+	LabyModPlugin.getInstance().sendServerMessage({_player}, "account_subtitle", {_array})
+
+# Setzt die Function für den Subtitle
+# HIER NIX VERÄNDERN!
+
+function sendCurrentPlayingGamemode(player: player, Servername: text):
+    set {_gamemodeName} to "%{_Servername}%"
+    set {_array} to new JsonObject()
+    {_array}.addProperty("show_gamemode", true)
+    {_array}.addProperty("gamemode_name", {_gamemodeName})
+    LabyModPlugin.getInstance().sendServerMessage( {_player}, "server_gamemode", {_array})
+
+# Setzt die Function für den Spielmodus den man Spielt
+# HIER NIX VERÄNDERN!
+
+function sendClientToServer(player: player, title: string, address: string, preview: boolean):
+	set {_object} to new JsonObject()
+	{_object}.addProperty( "title", {_title})
+	{_object}.addProperty( "address", {_address})
+	{_object}.addProperty( "preview", {_preview})
+	LabyModPlugin.getInstance().sendServerMessage({_player}, "server_switch", {_object})
+# Setzt die Function um einen Spieler auf einen anderen Server zu schicken!
+# HIER NIX VERÄNDERN!
+
+# Setzt die Function für das Mausrad-Click-Auf-Spieler-Event
+
+function setMiddleClickActions(p: player):
+	# BUTTON-1 ANFANG
+	# BEISPIEL (Button wenn man eine Permission hat
+	set {_array} to new JsonArray() # Setzt eine Java Array fest // nichts ändern
+	set {_entry} to new JsonObject() # Setzt eine Java Object fest // nichts ändern
+	if {_p} has permission "system.kick": # Überprüft ob der jeweilige Spieler eine gewünschte Permission hat // Permission änderbar
+		{_entry}.addProperty("displayName", "&eBUTTON-1") # "&eBUTTON-1" ist das was angezeigt wird // kann geändert werden!
+		{_entry}.addProperty("type", "RUN_COMMAND") # "RUN_COMMAND" steht hierbei dafür, dass man einen Command ausführt // kann geändert werden zu: (NONE, CLIPBOARD, RUN_COMMAND, SUGGEST_COMMAND, OPEN_BROWSER)
+		{_entry}.addProperty("value", "dein Command") # Hier wird der Command ausgeführt // Kann geändert werden // benutze {name} um den geklickten Spieler zu "erhalten"
+		{_array}.add({_entry}) # Hier werden die arrays und entrys "addiert" // nicht ändern!
+		
+	# BUTTON-1 ENDE	
+	
+	# BUTTON 2 ANFANG
+	# BEISPIEL (Button um eine Webseite zu öffnen)
+	set {_entry} to new JsonObject() # Selbes wie oben 
+	{_entry}.addProperty("displayName", "&7Webseite") # Selbes wie oben
+	{_entry}.addProperty("type", "OPEN_BROWSER") # Hier wird jetzt eine Webseite geöffnet
+	{_entry}.addProperty("value", "https://www.youtube.com") # Hier wird nun das "Value" festgelegt
+	{_array}.add({_entry}) # Selbes wie oben
+	# BUTTOn-2 ENDE
+	LabyModPlugin.getInstance().sendServerMessage({_p}, "user_menu_actions", {_array}) # Nun wird alles als Instance an das LabyModPlugin gesendet! // AUF KEINEN FALL ÄNDERN
+
+on join:
+	setMiddleClickActions(player) # Setzt die oben erarbeiteten Dinge auf den Spieler // nicht ändern!
+	
+command /laby [<text>] [<text>] [<text>]:
+	aliases: /api, /labymod
+	trigger:
+		if arg-1 is not set:
+	
+			play "entity_bat_takeoff" to player
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lLABYMOD &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &8▪ &e&l/labymod send &f<Spieler> <ServerIP> &8&l» &7Sendet einen Spieler auf einen anderen Server"
+			send " &8▪ &e&l/labymod msg &f<Text> &8&l» &7Zeigt deinen LabyMod-Freunden, was du gerade Spielst"
+			send " &8▪ &e&l/labymod subtitle &f<Text> &8&l» &7Setzt deinen Tag unter deinem Namen!"
+			send " "
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lLABYMOD &8)&6&m--&e&m--&7&m--&8&m--"
+			
+		if player has permission "server.team":
+			if arg 1 is "server" or "send":
+				if arg-2 is set:
+					set {_p} to ("%arg-2%" parsed as player)
+					if {_p} is set:
+						if {_p} is online:
+							if arg 3 is set:
+								sendClientToServer({_p}, "&6%arg-3%", "%arg-3%", true)
+								send "{@Prefix} &7Du hast den Spieler &b%{_p}% &7versucht zum Server &b%arg-3% &7zu senden&8!"
+							else:
+								send "{@Prefix} &cBitte gebe eine Server-IP an!"
+						else:
+							send "{@Prefix} &cDieser Spieler ist nicht online!"
+					else:
+						send "{@Prefix} &cBitte gebe einen Spieler an!"
+				else:
+					send "{@Prefix} &cBitte gebe einen Spieler an!"
+					
+		else if arg 1 is "msg":
+			if arg 2 is set:
+				sendCurrentPlayingGamemode(player, "%colored arg-2%")
+				send "{@Prefix} &7Deine &bLabyMod-Freunde &7werden nun sehen&8: &e%player% &7spielt nun auf %colored arg-2% &8!"
+			else:
+				send "{@Prefix} &cBitte gebe etwas an!"
+				
+		else if arg 1 is "subtitle":
+			if arg 2 is set:
+				if length of arg-2 is smaller than 11:
+
+					replace all "&" in {LABY::SUBTITLE::%UUID OF PLAYER%} with ""
+					replace all "&" in {LABY::SUBTITLE::%UUID OF PLAYER%} with ""
+					
+					set {LABY::SUBTITLE::%UUID OF PLAYER%} to "%colored arg-2%"
+					setSubtitle(player, uuid of player, "%colored arg-2%")
+					
+					loop all players:
+						setSubtitle(loop-player, uuid of player, "%{LABY::SUBTITLE::%UUID OF PLAYER%}%")
+						setSubtitle(player, uuid of loop-player, "%{LABY::SUBTITLE::%UUID OF LOOP-PLAYER%}%")
+						
+					send "{@Prefix} &7Du hast deinen &bLabyMod-Subtitle &7zu %colored arg-2% &7geändert&8!"
+				else:
+					send "{@Prefix} &cBitte geb nicht mehr als 10 Zeichen an"
+			else:
+				send "{@Prefix} &cBitte gebe etwas an!"	
+
+
+# AUCH NICHT ÄNDERN!
+
+on join:
+	if {LABY::SUBTITLE::%UUID OF PLAYER%} is not set:
+		set {LABY::SUBTITLE::%UUID OF PLAYER%} to "&7/labymod" # BIS AUF DAS "&7Hallo"
+		
+	loop all players:
+		setSubtitle(loop-player, uuid of player, "%{LABY::SUBTITLE::%UUID OF PLAYER%}%")
+		setSubtitle(player, uuid of loop-player, "%{LABY::SUBTITLE::%UUID OF LOOP-PLAYER%}%")

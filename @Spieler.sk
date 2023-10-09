@@ -1,0 +1,19 @@
+﻿on chat:
+	loop all players:
+		replace all "%loop-player%" in message with "&6&l@&f&n%loop-player%&7"
+		
+on chat:
+	if first character of message is "@":
+		replace all "@" in message with ""
+		if {mute::%player%} is true:
+			cancel event
+		else:
+			if {chatcooldown::%player%} is true:
+				cancel event
+				stop
+			else if {global::mute} is true:
+				cancel event
+				stop
+			else:
+				cancel event
+				broadcast "&8[&6@&8] &8[&e%world%&8] %colored player's prefix% &f%player% &8&l▶ &7%message%"

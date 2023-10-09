@@ -1,0 +1,39 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /spawner [<text>] [<text>]:
+	permission: *
+	trigger:	
+		if arg-1 is not set:
+			send "{@Prefix} &e/spawner &f<setzen/delete Zahl>"
+			stop
+			
+		else if arg-1 is "setzen":
+			if arg-2 is "1":
+				set {spawner::1} to location of player
+				#play "block_note_pling" to player	
+				send "{@Prefix} &eSpawner 1 &egesetzt."	
+				
+			if arg-2 is "2":
+				set {spawner::2} to location of player
+				#play "block_note_pling" to player	
+				send "{@Prefix} &eSpawner 2 &egesetzt."
+	
+			if arg-2 is "3":
+				set {spawner::3} to location of player
+				#play "block_note_pling" to player	
+				send "{@Prefix} &eSpawner 3 &egesetzt."
+				
+		else if arg-1 is "delete":
+			delete {spawner::1}
+			delete {spawner::2}
+			delete {spawner::3}
+			send "{@Prefix} Die Spawner wurden &cgelöscht"
+				
+				
+				
+				
+every 10 seconds in world "Farmwelt":
+	drop 1 steak at {spawner::1}
+	drop 1 steak at {spawner::2}
+	drop 1 steak at {spawner::3}

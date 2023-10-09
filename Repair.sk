@@ -1,0 +1,23 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+on command:
+	if player has permission "server.emerald":
+		if command is "repair" or "fix" or "hand":
+			cancel event
+			if player's tool is air:
+				send "{@Prefix} Halte das Item, welches du &6reparieren &7möchtest, in deiner Hand"
+				
+			else if player is holding any sword or any axe or any spade or any pickaxe or any hoe or any helmet or any chestplate or any leggings or any boots or bow:
+				set {_wait} to difference between now and {repair::%player%}
+				if {_wait} is less than 5 minutes:
+					send "{@Prefix} Bitte warte &c%difference between 5 minutes and {_wait}%."
+					stop
+				set {repair::%player%} to now
+				repair tool of player
+				send "{@Prefix} Das &6Item &7wurde &aerfolgreich repariert"
+				stop
+				
+			else:
+				send "{@Prefix} Dieses &6Item &7kann &cnicht repariert &7werden"
+				stop

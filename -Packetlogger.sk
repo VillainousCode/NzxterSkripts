@@ -1,0 +1,41 @@
+on packet:
+	if event-string is "PacketPlayInCustomPayload":	
+		set {_this1} to packet field "a"	
+		set {_this2} to packet field "b"
+		
+		log "[Name: %name of player%], [IP: %ip of player%], [UUID: %player's uuid%], [World: %world of player%], [Packet: %event-string% a: %{_this1}%] b: %{_this2}%]" to "packetlogger/%player%.log"
+	
+	if event-string is "PacketPlayInBlockPlace":	
+		set {_this1} to packet field "a"	
+		
+		log "[Name: %name of player%], [IP: %ip of player%], [UUID: %player's uuid%], [World: %world of player%], [Packet: %event-string% a: %{_this1}%]" to "packetlogger/%player%.log"
+
+	if event-string is "PacketPlayInSetCreativeSlot":	
+		set {_this2} to packet field "b"
+		
+		log "[Name: %name of player%], [IP: %ip of player%], [UUID: %player's uuid%], [World: %world of player%], [Packet: %event-string% b: %{_this2}%]" to "packetlogger/%player%.log"
+
+	if event-string is "PacketPlayInWindowClick":	
+		set {_this1} to packet field "a"	
+		set {_this4} to packet field "d"
+			
+		log "[Name: %name of player%], [IP: %ip of player%], [UUID: %player's uuid%], [World: %world of player%], [Packet: %event-string% a: %{_this1}% d: %{_this4}%]" to "packetlogger/%player%.log"
+
+
+	
+#log "IP: %ip of player% UUID: %player's uuid% Name: %name of player% Packet: %event-string% a: %{_this1}% b: %{_this2}% c: %{_this1}% d: %{_this2}% e: %{_this2}%" to "packetlogger/%player%.log"
+
+#broadcast "&8&m----- &cNAnticrash &8&m-----"
+#broadcast "&7PacketPlayInSetCreativeSlot"
+#broadcast "&7Field A: %{_this1}%"
+#broadcast "&7Field B: %{_this2}%"
+#broadcast "&7Field C: %{_this3}%"
+#broadcast "&7Field D: %{_this4}%"
+#broadcast "&7Field E: %{_this5}%"
+#broadcast "&7Name: %player%"
+#broadcast "&7TPS: %tps%"
+#broadcast "&7UUID: %player's uuid%"
+#broadcast "&7IP: %ip of player%"
+#broadcast "&7Ping: %player's ping%"
+#broadcast "&7World: %world of player%"
+#broadcast "&8&m----- &cNAnticrash &8&m-----"

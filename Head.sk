@@ -1,0 +1,26 @@
+options:
+	Prefix: &8&l【&6&lNzxterMC&8&l】&8&l▶&7
+
+command /hat [<text>]:
+	aliases: /head
+	permission: server.iron
+	trigger:
+		if the player is holding air:
+			send "{@Prefix} Halte das Item, welches du den aufsetzen möchtest, in deiner Hand."
+			stop
+			
+		if id of the player's tool is more than 255:
+			send "{@Prefix} Halte das Item, welches du den aufsetzen möchtest, in deiner Hand."
+			stop
+			
+		if id of the player's tool is less than 255:
+			if the player's helmet slot is empty:
+				set {_hat} to 1 of the player's tool
+				remove {_hat} from the player's inventory
+				equip the player with {_hat}
+				message "{@Prefix} Dein neuer &6Kopf &7ist nun&e %{_hat}%&8."
+				stop
+			else:
+				send "{@Prefix} Entferne dein &eHelm &7bevor du das machst&8."
+				stop
+		

@@ -1,0 +1,77 @@
+﻿#on first join:
+#	loop all players:
+#		send loop-player title "&7Willkommen," with subtitle "&f&l%player's name% &7Viel Spaß" for 2 seconds
+
+on join:
+	set action bar of player to "&7Willkommen zurück auf dem &6&lNetzwerk!"
+	wait 1 second
+	send player title "&8&l✘ &6&oWill   kom   men &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 0.5 second
+	send player title "&8&l✘ &6&oWill  kom  men &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 0.5 second
+	send player title "&8&l✘ &6&oWill kom men &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 0.5 second
+	send player title "&8&l✘ &6&oWillkommen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	stop
+
+on first join:
+	set action bar of player to "&7Willkommen auf dem &6&lNetzwerk!"
+	wait 1 second
+	send player title "&8&l✘ &6&o* &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o*** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o**** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o***** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o****** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o******* &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o******** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o********* &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&o********** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	
+	wait 2 ticks
+	send player title "&8&l✘ &6&oW********* &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWi******** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWil******* &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWill****** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWillk***** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWillko**** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWillkom*** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWillkomm** &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWillkomme* &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &6&oWillkommen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	
+	wait 2 ticks
+	send player title "&8&l✘ &5&oWil&6&olkom&a&omen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &7&oWil&6&olkom&a&omen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &7&oWi&d&oll&9&oko&2&ommen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &a&oWil&b&olk&c&oomm&0&oen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &5&oWil&6&olkom&a&omen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &7&oWil&6&olkom&a&omen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &7&oWi&d&oll&9&oko&2&ommen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 1 second with 0.0 second fade in and 0.0 second fade out
+	wait 2 ticks
+	send player title "&8&l✘ &a&oWil&b&olk&c&oomm&0&oen &8&l✘" with subtitle "&8&l► &f&o%player's name% &8&l◄" for 0.2 seconds with 0.0 second fade in and 0.0 second fade out
+	stop

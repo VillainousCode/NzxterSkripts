@@ -1,0 +1,140 @@
+﻿options:
+	Prefix: &8&l【&e&lBank&8&l】&8&l▶&7
+	Title: &8&l【&e&lBank&8&l】
+	
+variables:
+	{bank::%player%} = 0
+
+every 2 hours:
+	loop all players:
+		if loop-player's account is greater than or equal to 10000:
+			add 1000 to {bank::%loop-player%}
+#			send loop-player title "&f&l+ &e&l100 Bank Guthaben" for 2 seconds
+#			play "entity_player_levelup" to loop-player
+			stop
+		if loop-player's account is greater than or equal to 20000:
+			add 2000 to {bank::%loop-player%}
+#			send loop-player title "&f&l+ &e&l100 Bank Guthaben" for 2 seconds
+#			play "entity_player_levelup" to loop-player
+			stop
+		if loop-player's account is greater than or equal to 30000:
+			add 3000 to {bank::%loop-player%}
+#			send loop-player title "&f&l+ &e&l100 Bank Guthaben" for 2 seconds
+#			play "entity_player_levelup" to loop-player
+			stop
+		if loop-player's account is greater than or equal to 40000:
+			add 4000 to {bank::%loop-player%}
+#			send loop-player title "&f&l+ &e&l100 Bank Guthaben" for 2 seconds
+#			play "entity_player_levelup" to loop-player
+			stop
+		if loop-player's account is greater than or equal to 50000:
+			add 5000 to {bank::%loop-player%}
+#			send loop-player title "&f&l+ &e&l100 Bank Guthaben" for 2 seconds
+#			play "entity_player_levelup" to loop-player
+			stop			
+		
+command /bank [<text>] [<text>]:
+	trigger:
+		if arg-1 is not set:
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lBANK &8)&6&m--&e&m--&7&m--&8&m--"
+			send " "
+			send " &8▪ &6/bank einzahlen &f<Zahl> &8&l» &7Geld einzahlen in die &e&lBank."
+			send " &8▪ &6/bank auszahlen &f<Zahl> &8&l» &7Geld auszahlen aus der &e&lBank."
+			send " &8▪ &6/bankkonto &f<Name> &8&l» &7Zeigt dein &e&lBank Guthaben &7an."
+			send " "		
+			send "          &8&m--&7&m--&e&m--&6&m--&8( &e&lBANK &8)&6&m--&e&m--&7&m--&8&m--"
+			stop
+			
+		else if arg-1 is "add" or "einzahlen":
+			if arg-1 is set:
+				if arg-2 is set:
+					set {_bank} to "%arg-2%" parsed as number
+					if {_bank} is a number:
+						if {_bank} is bigger than 0:
+							if player's account is bigger than {_bank}-0.01:
+								remove {_bank} from player's account
+								add {_bank} to {bank::%player%}
+								play "entity_player_levelup" to player
+								send player title "{@Title}" with subtitle "&7Du hast &e%{_bank}%$ &7in die &e&lBank &7eingezahlt &8(&e%{bank::%player%}%$&8)" for 2 seconds
+								stop
+							else:
+								send "{@Prefix} Du hast &cnicht &7genügend &eGeld!"
+						else:
+							send "{@Prefix} Du kannst keinen &cMinus-Betrag &7angeben!"
+					else:
+						send "{@Prefix} Dein angegebender &eGeld-Betrag &7ist &ckeine Nummer!"
+				else:	
+					send "{@Prefix} Bitte gebe eine Anzahl &7an &eGeld &7an!"
+
+		else if arg-1 is "remove" or "auszahlen":
+			if arg-1 is set:
+				if arg-2 is set:
+					set {_bank} to "%arg-2%" parsed as number
+					if {_bank} is a number:
+						if {_bank} is bigger than 0:
+							if {bank::%player%} is bigger than {_bank}-0.01:
+								remove {_bank} from {bank::%player%}
+								add {_bank} to player's account
+								play "entity_player_levelup" to player
+								send player title "{@Title}" with subtitle "&7Du hast &c%{_bank}%$ &7aus der &e&lBank &7abgehoben &8(&e%{bank::%player%}%$&8)" for 2 seconds
+								stop
+							else:
+								send "{@Prefix} Du hast &cnicht &7genügend &eBank Guthaben!"
+						else:
+							send "{@Prefix} Du kannst keinen &cMinus-Betrag &7angeben!"
+					else:
+						send "{@Prefix} Dein angegebender &eGeld-Betrag &7ist &ckeine Nummer!"
+				else:	
+					send "{@Prefix} Bitte gebe eine Anzahl &7an &eGeld &7an!"
+
+command /bankkonto [<player>]:
+	trigger:
+		play "entity_player_levelup" to player
+		if arg 1 is not set:
+			send "{@Prefix} &7Du hast &e%{bank::%player%}%$ &7Bank Guthaben"
+			stop
+		if arg 1 is set:
+			send "{@Prefix} &7Der &f%arg-1% &7hat &e%{bank::%arg-1%}%$ &7Bank Guthaben"
+			stop
+
+
+
+on right click on entity:
+	if name of event-entity is "&6&lB&eank":
+		cancel event
+		play "block_chest_open" to player with volume 1 and pitch 1.0
+		
+		open virtual brewing inventory with size 1 named "&6&lB&eank &8&l┃ &7Menu" to player	
+		
+		make a gui slot 0 of player with green glass pane named "&8&l➢ &a&lEinzahlen" with lore "|| &8&l» &7Zahle &e&l1000$ &7in|| &8&l» &7deine &e&lBank &7ein||  ||  &fKlicke um das Geld einzuzahlen" to run:
+			if player's account is greater than or equal to 1000:
+				remove 1000 from player's account
+				add 1000 to {bank::%player%}
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast &e1000$ &7in die &e&lBank &7eingezahlt &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+				
+		make a gui slot 1 of player with golden apple named "&8&l➢ &e&lKontostand" with lore "|| &8&l» &8(&e%{bank::%player%}%$&8)||  ||  &fKlicke um das Geld zusehen" to run:
+			send player title "{@Title}" with subtitle "&7Du hast &8(&e%{bank::%player%}%$&8) &7auf deinem &e&lBank &7Konto" for 2 seconds
+			play "entity_bat_takeoff" to player
+			stop
+				
+		make a gui slot 2 of player with red glass pane named "&8&l➢ &c&lAuszahlen" with lore "|| &8&l» &7Zahle dir &e&l1000$|| &8&l» &7aus der &e&lBank||  ||  &fKlicke um das Geld auszuzahlen" to run:
+			if {bank::%player%} is greater than or equal to 1000:
+				remove 1000 from {bank::%player%}
+				add 1000 to player's account
+				play "entity_player_levelup" to player
+				send player title "{@Title}" with subtitle "&7Du hast &c1000$ &7aus der &e&lBank &7abgehoben &8(&e%{bank::%player%}%$&8)" for 2 seconds
+				stop
+			else:
+				send player title "{@Title}" with subtitle "&7Zu wenig &e&lGeld" for 2 seconds
+				play "entity_bat_takeoff" to player
+				stop
+				
+		make a gui slot 3 of player with sign item named "&8&l➢ &e&lBank" with lore "|| &8&l» &7Hier kannst Du &e&lGeld|| &8&l» &7einzahlen und &e&lZinsen|| &8&l» &7machen alle 2 &eStunden" to run:
+			play "entity_player_levelup" to player
+			stop
